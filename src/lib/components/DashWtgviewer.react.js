@@ -32,6 +32,7 @@ export default class DashWtgViewer extends Component {
         super(props);
         this.state = {
             model: ModelBuilder(this, props.members, props.nacelle, props.rotor_diameter, props.num_blades),
+            members: props.members,
             tooltip: {display: 'none', text: ""},
             value: null,
             time: 0.0,
@@ -41,6 +42,15 @@ export default class DashWtgViewer extends Component {
         }
     }
 
+    static getDerivedStateFromProps(nextProps, prevState) {
+        // Rebuild model if members have changed
+        if(nextProps.members !== prevState.members ) {
+            return {
+                model: ModelBuilder(this, nextProps.members, nextProps.nacelle, nextProps.rotor_diameter, nextProps.num_blades),
+                members: nextProps.members
+            };
+        }
+    }
 
     render() {
         const {id} = this.props;
@@ -69,9 +79,8 @@ export default class DashWtgViewer extends Component {
                 </div>
                 <style jsx>{`
                     .canvas_holder {
-                        height: 1100px;
-                        width: 100%;
                         background: white;
+                        height:100%;
                         z-index: 1;
                     }
                     .cmpt_tooltip {
@@ -89,6 +98,7 @@ export default class DashWtgViewer extends Component {
                     }
                     .threejs-block {
                         width: 100%;
+                        height: 100%;
                         flex: 50%;
                         opacity: ${this.props.opacity};
                     }
