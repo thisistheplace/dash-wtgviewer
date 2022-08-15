@@ -1,6 +1,6 @@
 {
   "name": "dash_wtgviewer",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "WTG viewer built using threejs",
   "repository": {
     "type": "git",
