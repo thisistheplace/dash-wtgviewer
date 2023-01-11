@@ -4,5 +4,5 @@ from .fea.elements import ElementSet
 
 
 class Tower(Base):
-    node_sets: dict[str, NodeSet]
-    element_sets: dict[str, ElementSet]
+    node_sets: list[NodeSet]
+    element_sets: list[ElementSet]

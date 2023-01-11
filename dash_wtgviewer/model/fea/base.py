@@ -1,5 +1,6 @@
 from pydantic import BaseModel, validator, ValidationError
 
+# Both registers will start at index = 1
 NODE_REGISTER = set([])
 ELEMENT_REGISTER = set([])
 
@@ -19,7 +20,7 @@ class NodeBase(BaseModel):
         try:
             id = v or max(NODE_REGISTER) + 1
         except ValueError:
-            id = 0
+            id = 1
         register(id, NODE_REGISTER)
         return id
 
@@ -32,6 +33,6 @@ class ElementBase(BaseModel):
         try:
             id = v or max(ELEMENT_REGISTER) + 1
         except ValueError:
-            id = 0
+            id = 1
         register(id, ELEMENT_REGISTER)
         return id

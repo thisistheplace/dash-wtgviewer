@@ -2,5 +2,5 @@ from .base import Base
 from .fea.elements import Cone
 
 
-class Nacelle(Base):
+class Hub(Base):
     cone: Cone

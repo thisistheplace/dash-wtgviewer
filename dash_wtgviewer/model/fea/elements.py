@@ -1,5 +1,5 @@
 from enum import Enum
-from pydantic import root_validator, ValidationError, Field
+from pydantic import root_validator, ValidationError, Field, validator
 
 from .base import ElementBase
 from .nodes import Node
@@ -18,8 +18,7 @@ NUM_ELEMENT_NODES = {ElementType.tube: 2, ElementType.cuboid: 2, ElementType.con
 
 class Element(ElementBase):
     eltype: ElementType
-    nodes: dict[int, Node]
-    axis: Vector3
+    nodes: list[int]
 
     @root_validator
     def check_number_of_nodes(cls, values):
@@ -37,6 +36,23 @@ class Tube(Element):
     thickness: float
 
 
+class ConicalTube(Element):
+    eltype: ElementType = Field(ElementType.tube, const=True)
+    diameters: list[float]
+    thicknesses: list[float]
+
+    @validator("diameters", pre=True, always=True)
+    def set_diameters_now(cls, diameters):
+        if len(diameters) != 2:
+            raise ValidationError(f"Conical sections must have 2 diameters, not {len(diameters)} ")
+        return diameters
+
+    @validator("thicknesses", pre=True, always=True)
+    def set_thicknesses_now(cls, thicknesses):
+        if len(thicknesses) != 2:
+            raise ValidationError(f"Conical sections must have 2 thicknesses, not {len(thicknesses)} ")
+        return thicknesses
+
 class Cuboid(Element):
     eltype: ElementType = Field(ElementType.cuboid, const=True)
     width: float
@@ -49,4 +65,4 @@ class Cone(Element):
 
 
 class ElementSet(Base):
-    elements: dict[int, Element]
+    elements: list[int]
