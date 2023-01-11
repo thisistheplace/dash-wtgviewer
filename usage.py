@@ -28,7 +28,7 @@ app.layout = html.Div(
         num_blades=number_of_blades,
         max=min_result,
         min=max_result,
-        values=results
+        values=results,
     )
 )
 

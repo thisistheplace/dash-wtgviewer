@@ -1,5 +1,3 @@
 from .DashWtgviewer import DashWtgviewer
 
-__all__ = [
-    "DashWtgviewer"
-]
+__all__ = ["DashWtgviewer"]

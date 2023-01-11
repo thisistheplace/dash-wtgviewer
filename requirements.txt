@@ -1,3 +1,4 @@
+black==22.12.0
 bleach==5.0.1
 Brotli==1.0.9
 certifi==2022.6.15
@@ -17,8 +18,12 @@ itsdangerous==2.1.2
 Jinja2==3.1.2
 keyring==23.8.2
 MarkupSafe==2.1.1
+mypy-extensions==0.4.3
+pathspec==0.10.3
 pkginfo==1.8.3
+platformdirs==2.6.2
 plotly==5.10.0
+pydantic==1.10.4
 Pygments==2.12.0
 PyYAML==6.0
 readme-renderer==36.0
@@ -28,7 +33,9 @@ rfc3986==2.0.0
 rich==12.5.1
 six==1.16.0
 tenacity==8.0.1
+tomli==2.0.1
 twine==4.0.1
+typing_extensions==4.4.0
 urllib3==1.26.11
 webencodings==0.5.1
 Werkzeug==2.2.2

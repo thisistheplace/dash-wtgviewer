@@ -7,7 +7,9 @@ import math
 class Tubular:
     def __init__(self, number=None, nodes={}, diameters=[]):
         self.number = int(number)
-        self.nodes = {int(k): [v["X"], v["Y"], v["Z"]] for k, v in nodes.items()} # dict, key: nid, value: coords
+        self.nodes = {
+            int(k): [v["X"], v["Y"], v["Z"]] for k, v in nodes.items()
+        }  # dict, key: nid, value: coords
         if len(diameters) == 1:
             diameters = [diameters[0], diameters[0]]
         self.diameters = diameters
@@ -17,11 +19,11 @@ class Tubular:
     def cmpt_id(self):
         nodes = list(self.nodes.keys())
         return "Member: {}, Nodes: [{}, {}]".format(self.number, nodes[0], nodes[1])
-    
+
     def __dict__(self):
-        """ Structure is:
-            { "number": 1.0,}
-            [number, node1, node2, radius1, radius2]
+        """Structure is:
+        { "number": 1.0,}
+        [number, node1, node2, radius1, radius2]
         """
         output = {}
         output["number"] = self.number
@@ -41,7 +43,14 @@ class Tubular:
 
 
 class Nacelle:
-    def __init__(self, height=0.0, width=0.0, length=0.0, node={"X": 0.0, "Y": 0.0, "Z": 0.0}, direction=[0.0, 0.0, 0.0]):
+    def __init__(
+        self,
+        height=0.0,
+        width=0.0,
+        length=0.0,
+        node={"X": 0.0, "Y": 0.0, "Z": 0.0},
+        direction=[0.0, 0.0, 0.0],
+    ):
         self.height = height
         self.width = width
         self.length = length
@@ -50,11 +59,11 @@ class Nacelle:
         self.cmpt_type = "NACELLE"
         self.cmpt_id = "nacelle"
         self.number = "nacelle"
-    
+
     def __dict__(self):
-        """ Structure is:
-            { "number": 1.0,}
-            [number, node1, node2, radius1, radius2]
+        """Structure is:
+        { "number": 1.0,}
+        [number, node1, node2, radius1, radius2]
         """
         output = {}
         output["height"] = self.height
@@ -71,8 +80,10 @@ class Nacelle:
     def __str__(self):
         return "{}: {}".format(self.number, list(self.nodes.keys()))
 
+
 # define component types
 CMPT_TYPE = {"TUBULAR": Tubular, "NACELLE": Nacelle}
+
 
 def read_model(json_path):
     data = json.load(open(Path(json_path).resolve(), "r"))
@@ -81,7 +92,7 @@ def read_model(json_path):
     print("number of elements:", len(data["elements"].keys()))
 
     # generate member objects
-    members = {} # key: number, value: object
+    members = {}  # key: number, value: object
     for element, eldata in data["elements"].items():
         if eldata["type"] != "TUBULAR":
             continue
@@ -92,7 +103,7 @@ def read_model(json_path):
             members[element] = CMPT_TYPE["TUBULAR"](element, coords, eldata["diameter"])
         except KeyError:
             continue
-    
+
     # find nacelle node from highest member node
     max_coord = [0.0, 0.0, 0.0]
     for mem in members.values():
@@ -107,16 +118,17 @@ def read_model(json_path):
         nacelle["width"],
         distance_between_points(
             data["nodes"][str(nacelle["nodes"][1])],
-            data["nodes"][str(nacelle["nodes"][0])]
+            data["nodes"][str(nacelle["nodes"][0])],
         ),
-        {"X":max_coord[0], "Y":max_coord[1], "Z":max_coord[2]}
+        {"X": max_coord[0], "Y": max_coord[1], "Z": max_coord[2]},
     )
 
     return members, data["rotor_diameter"], data["number_of_blades"]
 
+
 def distance_between_points(node1, node2):
     return math.sqrt(
-        (node2["X"] - node1["X"]) ** 2 +
-        (node2["Y"] - node1["Y"]) ** 2 +
-        (node2["Z"] - node1["Z"]) ** 2
+        (node2["X"] - node1["X"]) ** 2
+        + (node2["Y"] - node1["Y"]) ** 2
+        + (node2["Z"] - node1["Z"]) ** 2
     )
