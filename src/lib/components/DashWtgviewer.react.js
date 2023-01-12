@@ -34,6 +34,7 @@ DashWtgviewer.defaultProps = {
 };
 
 DashWtgviewer.propTypes = {
+    // Converted from /assets/schema.json using https://transform.tools/json-to-proptypes
     id: PropTypes.string.isRequired,
     model: PropTypes.shape({
         name: PropTypes.string,
