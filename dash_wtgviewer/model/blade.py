@@ -2,13 +2,14 @@ from pydantic import validator, ValidationError
 from pathlib import Path
 
 from .base import Base
+from .fea.nodes import Node
 
 SUPPORTED_MODELS = [".gltf", ".glb"]
 
 
 class Blade(Base):
     url: str  # url to the gltf or glb file to load
-    node: int
+    node: Node
 
     @validator("url", pre=True, always=True)
     def set_url_now(cls, url):

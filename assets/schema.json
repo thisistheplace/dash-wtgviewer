@@ -19,15 +19,8 @@
         "nacelle": {
             "$ref": "#/definitions/Nacelle"
         },
-        "hub": {
-            "$ref": "#/definitions/Hub"
-        },
-        "blades": {
-            "title": "Blades",
-            "type": "array",
-            "items": {
-                "$ref": "#/definitions/Blade"
-            }
+        "rotor": {
+            "$ref": "#/definitions/Rotor"
         }
     },
     "required": [
@@ -35,10 +28,36 @@
         "foundation",
         "tower",
         "nacelle",
-        "hub",
-        "blades"
+        "rotor"
     ],
     "definitions": {
+        "Node": {
+            "title": "Node",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "title": "Id",
+                    "type": "integer"
+                },
+                "x": {
+                    "title": "X",
+                    "type": "number"
+                },
+                "y": {
+                    "title": "Y",
+                    "type": "number"
+                },
+                "z": {
+                    "title": "Z",
+                    "type": "number"
+                }
+            },
+            "required": [
+                "x",
+                "y",
+                "z"
+            ]
+        },
         "NodeSet": {
             "title": "NodeSet",
             "type": "object",
@@ -55,12 +74,45 @@
                     "title": "Nodes",
                     "type": "array",
                     "items": {
-                        "type": "integer"
+                        "$ref": "#/definitions/Node"
                     }
                 }
             },
             "required": [
                 "name",
+                "nodes"
+            ]
+        },
+        "ElementType": {
+            "title": "ElementType",
+            "description": "An enumeration.",
+            "enum": [
+                "tube",
+                "cuboid",
+                "cone"
+            ]
+        },
+        "Element": {
+            "title": "Element",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "title": "Id",
+                    "type": "integer"
+                },
+                "eltype": {
+                    "$ref": "#/definitions/ElementType"
+                },
+                "nodes": {
+                    "title": "Nodes",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Node"
+                    }
+                }
+            },
+            "required": [
+                "eltype",
                 "nodes"
             ]
         },
@@ -80,7 +132,7 @@
                     "title": "Elements",
                     "type": "array",
                     "items": {
-                        "type": "integer"
+                        "$ref": "#/definitions/Element"
                     }
                 }
             },
@@ -180,13 +232,30 @@
                 "element_sets"
             ]
         },
-        "ElementType": {
-            "title": "ElementType",
-            "description": "An enumeration.",
-            "enum": [
-                "tube",
-                "cuboid",
-                "cone"
+        "Blade": {
+            "title": "Blade",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "title": "Name",
+                    "type": "string"
+                },
+                "id": {
+                    "title": "Id",
+                    "type": "string"
+                },
+                "url": {
+                    "title": "Url",
+                    "type": "string"
+                },
+                "node": {
+                    "$ref": "#/definitions/Node"
+                }
+            },
+            "required": [
+                "name",
+                "url",
+                "node"
             ]
         },
         "Cone": {
@@ -209,7 +278,7 @@
                     "title": "Nodes",
                     "type": "array",
                     "items": {
-                        "type": "integer"
+                        "$ref": "#/definitions/Node"
                     }
                 },
                 "diameter": {
@@ -243,8 +312,8 @@
                 "cone"
             ]
         },
-        "Blade": {
-            "title": "Blade",
+        "Rotor": {
+            "title": "Rotor",
             "type": "object",
             "properties": {
                 "name": {
@@ -255,18 +324,24 @@
                     "title": "Id",
                     "type": "string"
                 },
-                "url": {
-                    "title": "Url",
-                    "type": "string"
+                "blades": {
+                    "title": "Blades",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Blade"
+                    }
+                },
+                "hub": {
+                    "$ref": "#/definitions/Hub"
                 },
                 "node": {
-                    "title": "Node",
-                    "type": "integer"
+                    "$ref": "#/definitions/Node"
                 }
             },
             "required": [
                 "name",
-                "url",
+                "blades",
+                "hub",
                 "node"
             ]
         }

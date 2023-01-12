@@ -4,7 +4,6 @@ from pydantic import root_validator, ValidationError, Field, validator
 from .base import ElementBase
 from .nodes import Node
 from ..base import Base
-from ..geometry import Vector3
 
 
 class ElementType(Enum):
@@ -18,7 +17,7 @@ NUM_ELEMENT_NODES = {ElementType.tube: 2, ElementType.cuboid: 2, ElementType.con
 
 class Element(ElementBase):
     eltype: ElementType
-    nodes: list[int]
+    nodes: list[Node]
 
     @root_validator
     def check_number_of_nodes(cls, values):
@@ -65,4 +64,4 @@ class Cone(Element):
 
 
 class ElementSet(Base):
-    elements: list[int]
+    elements: list[Element]

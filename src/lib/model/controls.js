@@ -1,10 +1,9 @@
-import React, {useRef, useEffect} from 'react';
-import {extend, useFrame, useThree} from '@react-three/fiber';
-import { TrackballControls } from "three/examples/jsm/controls/TrackballControls";
-import * as THREE from 'three';
+import React, {useRef, useEffect} from 'react'
+import {extend, useFrame, useThree} from '@react-three/fiber'
+import { TrackballControls } from "three/examples/jsm/controls/TrackballControls"
+import * as THREE from 'three'
 
-// Generate a JSX component
-extend({TrackballControls});
+extend({TrackballControls})
 
 const FOCUS = new THREE.Vector3(0, 0, 0)
 
@@ -15,9 +14,10 @@ const CameraControls = () => {
     var {
       camera,
       gl: { domElement },
-    } = useThree();
+    } = useThree()
     // Ref to the controls, so that we can update them on every frame using useFrame
-    const controls = useRef();
+    const controls = useRef()
+
     useEffect(() => {
       // initial camera position
       camera.position.x = 20
@@ -26,16 +26,18 @@ const CameraControls = () => {
       camera.up.set(0, 0, 1)
       camera.lookAt(FOCUS)
       // initial controls setup
-      controls.current.rotateSpeed = 2.5;
-      controls.current.zoomSpeed = 1.5;
-      controls.current.panSpeed = 1.5;
-      controls.current.noZoom = false;
-      controls.current.noPan = false;
-      controls.current.staticMoving = true;
-      controls.current.dynamicDampingFactor = 0.3;
-    }, []);
-    useFrame((state) => controls.current.update());
-    return <trackballControls ref={controls} args={[camera, domElement]} />;
-  };
+      controls.current.rotateSpeed = 2.5
+      controls.current.zoomSpeed = 1.5
+      controls.current.panSpeed = 1.5
+      controls.current.noZoom = false
+      controls.current.noPan = false
+      controls.current.staticMoving = true
+      controls.current.dynamicDampingFactor = 0.3
+    }, [])
 
-export {CameraControls};
+    useFrame(() => controls.current.update())
+    
+    return <trackballControls ref={controls} args={[camera, domElement]} />
+  }
+
+export {CameraControls}

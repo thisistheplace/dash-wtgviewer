@@ -32,17 +32,17 @@ def read_model(json_path: str | Path):
 
     node_sets["foundation"] = NodeSet(
         name="foundation",
-        nodes=list(range(1, 8))
+        nodes=[nodes[nid] for nid in range(1, 8)]
     )
 
     node_sets["tower"] = NodeSet(
         name="tower",
-        nodes=list(range(8, 11))
+        nodes=[nodes[nid] for nid in range(8,11)]
     )
 
     node_sets["nacelle"] = NodeSet(
         name="foundation",
-        nodes=list(range(11, 13))
+        nodes=[nodes[nid] for nid in range(11, 13)]
     )
 
     # get elements
@@ -50,19 +50,19 @@ def read_model(json_path: str | Path):
         if element["type"] == "TUBULAR":
             if len(element["diameter"]) == 2:
                 element = ConicalTube(
-                    nodes=element["nodes"],
+                    nodes=[nodes[nid] for nid in element["nodes"]],
                     diameters=element["diameter"],
                     thicknesses=[0.01, 0.01]
                 )
             else:
                 element = Tube(
-                    nodes=element["nodes"],
+                    nodes=[nodes[nid] for nid in element["nodes"]],
                     diameter=element["diameter"][0],
                     thickness=0.01
                 )
         elif element["type"] == "CUBOID":
             element = Cuboid(
-                nodes=element["nodes"],
+                nodes=[nodes[nid] for nid in element["nodes"]],
                 height=element["height"],
                 width=element["width"]
             )
@@ -70,17 +70,17 @@ def read_model(json_path: str | Path):
     
     element_sets["foundation"] = ElementSet(
         name="foundation",
-        elements=list(range(1, 7)),
+        elements=[elements[elid] for elid in range(1, 7)]
     )
 
     element_sets["tower"] = ElementSet(
         name="tower",
-        elements=list(range(7, 10))
+        elements=[elements[elid] for elid in range(7, 10)]
     )
 
     element_sets["nacelle"] = ElementSet(
         name="foundation",
-        elements=list(range(10, 11))
+        elements=[elements[elid] for elid in range(10, 11)]
     )
 
     # Components
@@ -99,9 +99,15 @@ def read_model(json_path: str | Path):
     hub = Hub(
         name="hub",
         cone=Cone(
-            nodes=list(nodes.keys())[-2:],
+            nodes=list(nodes.values())[-2:],
             diameter=0.5
         )
+    )
+    rotor = Rotor(
+        name="rotor",
+        blades=blades,
+        hub=hub,
+        node=node_sets["tower"].nodes[-1]
     )
     nacelle = Nacelle(
         name="nacelle",
@@ -116,10 +122,9 @@ def read_model(json_path: str | Path):
     # Compile model
     return Model(
         name="test-model",
-        blades=blades,
         foundation=foundation,
-        hub=hub,
         nacelle=nacelle,
+        rotor=rotor,
         tower=tower
     )
 

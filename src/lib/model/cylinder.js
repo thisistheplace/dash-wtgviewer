@@ -1,23 +1,23 @@
-import React, {useRef, useState, useEffect} from 'react';
-import {useFrame} from '@react-three/fiber';
-import * as THREE from 'three';
-import {frac2hexcolor} from './../model/contours.js';
-// import {ResultsContext, ContextBridge} from './../model/context_management.js';
+import PropTypes from 'prop-types'
+import React, {useRef, useState, useEffect} from 'react'
+import * as THREE from 'three'
+
+import { nodeVector, nodeDistance } from '../geometry/vectors'
 
 // function to build tubulars
-function MakeCylinder(pointX, pointY) {
-  var direction = new THREE.Vector3().subVectors(pointY, pointX);
-  var orientation = new THREE.Matrix4();
-  orientation.lookAt(pointX, pointY, new THREE.Object3D().up);
+function makeCylinder(pointX, pointY) {
+  var direction = new THREE.Vector3().subVectors(pointY, pointX)
+  var orientation = new THREE.Matrix4()
+  orientation.lookAt(pointX, pointY, new THREE.Object3D().up)
   orientation.multiply(new THREE.Matrix4().set(1, 0, 0, 0,
       0, 0, 1, 0,
       0, -1, 0, 0,
-      0, 0, 0, 1));
+      0, 0, 0, 1))
   var position = new THREE.Vector3(
       (pointY.x + pointX.x) / 2,
       (pointY.y + pointX.y) / 2,
       (pointY.z + pointX.z) / 2
-  );
+  )
   return [direction.length(), position, orientation]
 }
 
@@ -29,27 +29,24 @@ function Cylinder(props){
   // Set up state for the hovered and active state
   const [hovered, setHover] = useState(false)
   const [active, setActive] = useState(false)
-  // TODO: This is very inefficent...need to figure out how to react to parent.props changing!
-  useFrame((state, delta) => (
-    mesh.current.material.color.set(frac2hexcolor(props.parent.props.values[props.cmpt_id], props.parent.props.max, props.parent.props.min, props.parent.state.contours))
-  ))
+  const [orientation] = useState(nodeVector(props.nodes[0], props.nodes[1]))
+  const [length] = useState(nodeDistance(props.nodes[0], props.nodes[1]))
+
+  const numberOfFaces = 32
+  const hoverOpacity = 0.8
+
   // useEffect to change mesh orientation on first render
   useEffect(() => {
-    // Runs only on the first render
-    // update colour
-    const col = frac2hexcolor(props.parent.props.values[props.cmpt_id], props.parent.props.max, props.parent.props.min, props.parent.state.contours)
-    mesh.current.material.color.set(col)
     // Define orientation
-    mesh.current.applyMatrix4(props.orient)
+    mesh.current.applyMatrix4(orientation)
     // Position correctly
-    mesh.current.position.x = props.pos.x
-    mesh.current.position.y = props.pos.y
-    mesh.current.position.z = props.pos.z
+    mesh.current.position.x = props.nodes[0].x
+    mesh.current.position.y = props.nodes[0].y
+    mesh.current.position.z = props.nodes[0].z
     mesh.current.castShadow = true
     mesh.current.receiveShadow = true
-  }, []);
+  }, [])
 
-  // Return view, these are regular three.js elements expressed in JSX
   return (
     <mesh
       ref={mesh}
@@ -58,31 +55,47 @@ function Cylinder(props){
         event.stopPropagation()
         setActive(!active)
         if (active){
-          props.parent.props.setProps({active_cmpt: props.cmpt_id})
+          props.parent.props.setProps({active_cmpt: props.id})
         }
       }}
       onPointerOver={(event) => {
         // Only the mesh closest to the camera will be processed
         event.stopPropagation()
         props.parent.setState({mouse: {x: event.clientX, y: event.clientY}})
-        setHover(true);
-        var result_value = Intl.NumberFormat('en-GB', {notation: "engineering"}).format(props.parent.props.values[props.cmpt_id])
-        props.parent.setState({tooltip: {text: props.cmpt_str, display: 'block'}, value: `Value: ${result_value}`});
+        setHover(true)
+        var result_value = Math.format(props.parent.props.values[props.id], {notation: "engineering"})
+        props.parent.setState({tooltip: {text: props.id, display: 'block'}, value: `Value: ${result_value}`})
       }}
       onPointerOut={(event) => {
         // Only the mesh closest to the camera will be processed
         event.stopPropagation()
-        setHover(false);
-        props.parent.setState({tooltip: {text: "", display: 'none'}, value: ""});
+        setHover(false)
+        props.parent.setState({tooltip: {text: "", display: 'none'}, value: ""})
     }}
     >
-      <cylinderGeometry args={[props.radius1, props.radius2, props.len, 32, 1]}/>
+      <cylinderGeometry args={[props.diameters[0], props.diameters[1], length, numberOfFaces, 1]}/>
       <meshPhongMaterial
-        opacity={hovered ? 0.8 : 1.0}
+        opacity={hovered ? hoverOpacity : 1.0}
         transparent={false}
       />
     </mesh>
   )
 }
 
-export {Cylinder, MakeCylinder};
+Cylinder.propTypes = {
+  id: PropTypes.number,
+  eltype: PropTypes.string,
+  nodes: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      x: PropTypes.number,
+      y: PropTypes.number,
+      z: PropTypes.number
+    })
+  ),
+  diameters: PropTypes.arrayOf(PropTypes.number),
+  thicknesses: PropTypes.arrayOf(PropTypes.number),
+  parent: PropTypes.any
+}
+
+export {Cylinder, makeCylinder}

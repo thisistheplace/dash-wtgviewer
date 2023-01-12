@@ -9,4 +9,4 @@ class Node(NodeBase):
 
 
 class NodeSet(Base):
-    nodes: list[int]
+    nodes: list[Node]

@@ -1,5 +1,6 @@
-import React, {useRef, useState, useEffect, setState} from 'react';
-import {useFrame} from '@react-three/fiber';
+import PropTypes from 'prop-types'
+import React, {useRef, useState, useEffect, setState} from 'react'
+import {useFrame} from '@react-three/fiber'
 
 function Blade(props){
   // This reference will give us direct access to the mesh
@@ -17,19 +18,19 @@ function Blade(props){
     mesh.current.position.z = props.pos.z
     mesh.current.castShadow = true
     mesh.current.receiveShadow = true
-  }, []);
+  }, [])
   // Return view, these are regular three.js elements expressed in JSX
   return (
     <mesh
       ref={mesh}
       onClick={(event) => setActive(!active)}
       onPointerOver={(event) => {
-        setHover(true);
-        props.parent.setState({tooltip: {text: props.cmpt_str, display: 'block'}});
+        setHover(true)
+        props.parent.setState({tooltip: {text: props.cmpt_str, display: 'block'}})
       }}
       onPointerOut={(event) => {
-        setHover(false);
-        props.parent.setState({tooltip: {text: "", display: 'none'}});
+        setHover(false)
+        props.parent.setState({tooltip: {text: "", display: 'none'}})
     }}
     >
       <cylinderGeometry args={[props.radius1, props.radius2, props.len, 32, 1]}/>
@@ -39,31 +40,26 @@ function Blade(props){
 }
 
 function Blades(props){
-    // This reference will give us direct access to the mesh
     const group = useRef()
-    // Set up state for the hovered and active state
-    const [hovered, setHover] = useState(false)
-    const [active, setActive] = useState(false)
-    // useEffect to change mesh orientation on first render
+    const [rotation] = useState(Math.PI * 2 / props.blades.length)
+
     useEffect(() => {
-      // Runs only on the first render
-      // Position correctly
       group.current.position.x = props.pos[0]
       group.current.position.y = props.pos[1]
       group.current.position.z = props.pos[2]
       group.current.castShadow = true
       group.current.receiveShadow = true
-    }, []);
+    }, [])
     // Subscribe this component to the render-loop, rotate the mesh every frame
-    useFrame((state, delta) => (group.current.rotation.y += 0.01))
+    useFrame(() => (group.current.rotation.y += 0.01))
   
     // create blades
     const blades = []
-    for (var i=0; i < props.num_blades; i++){
-      var data = props.data[i]
-      const blade = <Blade len={data[0]} pos={data[1]} orient={data[2]} radius1={props.radius} radius2={props.radius2} cmpt_id={`Blade_${i + 1}`} parent={props.parent}/>
-      blades.push(blade)
-    }
+    props.blades.forEach(bladeData => {
+      blades.push(
+        <Blade {...bladeData} parent={props.parent} rotation={rotation}/>
+      )
+    })
   
     // Return view, these are regular three.js elements expressed in JSX
     return (
@@ -73,4 +69,35 @@ function Blades(props){
     )
   }
 
-export {Blades};
+Blade.propTypes = {
+  name: PropTypes.string,
+  id: PropTypes.string,
+  url: PropTypes.string,
+  node: PropTypes.shape({
+      id: PropTypes.number,
+      x: PropTypes.number,
+      y: PropTypes.number,
+      z: PropTypes.number
+  }),
+  rotation: PropTypes.number,
+  parent: PropTypes.any
+}
+
+Blades.propTypes = {
+  blades: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      id: PropTypes.string,
+      url: PropTypes.string,
+      node: PropTypes.shape({
+          id: PropTypes.number,
+          x: PropTypes.number,
+          y: PropTypes.number,
+          z: PropTypes.number
+      })
+    })
+  ),
+  parent: PropTypes.any
+}
+
+export {Blade, Blades}
