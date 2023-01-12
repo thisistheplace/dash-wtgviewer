@@ -1,0 +1,109 @@
+{
+    "name": "test-model",
+    "id": "ada38869-909c-4feb-b170-fac39c32c352",
+    "foundation": {
+        "name": "trileg",
+        "id": "13d16361-2b05-4fb1-9bb7-bf032ea50de7",
+        "node_sets": [
+            {
+                "name": "foundation",
+                "id": "1958e82d-9c72-496a-918e-37c699f4c037",
+                "nodes": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7
+                ]
+            }
+        ],
+        "element_sets": [
+            {
+                "name": "foundation",
+                "id": "2bfc8ab0-fb70-4b8a-add1-0b7055085abf",
+                "elements": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            }
+        ]
+    },
+    "tower": {
+        "name": "tower",
+        "id": "eb35fd5e-b6e3-4c3d-9078-01f96637c674",
+        "node_sets": [
+            {
+                "name": "tower",
+                "id": "0453a931-c514-40a6-bf38-7b7a27188687",
+                "nodes": [
+                    8,
+                    9,
+                    10
+                ]
+            }
+        ],
+        "element_sets": [
+            {
+                "name": "tower",
+                "id": "5ebe7800-b457-4812-b18e-a98e32b95915",
+                "elements": [
+                    7,
+                    8,
+                    9
+                ]
+            }
+        ]
+    },
+    "nacelle": {
+        "name": "nacelle",
+        "id": "0b1ab614-212f-4b03-ad89-6f9415ba00c4",
+        "element_sets": [
+            {
+                "name": "foundation",
+                "id": "53bae51f-4a4c-4b5b-b33e-ed6dac4a1808",
+                "elements": [
+                    10
+                ]
+            }
+        ]
+    },
+    "hub": {
+        "name": "hub",
+        "id": "424b9224-2c29-4794-ac01-5ecbaea62eeb",
+        "cone": {
+            "id": 11,
+            "eltype": "cone",
+            "nodes": [
+                12,
+                13
+            ],
+            "diameter": 0.5
+        }
+    },
+    "blades": [
+        {
+            "name": "Blade_1",
+            "id": "20b52b18-ac35-44bd-b9b9-f9481246ae3f",
+            "url": "assets/blade.glb",
+            "node": 10
+        },
+        {
+            "name": "Blade_2",
+            "id": "33b82b08-46bf-4a9a-acce-deb463fe060e",
+            "url": "assets/blade.glb",
+            "node": 10
+        },
+        {
+            "name": "Blade_3",
+            "id": "c2a1206a-7412-4577-9929-d5bc32a1e065",
+            "url": "assets/blade.glb",
+            "node": 10
+        }
+    ]
+}

@@ -1,0 +1,274 @@
+{
+    "title": "Model",
+    "type": "object",
+    "properties": {
+        "name": {
+            "title": "Name",
+            "type": "string"
+        },
+        "id": {
+            "title": "Id",
+            "type": "string"
+        },
+        "foundation": {
+            "$ref": "#/definitions/Foundation"
+        },
+        "tower": {
+            "$ref": "#/definitions/Tower"
+        },
+        "nacelle": {
+            "$ref": "#/definitions/Nacelle"
+        },
+        "hub": {
+            "$ref": "#/definitions/Hub"
+        },
+        "blades": {
+            "title": "Blades",
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Blade"
+            }
+        }
+    },
+    "required": [
+        "name",
+        "foundation",
+        "tower",
+        "nacelle",
+        "hub",
+        "blades"
+    ],
+    "definitions": {
+        "NodeSet": {
+            "title": "NodeSet",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "title": "Name",
+                    "type": "string"
+                },
+                "id": {
+                    "title": "Id",
+                    "type": "string"
+                },
+                "nodes": {
+                    "title": "Nodes",
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                }
+            },
+            "required": [
+                "name",
+                "nodes"
+            ]
+        },
+        "ElementSet": {
+            "title": "ElementSet",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "title": "Name",
+                    "type": "string"
+                },
+                "id": {
+                    "title": "Id",
+                    "type": "string"
+                },
+                "elements": {
+                    "title": "Elements",
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                }
+            },
+            "required": [
+                "name",
+                "elements"
+            ]
+        },
+        "Foundation": {
+            "title": "Foundation",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "title": "Name",
+                    "type": "string"
+                },
+                "id": {
+                    "title": "Id",
+                    "type": "string"
+                },
+                "node_sets": {
+                    "title": "Node Sets",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/NodeSet"
+                    }
+                },
+                "element_sets": {
+                    "title": "Element Sets",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ElementSet"
+                    }
+                }
+            },
+            "required": [
+                "name",
+                "node_sets",
+                "element_sets"
+            ]
+        },
+        "Tower": {
+            "title": "Tower",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "title": "Name",
+                    "type": "string"
+                },
+                "id": {
+                    "title": "Id",
+                    "type": "string"
+                },
+                "node_sets": {
+                    "title": "Node Sets",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/NodeSet"
+                    }
+                },
+                "element_sets": {
+                    "title": "Element Sets",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ElementSet"
+                    }
+                }
+            },
+            "required": [
+                "name",
+                "node_sets",
+                "element_sets"
+            ]
+        },
+        "Nacelle": {
+            "title": "Nacelle",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "title": "Name",
+                    "type": "string"
+                },
+                "id": {
+                    "title": "Id",
+                    "type": "string"
+                },
+                "element_sets": {
+                    "title": "Element Sets",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ElementSet"
+                    }
+                }
+            },
+            "required": [
+                "name",
+                "element_sets"
+            ]
+        },
+        "ElementType": {
+            "title": "ElementType",
+            "description": "An enumeration.",
+            "enum": [
+                "tube",
+                "cuboid",
+                "cone"
+            ]
+        },
+        "Cone": {
+            "title": "Cone",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "title": "Id",
+                    "type": "integer"
+                },
+                "eltype": {
+                    "default": "cone",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/ElementType"
+                        }
+                    ]
+                },
+                "nodes": {
+                    "title": "Nodes",
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "diameter": {
+                    "title": "Diameter",
+                    "type": "number"
+                }
+            },
+            "required": [
+                "nodes",
+                "diameter"
+            ]
+        },
+        "Hub": {
+            "title": "Hub",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "title": "Name",
+                    "type": "string"
+                },
+                "id": {
+                    "title": "Id",
+                    "type": "string"
+                },
+                "cone": {
+                    "$ref": "#/definitions/Cone"
+                }
+            },
+            "required": [
+                "name",
+                "cone"
+            ]
+        },
+        "Blade": {
+            "title": "Blade",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "title": "Name",
+                    "type": "string"
+                },
+                "id": {
+                    "title": "Id",
+                    "type": "string"
+                },
+                "url": {
+                    "title": "Url",
+                    "type": "string"
+                },
+                "node": {
+                    "title": "Node",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "name",
+                "url",
+                "node"
+            ]
+        }
+    }
+}
