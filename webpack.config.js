@@ -3,6 +3,9 @@ const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
 const WebpackDashDynamicImport = require('@plotly/webpack-dash-dynamic-import');
 const packagejson = require('./package.json');
+const { WebpackPluginServe: Serve } = require('webpack-plugin-serve');
+const { join } = require('path');
+const outputPath = join(process.cwd(), '/dist');
 
 const dashLibraryName = packagejson.name.replace(/-/g, '_');
 
@@ -53,6 +56,7 @@ module.exports = (env, argv) => {
             filename,
             library: dashLibraryName,
             libraryTarget: 'window',
+            publicPath: '/',
         },
         devtool,
         externals,
@@ -117,7 +121,8 @@ module.exports = (env, argv) => {
             new webpack.SourceMapDevToolPlugin({
                 filename: '[file].map',
                 exclude: ['async-plotlyjs']
-            })
+            }),
+            new Serve({ port: 8080 })
         ]
     }
 };

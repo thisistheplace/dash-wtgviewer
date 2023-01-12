@@ -1,7 +1,7 @@
 {
   "src/lib/components/DashWtgviewer.react.js": {
-    "description": "ExampleComponent is an example component.\nIt takes a property, `label`, and\ndisplays it.\nIt renders an input with the property `value`\nwhich is editable by the user.",
-    "displayName": "DashWtgViewer",
+    "description": "",
+    "displayName": "DashWtgviewer",
     "methods": [],
     "props": {
       "id": {
@@ -9,181 +9,19 @@
           "name": "string"
         },
         "required": true,
-        "description": "The ID used to identify this component in Dash callbacks."
-      },
-      "members": {
-        "type": {
-          "name": "arrayOf",
-          "value": {
-            "name": "shape",
-            "value": {
-              "number": {
-                "name": "number",
-                "required": true
-              },
-              "node1": {
-                "name": "arrayOf",
-                "value": {
-                  "name": "number"
-                },
-                "required": false
-              },
-              "node2": {
-                "name": "arrayOf",
-                "value": {
-                  "name": "number"
-                },
-                "required": false
-              },
-              "radius1": {
-                "name": "number",
-                "required": true
-              },
-              "radius2": {
-                "name": "number",
-                "required": true
-              },
-              "cmpt_type": {
-                "name": "string",
-                "required": false
-              },
-              "cmpt_id": {
-                "name": "string",
-                "required": false
-              },
-              "value": {
-                "name": "number",
-                "required": false
-              }
-            }
-          }
-        },
-        "required": true,
-        "description": "Dash-assigned callback that should be called to report property changes\nto Dash, to make them available for callbacks."
-      },
-      "values": {
-        "type": {
-          "name": "object"
-        },
-        "required": true,
         "description": ""
       },
-      "nacelle": {
+      "model": {
         "type": {
-          "name": "arrayOf",
-          "value": {
-            "name": "shape",
-            "value": {
-              "height": {
-                "name": "number",
-                "required": true
-              },
-              "width": {
-                "name": "number",
-                "required": true
-              },
-              "length": {
-                "name": "number",
-                "required": true
-              },
-              "node": {
-                "name": "arrayOf",
-                "value": {
-                  "name": "number"
-                },
-                "required": false
-              },
-              "direction": {
-                "name": "arrayOf",
-                "value": {
-                  "name": "number"
-                },
-                "required": false
-              },
-              "cmpt_type": {
-                "name": "string",
-                "required": false
-              },
-              "cmpt_id": {
-                "name": "string",
-                "required": false
-              },
-              "value": {
-                "name": "number",
-                "required": false
-              }
-            }
-          }
-        },
-        "required": false,
-        "description": ""
-      },
-      "rotor_diameter": {
-        "type": {
-          "name": "number"
-        },
-        "required": true,
-        "description": ""
-      },
-      "num_blades": {
-        "type": {
-          "name": "number"
-        },
-        "required": true,
-        "description": ""
-      },
-      "max": {
-        "type": {
-          "name": "number"
-        },
-        "required": true,
-        "description": ""
-      },
-      "min": {
-        "type": {
-          "name": "number"
-        },
-        "required": true,
-        "description": ""
-      },
-      "active_cmpt": {
-        "type": {
-          "name": "number"
-        },
-        "required": false,
-        "description": ""
-      },
-      "opacity": {
-        "type": {
-          "name": "string"
+          "name": "custom",
+          "raw": "{\n    name: PropTypes.string,\n    id: PropTypes.string,\n    foundation: PropTypes.shape({\n        name: PropTypes.string,\n        id: PropTypes.string,\n        node_sets: PropTypes.arrayOf(\n        PropTypes.shape({\n            name: PropTypes.string,\n            id: PropTypes.string,\n            nodes: PropTypes.arrayOf(PropTypes.number)\n        })\n        ),\n        element_sets: PropTypes.arrayOf(\n        PropTypes.shape({\n            name: PropTypes.string,\n            id: PropTypes.string,\n            elements: PropTypes.arrayOf(PropTypes.number)\n        })\n        )\n    }),\n    tower: PropTypes.shape({\n        name: PropTypes.string,\n        id: PropTypes.string,\n        node_sets: PropTypes.arrayOf(\n        PropTypes.shape({\n            name: PropTypes.string,\n            id: PropTypes.string,\n            nodes: PropTypes.arrayOf(PropTypes.number)\n        })\n        ),\n        element_sets: PropTypes.arrayOf(\n        PropTypes.shape({\n            name: PropTypes.string,\n            id: PropTypes.string,\n            elements: PropTypes.arrayOf(PropTypes.number)\n        })\n        )\n    }),\n    nacelle: PropTypes.shape({\n        name: PropTypes.string,\n        id: PropTypes.string,\n        element_sets: PropTypes.arrayOf(\n        PropTypes.shape({\n            name: PropTypes.string,\n            id: PropTypes.string,\n            elements: PropTypes.arrayOf(PropTypes.number)\n        })\n        )\n    }),\n    hub: PropTypes.shape({\n        name: PropTypes.string,\n        id: PropTypes.string,\n        cone: PropTypes.shape({\n        id: PropTypes.number,\n        eltype: PropTypes.string,\n        nodes: PropTypes.arrayOf(PropTypes.number),\n        diameter: PropTypes.number\n        })\n    }),\n    blades: PropTypes.arrayOf(\n        PropTypes.shape({\n        name: PropTypes.string,\n        id: PropTypes.string,\n        url: PropTypes.string,\n        node: PropTypes.number\n        })\n    )\n}"
         },
         "required": false,
         "description": "",
         "defaultValue": {
-          "value": "\"1\"",
+          "value": "{}",
           "computed": false
         }
-      },
-      "result": {
-        "type": {
-          "name": "string"
-        },
-        "required": false,
-        "description": ""
-      },
-      "complete": {
-        "type": {
-          "name": "string"
-        },
-        "required": false,
-        "description": ""
-      },
-      "export_obj": {
-        "type": {
-          "name": "string"
-        },
-        "required": false,
-        "description": ""
       }
     }
   }

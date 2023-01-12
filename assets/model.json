@@ -1,13 +1,13 @@
 {
     "name": "test-model",
-    "id": "dc47a08b-8ccd-4a9b-ac17-d67676a943ca",
+    "id": "ada38869-909c-4feb-b170-fac39c32c352",
     "foundation": {
         "name": "trileg",
-        "id": "75216aed-3e22-48b9-a0e4-440e9a2ff388",
+        "id": "13d16361-2b05-4fb1-9bb7-bf032ea50de7",
         "node_sets": [
             {
                 "name": "foundation",
-                "id": "0910279f-0820-4765-9a0b-de684644135d",
+                "id": "1958e82d-9c72-496a-918e-37c699f4c037",
                 "nodes": [
                     1,
                     2,
@@ -22,7 +22,7 @@
         "element_sets": [
             {
                 "name": "foundation",
-                "id": "4a59151c-aa89-4ed8-b9a9-ab1b7da1168b",
+                "id": "2bfc8ab0-fb70-4b8a-add1-0b7055085abf",
                 "elements": [
                     1,
                     2,
@@ -36,11 +36,11 @@
     },
     "tower": {
         "name": "tower",
-        "id": "138a73d2-1aa8-4396-a9d1-d28b41091455",
+        "id": "eb35fd5e-b6e3-4c3d-9078-01f96637c674",
         "node_sets": [
             {
                 "name": "tower",
-                "id": "4cc5fc44-7a8a-40ba-88c6-e65692032ceb",
+                "id": "0453a931-c514-40a6-bf38-7b7a27188687",
                 "nodes": [
                     8,
                     9,
@@ -51,7 +51,7 @@
         "element_sets": [
             {
                 "name": "tower",
-                "id": "70e15b96-f76e-4817-a5a4-b26696e822e4",
+                "id": "5ebe7800-b457-4812-b18e-a98e32b95915",
                 "elements": [
                     7,
                     8,
@@ -62,11 +62,11 @@
     },
     "nacelle": {
         "name": "nacelle",
-        "id": "d984d58a-249d-443f-8892-a307fddfde30",
+        "id": "0b1ab614-212f-4b03-ad89-6f9415ba00c4",
         "element_sets": [
             {
                 "name": "foundation",
-                "id": "cf5c66f2-d771-4d79-b52e-2037b090e430",
+                "id": "53bae51f-4a4c-4b5b-b33e-ed6dac4a1808",
                 "elements": [
                     10
                 ]
@@ -75,7 +75,7 @@
     },
     "hub": {
         "name": "hub",
-        "id": "c6cec7b9-d3da-4de9-917a-68e7db2024f4",
+        "id": "424b9224-2c29-4794-ac01-5ecbaea62eeb",
         "cone": {
             "id": 11,
             "eltype": "cone",
@@ -89,19 +89,19 @@
     "blades": [
         {
             "name": "Blade_1",
-            "id": "8fcfe7ae-07f4-47e4-8350-96a6b1b30acd",
+            "id": "20b52b18-ac35-44bd-b9b9-f9481246ae3f",
             "url": "assets/blade.glb",
             "node": 10
         },
         {
             "name": "Blade_2",
-            "id": "36bf31c4-4cb4-4e7e-be8e-24c3c2fcee5f",
+            "id": "33b82b08-46bf-4a9a-acce-deb463fe060e",
             "url": "assets/blade.glb",
             "node": 10
         },
         {
             "name": "Blade_3",
-            "id": "ffa611ba-06dc-42e9-9183-4516b4eb6aef",
+            "id": "c2a1206a-7412-4577-9929-d5bc32a1e065",
             "url": "assets/blade.glb",
             "node": 10
         }

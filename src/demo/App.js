@@ -8,7 +8,8 @@ class App extends Component {
     constructor() {
         super();
         this.state = {
-            value: ''
+            id: 'test',
+            // model: getData()
         };
         this.setProps = this.setProps.bind(this);
     }

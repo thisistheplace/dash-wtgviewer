@@ -1,6 +1,6 @@
 Package: dashWtgviewer
 Title: WTG viewer built using threejs
-Version: 0.0.1
+Version: 0.0.2
 Description: WTG viewer built using threejs
 Depends: R (>= 3.0.2)
 Imports: 

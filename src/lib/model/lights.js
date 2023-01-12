@@ -1,11 +1,14 @@
-import React, {useRef, useEffect} from 'react';
+import React, {useRef} from 'react'
 
-function SpotLight(props){
-    const light = useRef()
-    useEffect(() => {
-      light.current.lookAt(0, 0, 0)   
-    }, []);
-    return <spotLight ref={light} color={props.color} position={props.position} intensity={props.intensity} distance={props.distance} />
-  };
+const Lights = (props) => {
+  const ref = useRef()
 
-export {SpotLight};
+  return (
+    <group ref={ref}>
+      <ambientLight intensity={0.6}/>
+      <directionalLight args={['white', 1]}/>
+    </group>
+  )
+}
+
+export {Lights}

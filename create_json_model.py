@@ -128,3 +128,6 @@ if __name__ == "__main__":
 
     with open("assets/model.json", "w") as f:
         f.write(the_model.json(indent=4))
+
+    with open("assets/schema.json", "w") as f:
+        f.write(Model.schema_json(indent=4))
