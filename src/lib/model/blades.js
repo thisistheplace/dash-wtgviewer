@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import React, {useRef, useState, useEffect, setState} from 'react'
+import React, {useRef, useState, useEffect} from 'react'
 import {useFrame} from '@react-three/fiber'
 
 function Blade(props){
@@ -70,6 +70,7 @@ function Blades(props){
   }
 
 Blade.propTypes = {
+  parent: PropTypes.any,
   name: PropTypes.string,
   id: PropTypes.string,
   url: PropTypes.string,
@@ -79,11 +80,11 @@ Blade.propTypes = {
       y: PropTypes.number,
       z: PropTypes.number
   }),
-  rotation: PropTypes.number,
-  parent: PropTypes.any
+  rotation: PropTypes.number
 }
 
 Blades.propTypes = {
+  parent: PropTypes.any,
   blades: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,
@@ -96,8 +97,7 @@ Blades.propTypes = {
           z: PropTypes.number
       })
     })
-  ),
-  parent: PropTypes.any
+  )
 }
 
 export {Blade, Blades}

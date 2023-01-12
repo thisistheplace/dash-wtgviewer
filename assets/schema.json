@@ -31,6 +31,15 @@
         "rotor"
     ],
     "definitions": {
+        "ElementType": {
+            "title": "ElementType",
+            "description": "An enumeration.",
+            "enum": [
+                "tube",
+                "cuboid",
+                "cone"
+            ]
+        },
         "Node": {
             "title": "Node",
             "type": "object",
@@ -56,40 +65,6 @@
                 "x",
                 "y",
                 "z"
-            ]
-        },
-        "NodeSet": {
-            "title": "NodeSet",
-            "type": "object",
-            "properties": {
-                "name": {
-                    "title": "Name",
-                    "type": "string"
-                },
-                "id": {
-                    "title": "Id",
-                    "type": "string"
-                },
-                "nodes": {
-                    "title": "Nodes",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Node"
-                    }
-                }
-            },
-            "required": [
-                "name",
-                "nodes"
-            ]
-        },
-        "ElementType": {
-            "title": "ElementType",
-            "description": "An enumeration.",
-            "enum": [
-                "tube",
-                "cuboid",
-                "cone"
             ]
         },
         "Element": {
@@ -153,13 +128,6 @@
                     "title": "Id",
                     "type": "string"
                 },
-                "node_sets": {
-                    "title": "Node Sets",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/NodeSet"
-                    }
-                },
                 "element_sets": {
                     "title": "Element Sets",
                     "type": "array",
@@ -170,7 +138,6 @@
             },
             "required": [
                 "name",
-                "node_sets",
                 "element_sets"
             ]
         },
@@ -186,13 +153,6 @@
                     "title": "Id",
                     "type": "string"
                 },
-                "node_sets": {
-                    "title": "Node Sets",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/NodeSet"
-                    }
-                },
                 "element_sets": {
                     "title": "Element Sets",
                     "type": "array",
@@ -203,7 +163,6 @@
             },
             "required": [
                 "name",
-                "node_sets",
                 "element_sets"
             ]
         },

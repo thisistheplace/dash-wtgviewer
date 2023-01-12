@@ -1,63 +1,13 @@
 {
     "name": "test-model",
-    "id": "b2dee884-0ad2-4cc0-bfd7-eb467eb16081",
+    "id": "6e98518f-6292-40ee-8b1f-0afd3c4b74ed",
     "foundation": {
         "name": "trileg",
-        "id": "591bd976-be46-484f-a479-a4fea65c4f23",
-        "node_sets": [
-            {
-                "name": "foundation",
-                "id": "abc5e05d-328c-4bcf-95a7-f6a0cc339e26",
-                "nodes": [
-                    {
-                        "id": 1,
-                        "x": 5.0,
-                        "y": 0.0,
-                        "z": -1.0
-                    },
-                    {
-                        "id": 2,
-                        "x": -2.5,
-                        "y": 2.5,
-                        "z": -1.0
-                    },
-                    {
-                        "id": 3,
-                        "x": -2.5,
-                        "y": -2.5,
-                        "z": -1.0
-                    },
-                    {
-                        "id": 4,
-                        "x": 5.0,
-                        "y": 0.0,
-                        "z": 0.0
-                    },
-                    {
-                        "id": 5,
-                        "x": -2.5,
-                        "y": 2.5,
-                        "z": 0.0
-                    },
-                    {
-                        "id": 6,
-                        "x": -2.5,
-                        "y": -2.5,
-                        "z": 0.0
-                    },
-                    {
-                        "id": 7,
-                        "x": 0.0,
-                        "y": 0.0,
-                        "z": 5.0
-                    }
-                ]
-            }
-        ],
+        "id": "704c2e98-0ce2-431a-bad9-95715036333a",
         "element_sets": [
             {
                 "name": "foundation",
-                "id": "ee9c2e3a-383c-47b5-aedf-3af2650c4221",
+                "id": "e5442b77-ecc5-47ef-b391-c22ba1ecf860",
                 "elements": [
                     {
                         "id": 1,
@@ -185,37 +135,11 @@
     },
     "tower": {
         "name": "tower",
-        "id": "5eee6e53-78ce-4b3f-9e24-b87ee4279c58",
-        "node_sets": [
-            {
-                "name": "tower",
-                "id": "1f666a8c-42bb-42bd-8683-573644f9c8ee",
-                "nodes": [
-                    {
-                        "id": 8,
-                        "x": 0.0,
-                        "y": 0.0,
-                        "z": 10.0
-                    },
-                    {
-                        "id": 9,
-                        "x": 0.0,
-                        "y": 0.0,
-                        "z": 15.0
-                    },
-                    {
-                        "id": 10,
-                        "x": 0.0,
-                        "y": 0.0,
-                        "z": 20.0
-                    }
-                ]
-            }
-        ],
+        "id": "d0190338-176d-4667-8be3-bd4b3137b895",
         "element_sets": [
             {
                 "name": "tower",
-                "id": "2c8b87e4-eb48-49e4-951e-e75cb033c455",
+                "id": "a55720db-46f3-4f44-80fe-80566057d218",
                 "elements": [
                     {
                         "id": 7,
@@ -301,11 +225,11 @@
     },
     "nacelle": {
         "name": "nacelle",
-        "id": "ac97e34d-ace5-4f10-a0c9-954ae540c177",
+        "id": "f3c3e1ae-0206-48f9-ad89-e76a65f49e49",
         "element_sets": [
             {
                 "name": "foundation",
-                "id": "b577b211-9fee-4b37-92e3-daf711ce1ed8",
+                "id": "f530eab4-2b5c-43e5-8e81-bbf0a3bae392",
                 "elements": [
                     {
                         "id": 10,
@@ -333,12 +257,12 @@
     },
     "rotor": {
         "name": "rotor",
-        "id": "6e50cac0-de60-4c96-b762-37961679feeb",
+        "id": "7c33c957-f06c-4e0c-9500-a47e86df5323",
         "blades": [
             {
                 "name": "Blade_1",
-                "id": "39da28c2-cc67-47d8-bde6-fa7d9c640460",
-                "url": "assets/blade.glb",
+                "id": "6c53a0d0-eb24-4225-87df-1ad483112765",
+                "url": "assets/models/blade.glb",
                 "node": {
                     "id": 10,
                     "x": 0.0,
@@ -348,8 +272,8 @@
             },
             {
                 "name": "Blade_2",
-                "id": "8e31b7e4-92ed-4325-b072-45d94ffdda2d",
-                "url": "assets/blade.glb",
+                "id": "5df8dbac-a37a-43d1-a628-7cb4f55ccff8",
+                "url": "assets/models/blade.glb",
                 "node": {
                     "id": 10,
                     "x": 0.0,
@@ -359,8 +283,8 @@
             },
             {
                 "name": "Blade_3",
-                "id": "4acce9d0-6454-48e3-8c5e-660a012b487a",
-                "url": "assets/blade.glb",
+                "id": "2dfe9497-1e3a-4abe-b3f6-9bf7d6f5fef6",
+                "url": "assets/models/blade.glb",
                 "node": {
                     "id": 10,
                     "x": 0.0,
@@ -371,7 +295,7 @@
         ],
         "hub": {
             "name": "hub",
-            "id": "d90eb98e-015a-4b24-9012-3777bf68c30c",
+            "id": "dd9ef31a-c94c-4321-af52-7d79b20ea353",
             "cone": {
                 "id": 11,
                 "eltype": "cone",

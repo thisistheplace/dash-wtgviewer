@@ -5,7 +5,7 @@ from dash_wtgviewer.model import *
 from dash_wtgviewer.model.fea.elements import Tube, Cone, Cuboid, ElementSet, ConicalTube
 from dash_wtgviewer.model.fea.nodes import Node, NodeSet
 
-BLADE_URL = "assets/blade.glb"
+BLADE_URL = "assets/models/blade.glb"
 
 def read_model(json_path: str | Path):
     data = json.load(open(Path(json_path).resolve(), "r"))
