@@ -11,7 +11,7 @@ Keyword arguments:
 
 - id (string; required)
 
-- model (dict; optional)
+- model (dict; required)
 
     `model` is a dict with keys:
 
@@ -235,7 +235,7 @@ Keyword arguments:
     _namespace = 'dash_wtgviewer'
     _type = 'DashWtgviewer'
     @_explicitize_args
-    def __init__(self, id=Component.REQUIRED, model=Component.UNDEFINED, **kwargs):
+    def __init__(self, id=Component.REQUIRED, model=Component.REQUIRED, **kwargs):
         self._prop_names = ['id', 'model']
         self._valid_wildcard_attributes =            []
         self.available_properties = ['id', 'model']
@@ -245,7 +245,7 @@ Keyword arguments:
         _locals.update(kwargs)  # For wildcard attrs and excess named props
         args = {k: _locals[k] for k in _explicit_args}
 
-        for k in ['id']:
+        for k in ['id', 'model']:
             if k not in args:
                 raise TypeError(
                     'Required argument `' + k + '` was not specified.')

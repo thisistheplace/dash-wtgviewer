@@ -2,13 +2,11 @@ import PropTypes from 'prop-types'
 import React, {useRef, useState, useEffect} from 'react'
 import { useGLTF } from '@react-three/drei'
 
-import * as THREE from 'three'
-
-function Blade(props){
+const Blade = (props) => {
   const mesh = useRef()
   const [hovered, setHover] = useState(false)
   const [active, setActive] = useState(false)
-  const [geom, setGeom] = useState(new THREE.BufferGeometry())
+  const [geom, setGeom] = useState(null)
   const defaultColor = 0xadadad
 
   useEffect(() => {
@@ -48,24 +46,22 @@ function Blade(props){
 function Blades(props){
     const ref = useRef()
     const [blades, setBlades] = useState([])
+    const [rotation, setRotation] = useState(0)
 
     useEffect(() => {
       if (!props.blades) { return }
       console.log("creating blades")
-      const newBlades = []
-      const rotation = Math.PI * 2 / props.blades.length
-      props.blades.map((bladeData, i) => {
-        console.log("blade")
-        newBlades.push(
-          <Blade key={i} {...bladeData} parent={props.parent} rotation={rotation}/>
-        )
-      })
-      setBlades(newBlades)
+      setBlades(props.blades)
+      setRotation(Math.PI * 2 / props.blades.length)
     }, [props.blades])
   
     return (
       <group ref={ref}>
-          {blades}
+        {
+          blades.map((bladeData, i) =>
+            <Blade key={i} {...bladeData} parent={props.parent} rotation={rotation}/>
+          )
+        }
       </group>
     )
   }

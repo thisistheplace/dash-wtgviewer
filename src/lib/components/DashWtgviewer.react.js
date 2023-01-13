@@ -16,9 +16,9 @@ function DashWtgviewer(props) {
                 <CameraControls/>
                 <axesHelper scale={100}/>
                 <Lights {...props}/>
-                {/* <Suspense fallback={null}> */}
-                <Model {...props.model}/>
-                {/* </Suspense> */}
+                <Suspense fallback={null}>
+                    <Model {...props.model}/>
+                </Suspense>
             </Canvas>
             <Loader />
         </div>

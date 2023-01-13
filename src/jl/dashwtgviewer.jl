@@ -9,7 +9,7 @@ A DashWtgviewer component.
 
 Keyword arguments:
 - `id` (String; required)
-- `model` (optional): . model has the following type: lists containing elements 'name', 'id', 'foundation', 'tower', 'nacelle', 'hub', 'blades'.
+- `model` (required): . model has the following type: lists containing elements 'name', 'id', 'foundation', 'tower', 'nacelle', 'hub', 'blades'.
 Those elements have the following types:
   - `name` (String; optional)
   - `id` (String; optional)

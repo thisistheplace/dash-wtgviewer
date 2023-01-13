@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import React, {useRef, useEffect} from 'react'
-import { useFrame } from '@react-three/fiber'
+// import { useFrame } from '@react-three/fiber'
 
 import { Blades } from './blades'
 import { Hub } from './hub'
