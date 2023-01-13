@@ -166,6 +166,44 @@
                 "element_sets"
             ]
         },
+        "Cuboid": {
+            "title": "Cuboid",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "title": "Id",
+                    "type": "integer"
+                },
+                "eltype": {
+                    "default": "cuboid",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/ElementType"
+                        }
+                    ]
+                },
+                "nodes": {
+                    "title": "Nodes",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Node"
+                    }
+                },
+                "width": {
+                    "title": "Width",
+                    "type": "number"
+                },
+                "height": {
+                    "title": "Height",
+                    "type": "number"
+                }
+            },
+            "required": [
+                "nodes",
+                "width",
+                "height"
+            ]
+        },
         "Nacelle": {
             "title": "Nacelle",
             "type": "object",
@@ -178,17 +216,13 @@
                     "title": "Id",
                     "type": "string"
                 },
-                "element_sets": {
-                    "title": "Element Sets",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/ElementSet"
-                    }
+                "element": {
+                    "$ref": "#/definitions/Cuboid"
                 }
             },
             "required": [
                 "name",
-                "element_sets"
+                "element"
             ]
         },
         "Blade": {

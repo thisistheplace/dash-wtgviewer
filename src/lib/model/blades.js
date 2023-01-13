@@ -1,69 +1,70 @@
 import PropTypes from 'prop-types'
 import React, {useRef, useState, useEffect} from 'react'
-import {useFrame} from '@react-three/fiber'
+import { useGLTF } from '@react-three/drei'
+
+import * as THREE from 'three'
 
 function Blade(props){
-  // This reference will give us direct access to the mesh
   const mesh = useRef()
-  // Set up state for the hovered and active state
   const [hovered, setHover] = useState(false)
   const [active, setActive] = useState(false)
-  // useEffect to change mesh orientation on first render
+  const [geom, setGeom] = useState(new THREE.BufferGeometry())
+  const defaultColor = 0xadadad
+
   useEffect(() => {
-    // Runs only on the first render
-    // Define orientation
-    mesh.current.applyMatrix4(props.orient)
-    mesh.current.position.x = props.pos.x
-    mesh.current.position.y = props.pos.y
-    mesh.current.position.z = props.pos.z
-    mesh.current.castShadow = true
-    mesh.current.receiveShadow = true
-  }, [])
-  // Return view, these are regular three.js elements expressed in JSX
+    if (!props.url) { return }
+    console.log("creating blade")
+    console.log(props.url)
+    const bladeModel = useGLTF(props.url)
+    console.log(bladeModel)
+    setGeom(bladeModel.scene.children[0].geometry)
+
+    mesh.current.position.x = props.node.x
+    mesh.current.position.y = props.node.y
+    mesh.current.position.z = props.node.z
+  }, [props])
+  
   return (
     <mesh
       ref={mesh}
-      onClick={(event) => setActive(!active)}
-      onPointerOver={(event) => {
+      geom={geom}
+      castShadow={true}
+      receiveShadow={true}
+      onClick={() => setActive(!active)}
+      onPointerOver={() => {
         setHover(true)
-        props.parent.setState({tooltip: {text: props.cmpt_str, display: 'block'}})
+        props.parent.setState({tooltip: {text: props.name, display: 'block'}})
       }}
-      onPointerOut={(event) => {
+      onPointerOut={() => {
         setHover(false)
         props.parent.setState({tooltip: {text: "", display: 'none'}})
-    }}
+      }}
     >
-      <cylinderGeometry args={[props.radius1, props.radius2, props.len, 32, 1]}/>
-      <meshPhongMaterial opacity={1.0} transparent={false} color={hovered ? 'red' : 0xadadad} />
+      <meshPhongMaterial opacity={1.0} transparent={false} color={hovered ? 'red' : defaultColor} />
     </mesh>
   )
 }
 
 function Blades(props){
-    const group = useRef()
-    const [rotation] = useState(Math.PI * 2 / props.blades.length)
+    const ref = useRef()
+    const [blades, setBlades] = useState([])
 
     useEffect(() => {
-      group.current.position.x = props.pos[0]
-      group.current.position.y = props.pos[1]
-      group.current.position.z = props.pos[2]
-      group.current.castShadow = true
-      group.current.receiveShadow = true
-    }, [])
-    // Subscribe this component to the render-loop, rotate the mesh every frame
-    useFrame(() => (group.current.rotation.y += 0.01))
+      if (!props.blades) { return }
+      console.log("creating blades")
+      const newBlades = []
+      const rotation = Math.PI * 2 / props.blades.length
+      props.blades.map((bladeData, i) => {
+        console.log("blade")
+        newBlades.push(
+          <Blade key={i} {...bladeData} parent={props.parent} rotation={rotation}/>
+        )
+      })
+      setBlades(newBlades)
+    }, [props.blades])
   
-    // create blades
-    const blades = []
-    props.blades.forEach(bladeData => {
-      blades.push(
-        <Blade {...bladeData} parent={props.parent} rotation={rotation}/>
-      )
-    })
-  
-    // Return view, these are regular three.js elements expressed in JSX
     return (
-      <group ref={group}>
+      <group ref={ref}>
           {blades}
       </group>
     )

@@ -1,13 +1,13 @@
 {
     "name": "test-model",
-    "id": "6e98518f-6292-40ee-8b1f-0afd3c4b74ed",
+    "id": "42f0bfa0-6796-4189-95eb-9cd57ebeeb19",
     "foundation": {
         "name": "trileg",
-        "id": "704c2e98-0ce2-431a-bad9-95715036333a",
+        "id": "43f46ee0-4bc4-4a01-bbe3-6f6e7e352aed",
         "element_sets": [
             {
                 "name": "foundation",
-                "id": "e5442b77-ecc5-47ef-b391-c22ba1ecf860",
+                "id": "f84aa49d-9bae-4522-b2bc-47b4400f9081",
                 "elements": [
                     {
                         "id": 1,
@@ -135,11 +135,11 @@
     },
     "tower": {
         "name": "tower",
-        "id": "d0190338-176d-4667-8be3-bd4b3137b895",
+        "id": "abeec5df-3247-4f9a-9e69-ac3e484ada32",
         "element_sets": [
             {
                 "name": "tower",
-                "id": "a55720db-46f3-4f44-80fe-80566057d218",
+                "id": "818ef3b5-eb71-4c19-9d95-6bcf114940fe",
                 "elements": [
                     {
                         "id": 7,
@@ -225,43 +225,35 @@
     },
     "nacelle": {
         "name": "nacelle",
-        "id": "f3c3e1ae-0206-48f9-ad89-e76a65f49e49",
-        "element_sets": [
-            {
-                "name": "foundation",
-                "id": "f530eab4-2b5c-43e5-8e81-bbf0a3bae392",
-                "elements": [
-                    {
-                        "id": 10,
-                        "eltype": "cuboid",
-                        "nodes": [
-                            {
-                                "id": 11,
-                                "x": 1.0,
-                                "y": 0.0,
-                                "z": 21.0
-                            },
-                            {
-                                "id": 12,
-                                "x": -3.0,
-                                "y": 0.0,
-                                "z": 21.0
-                            }
-                        ],
-                        "width": 2.0,
-                        "height": 2.0
-                    }
-                ]
-            }
-        ]
+        "id": "399faa1d-7c17-410d-9b22-4f3d0e5a72ba",
+        "element": {
+            "id": 10,
+            "eltype": "cuboid",
+            "nodes": [
+                {
+                    "id": 11,
+                    "x": 1.0,
+                    "y": 0.0,
+                    "z": 21.0
+                },
+                {
+                    "id": 12,
+                    "x": -3.0,
+                    "y": 0.0,
+                    "z": 21.0
+                }
+            ],
+            "width": 2.0,
+            "height": 2.0
+        }
     },
     "rotor": {
         "name": "rotor",
-        "id": "7c33c957-f06c-4e0c-9500-a47e86df5323",
+        "id": "a129c52f-d963-4b9b-adfd-5931430457d8",
         "blades": [
             {
                 "name": "Blade_1",
-                "id": "6c53a0d0-eb24-4225-87df-1ad483112765",
+                "id": "a74a27bd-6b01-47e4-9757-fa04595b795a",
                 "url": "assets/models/blade.glb",
                 "node": {
                     "id": 10,
@@ -272,7 +264,7 @@
             },
             {
                 "name": "Blade_2",
-                "id": "5df8dbac-a37a-43d1-a628-7cb4f55ccff8",
+                "id": "c0828cee-be0d-40ac-b95f-2d67a35c6146",
                 "url": "assets/models/blade.glb",
                 "node": {
                     "id": 10,
@@ -283,7 +275,7 @@
             },
             {
                 "name": "Blade_3",
-                "id": "2dfe9497-1e3a-4abe-b3f6-9bf7d6f5fef6",
+                "id": "87cf437f-a2f5-4a88-8caa-ea60b85e4aef",
                 "url": "assets/models/blade.glb",
                 "node": {
                     "id": 10,
@@ -295,7 +287,7 @@
         ],
         "hub": {
             "name": "hub",
-            "id": "dd9ef31a-c94c-4321-af52-7d79b20ea353",
+            "id": "9aee2599-3519-46d3-91a7-41e96e65d2e5",
             "cone": {
                 "id": 11,
                 "eltype": "cone",

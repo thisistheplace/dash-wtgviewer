@@ -24,9 +24,6 @@ function makeCylinder(pointX, pointY) {
 function Cylinder(props){
   // This reference will give us direct access to the mesh
   const mesh = useRef()
-  // const results = ContextBridge(ResultsContext)
-  // console.log(results)
-  // Set up state for the hovered and active state
   const [hovered, setHover] = useState(false)
   const [active, setActive] = useState(false)
   const [orientation] = useState(nodeVector(props.nodes[0], props.nodes[1]))

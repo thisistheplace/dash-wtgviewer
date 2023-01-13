@@ -4,26 +4,21 @@ import React, { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
 import {Loader} from '@react-three/drei'
 
-import { Lights } from '../model/lights'
 import {CameraControls} from '../model/controls'
-
-const Model = (props) => {
-    return (
-        <>
-            <Lights {...props}/>
-        </>
-    )
-}
+import { Lights } from '../model/lights'
+import { Model } from '../model/model'
 
 function DashWtgviewer(props) {
+    console.log("props", props)
     return (
         <div id={props.id} style={{"height":"100%", "width":"100%"}}>
             <Canvas style={{'background':'white'}} camera={{position: [100, 100, 100], fov:50, aspect:window.innerWidth / window.innerHeight, near: 0.1, far: 1000}}>
                 <CameraControls/>
                 <axesHelper scale={100}/>
-                <Suspense fallback={null}>
-                    <Model {...props}/>
-                </Suspense>
+                <Lights {...props}/>
+                {/* <Suspense fallback={null}> */}
+                <Model {...props.model}/>
+                {/* </Suspense> */}
             </Canvas>
             <Loader />
         </div>
@@ -52,7 +47,7 @@ DashWtgviewer.propTypes = {
                     id: PropTypes.number,
                     x: PropTypes.number,
                     y: PropTypes.number,
-                    z: -PropTypes.number
+                    z: PropTypes.number
                 })
                 )
             })
@@ -70,7 +65,7 @@ DashWtgviewer.propTypes = {
                         id: PropTypes.number,
                         x: PropTypes.number,
                         y: PropTypes.number,
-                        z: -PropTypes.number
+                        z: PropTypes.number
                     })
                     ),
                     diameter: PropTypes.number,
@@ -155,7 +150,7 @@ DashWtgviewer.propTypes = {
             nodes: PropTypes.arrayOf(
                 PropTypes.shape({
                 id: PropTypes.number,
-                x: -PropTypes.number,
+                x: PropTypes.number,
                 y: PropTypes.number,
                 z: PropTypes.number
                 })
@@ -176,7 +171,7 @@ DashWtgviewer.propTypes = {
             })
             })
         )
-    })
+    }).isRequired
 }
 
 export default DashWtgviewer

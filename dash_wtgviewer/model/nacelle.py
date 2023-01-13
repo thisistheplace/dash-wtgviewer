@@ -1,6 +1,6 @@
 from .base import Base
-from .fea.elements import ElementSet
+from .fea.elements import Cuboid
 
 
 class Nacelle(Base):
-    element_sets: list[ElementSet]
+    element: Cuboid

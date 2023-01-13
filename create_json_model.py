@@ -40,11 +40,6 @@ def read_model(json_path: str | Path):
         nodes=[nodes[nid] for nid in range(8,11)]
     )
 
-    node_sets["nacelle"] = NodeSet(
-        name="foundation",
-        nodes=[nodes[nid] for nid in range(11, 13)]
-    )
-
     # get elements
     for element in data["elements"].values():
         if element["type"] == "TUBULAR":
@@ -78,11 +73,6 @@ def read_model(json_path: str | Path):
         elements=[elements[elid] for elid in range(7, 10)]
     )
 
-    element_sets["nacelle"] = ElementSet(
-        name="foundation",
-        elements=[elements[elid] for elid in range(10, 11)]
-    )
-
     # Components
     blades = [
         Blade(
@@ -111,7 +101,7 @@ def read_model(json_path: str | Path):
     )
     nacelle = Nacelle(
         name="nacelle",
-        element_sets=[element_sets["nacelle"]]
+        element=elements[10]
     )
     tower = Tower(
         name="tower",

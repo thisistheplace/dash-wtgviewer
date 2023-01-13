@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 
 import { DashWtgviewer } from '../lib';
 
-const getData=()=>{
+const getData=(setProps, data)=>{
     fetch('/assets/model.json'
     ,{
       headers : { 
@@ -16,7 +16,8 @@ const getData=()=>{
         return response.json();
       })
       .then(function(myJson) {
-        console.log(myJson);
+        data.model = myJson
+        setProps(data)
       });
   }
 
@@ -26,13 +27,22 @@ class App extends Component {
         super();
         this.state = {
             id: 'test',
-            model: getData()
+            model: {}
         };
         this.setProps = this.setProps.bind(this);
     }
 
     setProps(newProps) {
         this.setState(newProps);
+    }
+
+    componentDidMount() {
+        getData(
+            this.setProps,
+            {
+                id: this.state.id,
+            }
+        )
     }
 
     render() {

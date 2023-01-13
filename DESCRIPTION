@@ -1,6 +1,6 @@
 Package: dashWtgviewer
 Title: Viewer for wind turbine simulation results built using threejs for python Dash
-Version: 0.0.1
+Version: 0.0.2
 Description: Viewer for wind turbine simulation results built using threejs for python Dash
 Depends: R (>= 3.0.2)
 Imports: 

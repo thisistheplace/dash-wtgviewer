@@ -1,14 +1,26 @@
 import PropTypes from 'prop-types'
-import React, {useRef} from 'react'
+import React, {useRef, useEffect} from 'react'
+import { useFrame } from '@react-three/fiber'
 
 import { Blades } from './blades'
+import { Hub } from './hub'
 
 const Rotor = (props) => {
   const ref = useRef()
 
+  useEffect(() => {
+    if (!props.node) { return }
+    ref.current.position.x = props.node.x
+    ref.current.position.y = props.node.y
+    ref.current.position.z = props.node.z
+  }, [props])
+
+  // useFrame(() => (ref.current.rotation.y += 0.01))
+
   return (
     <group ref={ref}>
-      <Blades {...props.blades} parent={props.parent}/>
+      <Blades blades={props.blades} parent={props.parent}/>
+      <Hub {...props.hub} parent={props.parent}/>
     </group>
   )
 
@@ -40,7 +52,7 @@ Rotor.propTypes = {
       nodes: PropTypes.arrayOf(
         PropTypes.shape({
           id: PropTypes.number,
-          x: -PropTypes.number,
+          x: PropTypes.number,
           y: PropTypes.number,
           z: PropTypes.number
         })
