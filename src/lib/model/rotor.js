@@ -19,12 +19,12 @@ const Rotor = (props) => {
 
   useEffect(() => {
     if (!props.node) { return }
-    // ref.current.position.x = props.node.x
-    // ref.current.position.y = props.node.y
-    // ref.current.position.z = props.node.z
+    ref.current.position.x = props.node.x
+    ref.current.position.y = props.node.y
+    ref.current.position.z = props.node.z
   }, [props.node])
 
-  // useFrame(() => (ref.current.rotation.x += 0.01))
+  useFrame(() => (ref.current.rotation.x += 0.01))
 
   return (
     <group ref={ref}>

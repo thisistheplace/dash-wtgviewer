@@ -18,7 +18,7 @@ const Hub = (props) => {
     // Create lathe geometry
     const points = []
     const numPoints = 10
-    const numSegments = 12
+    const numSegments = 24
     const startAngle = 0
     const endAngle = Math.PI * 2
     const inc = 0.2

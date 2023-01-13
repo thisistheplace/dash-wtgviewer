@@ -11,21 +11,30 @@ const Blade = (props) => {
   const [hovered, setHover] = useState(false)
   const [active, setActive] = useState(false)
   const gltf = useGLTF(props.url)
-  // gltf.scene.children[0].rotation.set(0, 0, 0)
-  console.log("loaded", gltf)
   const defaultColor = 0xadadad
 
   useEffect(() => {
     if (!ref.current) { return }
     if (!props.node) { return }
 
+    // Adjust geometry by axis first
     const axis = new THREE.Vector3(props.axis.x, props.axis.y, props.axis.z)
-    var quaternion = new THREE.Quaternion()
-    quaternion.setFromAxisAngle(
+    var quaternion1 = new THREE.Quaternion()
+    quaternion1.setFromUnitVectors(
+      new THREE.Vector3(0, 0, 1).normalize(),
+      axis.normalize()
+    )
+    axis.applyQuaternion(quaternion1)
+
+    var quaternion2 = new THREE.Quaternion()
+    quaternion2.setFromAxisAngle(
       axis.normalize(),
       props.rotation
     )
-    ref.current.rotation.setFromQuaternion(quaternion)
+
+    var combined = new THREE.Quaternion()
+    combined.multiplyQuaternions(quaternion1, quaternion2)
+    ref.current.rotation.setFromQuaternion(combined)
 
     ref.current.scale.set(
       props.scale.x,
@@ -68,8 +77,7 @@ function Blades(props){
     useEffect(() => {
       if (!props.blades) { return }
       setBlades(props.blades)
-      // setRotation(Math.PI * 2 / props.blades.length)
-      setRotation(0)
+      setRotation(Math.PI * 2 / props.blades.length)
     }, [props.blades])
   
     return (

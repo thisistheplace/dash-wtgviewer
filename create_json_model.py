@@ -25,8 +25,9 @@ def read_model(json_path: str | Path):
         )
         nodes[node.id] = node
     max_node_id = max(list(nodes.keys()))
+    # extra hub node
     nodes[max_node_id + 1] = Node(
-        x=nodes[max_node_id].x - 1,
+        x=nodes[max_node_id].x - 1.5,
         y=nodes[max_node_id].y,
         z=nodes[max_node_id].z
     )
@@ -80,7 +81,7 @@ def read_model(json_path: str | Path):
             name=f"Blade_{idx}",
             url=BLADE_URL,
             node=node_sets["tower"].nodes[-1],
-            scale=Vector3(x=1, y=1, z=1)
+            scale=Vector3(x=1, y=0.5, z=0.5)
         ) for idx in range(1, 4)
     ]
     foundation = Foundation(
@@ -92,7 +93,7 @@ def read_model(json_path: str | Path):
         name="hub",
         cone=Cone(
             nodes=list(nodes.values())[-2:],
-            diameter=0.5
+            diameter=1.5
         )
     )
     rotor = Rotor(
