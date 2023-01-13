@@ -9,15 +9,16 @@ function Nacelle(props){
   // Set up state for the hovered and active state
   const [hovered, setHover] = useState(false)
   const [active, setActive] = useState(false)
-  const [length] = useState(nodeDistance(props.element.nodes[0], props.element.nodes[1]))
+  const [length, setLength] = useState(0)
   const defaultColor = 0xadadad
 
   useEffect(() => {
     if (!props.element) {return}
+    setLength(nodeDistance(props.element.nodes[0], props.element.nodes[1]))
     mesh.current.position.x = props.element.nodes[0].x
     mesh.current.position.y = props.element.nodes[0].y
     mesh.current.position.z = props.element.nodes[0].z
-  }, [])
+  }, [props.element])
 
   return (
     <mesh

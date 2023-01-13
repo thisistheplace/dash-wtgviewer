@@ -4,6 +4,7 @@ from pathlib import Path
 from dash_wtgviewer.model import *
 from dash_wtgviewer.model.fea.elements import Tube, Cone, Cuboid, ElementSet, ConicalTube
 from dash_wtgviewer.model.fea.nodes import Node, NodeSet
+from dash_wtgviewer.model.geometry.vectors import Vector3
 
 BLADE_URL = "assets/models/blade.glb"
 
@@ -78,7 +79,8 @@ def read_model(json_path: str | Path):
         Blade(
             name=f"Blade_{idx}",
             url=BLADE_URL,
-            node=node_sets["tower"].nodes[-1]
+            node=node_sets["tower"].nodes[-1],
+            scale=Vector3(x=1, y=1, z=1)
         ) for idx in range(1, 4)
     ]
     foundation = Foundation(
@@ -97,7 +99,7 @@ def read_model(json_path: str | Path):
         name="rotor",
         blades=blades,
         hub=hub,
-        node=node_sets["tower"].nodes[-1]
+        node=list(nodes.values())[-2]
     )
     nacelle = Nacelle(
         name="nacelle",

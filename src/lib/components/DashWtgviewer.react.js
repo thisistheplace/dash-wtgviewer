@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 
 import React, { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
-import {Loader} from '@react-three/drei'
+import { Loader } from '@react-three/drei'
 
 import {CameraControls} from '../model/controls'
 import { Lights } from '../model/lights'
@@ -12,7 +12,7 @@ function DashWtgviewer(props) {
     console.log("props", props)
     return (
         <div id={props.id} style={{"height":"100%", "width":"100%"}}>
-            <Canvas style={{'background':'white'}} camera={{position: [100, 100, 100], fov:50, aspect:window.innerWidth / window.innerHeight, near: 0.1, far: 1000}}>
+            <Canvas style={{'background':'white'}} camera={{position: [100, 100, 100], fov:50, aspect:window.innerWidth / window.innerHeight, near: 0.1, far: 10000}}>
                 <CameraControls/>
                 <axesHelper scale={100}/>
                 <Lights {...props}/>
@@ -38,20 +38,6 @@ DashWtgviewer.propTypes = {
         foundation: PropTypes.shape({
             name: PropTypes.string,
             id: PropTypes.string,
-            node_sets: PropTypes.arrayOf(
-            PropTypes.shape({
-                name: PropTypes.string,
-                id: PropTypes.string,
-                nodes: PropTypes.arrayOf(
-                PropTypes.shape({
-                    id: PropTypes.number,
-                    x: PropTypes.number,
-                    y: PropTypes.number,
-                    z: PropTypes.number
-                })
-                )
-            })
-            ),
             element_sets: PropTypes.arrayOf(
             PropTypes.shape({
                 name: PropTypes.string,
@@ -78,20 +64,6 @@ DashWtgviewer.propTypes = {
         tower: PropTypes.shape({
             name: PropTypes.string,
             id: PropTypes.string,
-            node_sets: PropTypes.arrayOf(
-            PropTypes.shape({
-                name: PropTypes.string,
-                id: PropTypes.string,
-                nodes: PropTypes.arrayOf(
-                PropTypes.shape({
-                    id: PropTypes.number,
-                    x: PropTypes.number,
-                    y: PropTypes.number,
-                    z: PropTypes.number
-                })
-                )
-            })
-            ),
             element_sets: PropTypes.arrayOf(
             PropTypes.shape({
                 name: PropTypes.string,
@@ -118,33 +90,7 @@ DashWtgviewer.propTypes = {
         nacelle: PropTypes.shape({
             name: PropTypes.string,
             id: PropTypes.string,
-            element_sets: PropTypes.arrayOf(
-            PropTypes.shape({
-                name: PropTypes.string,
-                id: PropTypes.string,
-                elements: PropTypes.arrayOf(
-                PropTypes.shape({
-                    id: PropTypes.number,
-                    eltype: PropTypes.string,
-                    nodes: PropTypes.arrayOf(
-                    PropTypes.shape({
-                        id: PropTypes.number,
-                        x: PropTypes.number,
-                        y: PropTypes.number,
-                        z: PropTypes.number
-                    })
-                    ),
-                    width: PropTypes.number,
-                    height: PropTypes.number
-                })
-                )
-            })
-            )
-        }),
-        hub: PropTypes.shape({
-            name: PropTypes.string,
-            id: PropTypes.string,
-            cone: PropTypes.shape({
+            element: PropTypes.shape({
             id: PropTypes.number,
             eltype: PropTypes.string,
             nodes: PropTypes.arrayOf(
@@ -155,22 +101,55 @@ DashWtgviewer.propTypes = {
                 z: PropTypes.number
                 })
             ),
-            diameter: PropTypes.number
+            width: PropTypes.number,
+            height: PropTypes.number
             })
         }),
-        blades: PropTypes.arrayOf(
-            PropTypes.shape({
+        rotor: PropTypes.shape({
             name: PropTypes.string,
             id: PropTypes.string,
-            url: PropTypes.string,
-            node: PropTypes.shape({
+            blades: PropTypes.arrayOf(
+            PropTypes.shape({
+                name: PropTypes.string,
+                id: PropTypes.string,
+                url: PropTypes.string,
+                node: PropTypes.shape({
                 id: PropTypes.number,
                 x: PropTypes.number,
                 y: PropTypes.number,
                 z: PropTypes.number
+                }),
+                scale: PropTypes.shape({
+                x: PropTypes.number,
+                y: PropTypes.number,
+                z: PropTypes.number
+                })
             })
+            ),
+            hub: PropTypes.shape({
+            name: PropTypes.string,
+            id: PropTypes.string,
+            cone: PropTypes.shape({
+                id: PropTypes.number,
+                eltype: PropTypes.string,
+                nodes: PropTypes.arrayOf(
+                PropTypes.shape({
+                    id: PropTypes.number,
+                    x: PropTypes.number,
+                    y: PropTypes.number,
+                    z: PropTypes.number
+                })
+                ),
+                diameter: PropTypes.number
             })
-        )
+            }),
+            node: PropTypes.shape({
+            id: PropTypes.number,
+            x: PropTypes.number,
+            y: PropTypes.number,
+            z: PropTypes.number
+            })
+        })
     }).isRequired
 }
 

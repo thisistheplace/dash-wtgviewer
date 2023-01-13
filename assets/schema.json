@@ -225,6 +225,29 @@
                 "element"
             ]
         },
+        "Vector3": {
+            "title": "Vector3",
+            "type": "object",
+            "properties": {
+                "x": {
+                    "title": "X",
+                    "type": "number"
+                },
+                "y": {
+                    "title": "Y",
+                    "type": "number"
+                },
+                "z": {
+                    "title": "Z",
+                    "type": "number"
+                }
+            },
+            "required": [
+                "x",
+                "y",
+                "z"
+            ]
+        },
         "Blade": {
             "title": "Blade",
             "type": "object",
@@ -243,12 +266,16 @@
                 },
                 "node": {
                     "$ref": "#/definitions/Node"
+                },
+                "scale": {
+                    "$ref": "#/definitions/Vector3"
                 }
             },
             "required": [
                 "name",
                 "url",
-                "node"
+                "node",
+                "scale"
             ]
         },
         "Cone": {

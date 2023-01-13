@@ -1,16 +1,11 @@
 import PropTypes from 'prop-types'
 import React, {useRef} from 'react'
-// import * as THREE from 'three'
-// import {Cylinder, makeCylinder} from './../model/cylinder.js'
-// import {Cuboid} from './../model/cuboid.js'
-// import {Blades} from './../model/blades.js'
 import { Rotor } from './rotor'
 
 // TODO: should make cylinders instanced meshes with scaling / rotation etc
 
 const Model = (props) => {
   const ref = useRef()
-  console.log("model", props)
 
   return (
     <group ref={ref}>
@@ -147,6 +142,11 @@ Model.propTypes = {
         url: PropTypes.string,
         node: PropTypes.shape({
           id: PropTypes.number,
+          x: PropTypes.number,
+          y: PropTypes.number,
+          z: PropTypes.number
+        }),
+        scale: PropTypes.shape({
           x: PropTypes.number,
           y: PropTypes.number,
           z: PropTypes.number

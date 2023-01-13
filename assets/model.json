@@ -1,13 +1,13 @@
 {
     "name": "test-model",
-    "id": "42f0bfa0-6796-4189-95eb-9cd57ebeeb19",
+    "id": "641e2f52-fcfa-4e02-977b-422d90d659e6",
     "foundation": {
         "name": "trileg",
-        "id": "43f46ee0-4bc4-4a01-bbe3-6f6e7e352aed",
+        "id": "522e4e63-a500-403f-9900-c87f8ca1badd",
         "element_sets": [
             {
                 "name": "foundation",
-                "id": "f84aa49d-9bae-4522-b2bc-47b4400f9081",
+                "id": "cb44df62-3844-44fa-9d35-b77f8c25d6e7",
                 "elements": [
                     {
                         "id": 1,
@@ -135,11 +135,11 @@
     },
     "tower": {
         "name": "tower",
-        "id": "abeec5df-3247-4f9a-9e69-ac3e484ada32",
+        "id": "f5180fa4-20bb-4042-a60e-9ab7154170d0",
         "element_sets": [
             {
                 "name": "tower",
-                "id": "818ef3b5-eb71-4c19-9d95-6bcf114940fe",
+                "id": "26d98b13-6afa-4c75-85a4-2b867d1771f8",
                 "elements": [
                     {
                         "id": 7,
@@ -225,7 +225,7 @@
     },
     "nacelle": {
         "name": "nacelle",
-        "id": "399faa1d-7c17-410d-9b22-4f3d0e5a72ba",
+        "id": "ec396714-cadd-4b14-ac99-8b98724df3ef",
         "element": {
             "id": 10,
             "eltype": "cuboid",
@@ -249,45 +249,60 @@
     },
     "rotor": {
         "name": "rotor",
-        "id": "a129c52f-d963-4b9b-adfd-5931430457d8",
+        "id": "78d50534-3052-43d7-913f-bda7ead9cd67",
         "blades": [
             {
                 "name": "Blade_1",
-                "id": "a74a27bd-6b01-47e4-9757-fa04595b795a",
+                "id": "4953f997-f449-43fd-b573-9caa7756657a",
                 "url": "assets/models/blade.glb",
                 "node": {
                     "id": 10,
                     "x": 0.0,
                     "y": 0.0,
                     "z": 20.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
                 }
             },
             {
                 "name": "Blade_2",
-                "id": "c0828cee-be0d-40ac-b95f-2d67a35c6146",
+                "id": "78f7907b-593f-476d-ac38-02017fe156db",
                 "url": "assets/models/blade.glb",
                 "node": {
                     "id": 10,
                     "x": 0.0,
                     "y": 0.0,
                     "z": 20.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
                 }
             },
             {
                 "name": "Blade_3",
-                "id": "87cf437f-a2f5-4a88-8caa-ea60b85e4aef",
+                "id": "3182c62f-2e0b-4e43-896a-63b5d70eb3b3",
                 "url": "assets/models/blade.glb",
                 "node": {
                     "id": 10,
                     "x": 0.0,
                     "y": 0.0,
                     "z": 20.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
                 }
             }
         ],
         "hub": {
             "name": "hub",
-            "id": "9aee2599-3519-46d3-91a7-41e96e65d2e5",
+            "id": "1581a7f2-7f32-45bb-b662-684ab4b1eae7",
             "cone": {
                 "id": 11,
                 "eltype": "cone",
@@ -309,10 +324,10 @@
             }
         },
         "node": {
-            "id": 10,
-            "x": 0.0,
+            "id": 12,
+            "x": -3.0,
             "y": 0.0,
-            "z": 20.0
+            "z": 21.0
         }
     }
 }

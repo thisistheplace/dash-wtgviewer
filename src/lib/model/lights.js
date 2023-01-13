@@ -1,6 +1,6 @@
 import React, {useRef} from 'react'
 
-const Lights = (props) => {
+const Lights = () => {
   const ref = useRef()
 
   return (

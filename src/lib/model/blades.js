@@ -1,31 +1,48 @@
 import PropTypes from 'prop-types'
 import React, {useRef, useState, useEffect} from 'react'
 import { useGLTF } from '@react-three/drei'
+import { extend } from '@react-three/fiber'
+import * as THREE from 'three'
+extend({THREE})
+
 
 const Blade = (props) => {
-  const mesh = useRef()
+  const ref = useRef()
   const [hovered, setHover] = useState(false)
   const [active, setActive] = useState(false)
-  const [geom, setGeom] = useState(null)
+  const gltf = useGLTF(props.url)
+  // gltf.scene.children[0].rotation.set(0, 0, 0)
+  console.log("loaded", gltf)
   const defaultColor = 0xadadad
 
   useEffect(() => {
-    if (!props.url) { return }
-    console.log("creating blade")
-    console.log(props.url)
-    const bladeModel = useGLTF(props.url)
-    console.log(bladeModel)
-    setGeom(bladeModel.scene.children[0].geometry)
+    if (!ref.current) { return }
+    if (!props.node) { return }
 
-    mesh.current.position.x = props.node.x
-    mesh.current.position.y = props.node.y
-    mesh.current.position.z = props.node.z
+    const axis = new THREE.Vector3(props.axis.x, props.axis.y, props.axis.z)
+    var quaternion = new THREE.Quaternion()
+    quaternion.setFromAxisAngle(
+      axis.normalize(),
+      props.rotation
+    )
+    ref.current.rotation.setFromQuaternion(quaternion)
+
+    ref.current.scale.set(
+      props.scale.x,
+      props.scale.y,
+      props.scale.z
+    )
+
+    // ref.current.position.x = props.node.x
+    // ref.current.position.y = props.node.y
+    // ref.current.position.z = props.node.z
   }, [props])
   
   return (
     <mesh
-      ref={mesh}
-      geom={geom}
+      ref={ref}
+      geometry={gltf.scene.children[0].geometry}
+      name={props.name}
       castShadow={true}
       receiveShadow={true}
       onClick={() => setActive(!active)}
@@ -50,16 +67,22 @@ function Blades(props){
 
     useEffect(() => {
       if (!props.blades) { return }
-      console.log("creating blades")
       setBlades(props.blades)
-      setRotation(Math.PI * 2 / props.blades.length)
+      // setRotation(Math.PI * 2 / props.blades.length)
+      setRotation(0)
     }, [props.blades])
   
     return (
       <group ref={ref}>
         {
           blades.map((bladeData, i) =>
-            <Blade key={i} {...bladeData} parent={props.parent} rotation={rotation}/>
+            <Blade
+              key={i}
+              {...bladeData}
+              parent={props.parent}
+              rotation={rotation * (i + 1)}
+              axis={props.axis}
+            />
           )
         }
       </group>
@@ -72,12 +95,22 @@ Blade.propTypes = {
   id: PropTypes.string,
   url: PropTypes.string,
   node: PropTypes.shape({
-      id: PropTypes.number,
-      x: PropTypes.number,
-      y: PropTypes.number,
-      z: PropTypes.number
+    id: PropTypes.number,
+    x: PropTypes.number,
+    y: PropTypes.number,
+    z: PropTypes.number
   }),
-  rotation: PropTypes.number
+  scale: PropTypes.shape({
+    x: PropTypes.number,
+    y: PropTypes.number,
+    z: PropTypes.number
+  }),
+  rotation: PropTypes.number,
+  axis: PropTypes.shape({
+    x: PropTypes.number,
+    y: PropTypes.number,
+    z: PropTypes.number
+  })
 }
 
 Blades.propTypes = {
@@ -88,13 +121,23 @@ Blades.propTypes = {
       id: PropTypes.string,
       url: PropTypes.string,
       node: PropTypes.shape({
-          id: PropTypes.number,
-          x: PropTypes.number,
-          y: PropTypes.number,
-          z: PropTypes.number
+        id: PropTypes.number,
+        x: PropTypes.number,
+        y: PropTypes.number,
+        z: PropTypes.number
+      }),
+      scale: PropTypes.shape({
+        x: PropTypes.number,
+        y: PropTypes.number,
+        z: PropTypes.number
       })
     })
-  )
+  ),
+  axis: PropTypes.shape({
+    x: PropTypes.number,
+    y: PropTypes.number,
+    z: PropTypes.number
+  })
 }
 
 export {Blade, Blades}

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import React, {useRef, useEffect, useState} from 'react'
 import * as THREE from 'three'
 
-import {nodeDistance} from './../geometry/vectors'
+import {nodeDistance, nodeVector} from './../geometry/vectors'
 
 const Hub = (props) => {
   const ref = useRef()
@@ -13,23 +13,34 @@ const Hub = (props) => {
 
   useEffect(() => {
     if (!props.cone) { return }
-    console.log(props)
     const distance = nodeDistance(props.cone.nodes[0], props.cone.nodes[1])
     
     // Create lathe geometry
     const points = []
     const numPoints = 10
+    const numSegments = 12
+    const startAngle = 0
+    const endAngle = Math.PI * 2
     const inc = 0.2
     for ( let i = 0; i < numPoints; i ++ ) {
       points.push( new THREE.Vector2( Math.sin( i * inc ) * props.cone.diameter / 2, i * distance / numPoints ) )
     }
-    const newGeom = new THREE.LatheGeometry(points)
-    setGeom(newGeom)
+    setGeom(
+      new THREE.LatheGeometry(points, numSegments, startAngle, endAngle)
+    )
 
-    ref.current.position.x = props.cone.nodes[0].x
-    ref.current.position.y = props.cone.nodes[0].y
-    ref.current.position.z = props.cone.nodes[0].z
-  }, [])
+    const axis = nodeVector(props.cone.nodes[0], props.cone.nodes[1])
+    var quaternion = new THREE.Quaternion()
+    quaternion.setFromUnitVectors(
+      new THREE.Vector3(0, -1, 0).normalize(),
+      axis.normalize()
+    )
+    ref.current.rotation.setFromQuaternion(quaternion)
+    
+    ref.current.position.x += props.cone.nodes[1].x - props.cone.nodes[0].x
+    ref.current.position.y += props.cone.nodes[1].y - props.cone.nodes[0].y
+    ref.current.position.z += props.cone.nodes[1].z - props.cone.nodes[0].z
+  }, [props.cone])
 
   return (
     <mesh
@@ -47,7 +58,7 @@ const Hub = (props) => {
         props.parent.setState({tooltip: {text: "", display: 'none'}})
     }}
   >
-    <meshPhongMaterial opacity={1.0} transparent={false} color={hovered ? 'red' : defaultColor} />
+    <meshPhongMaterial opacity={1.0} transparent={false} color={hovered ? 'red' : defaultColor} side={THREE.DoubleSide}/>
   </mesh>
   )
 
