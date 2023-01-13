@@ -14,8 +14,10 @@ function Nacelle(props){
 
   useEffect(() => {
     if (!props.element) {return}
-    setLength(nodeDistance(props.element.nodes[0], props.element.nodes[1]))
-    mesh.current.position.x = props.element.nodes[0].x
+    const distance = nodeDistance(props.element.nodes[0], props.element.nodes[1])
+    setLength(distance)
+    // TODO: handle orientation!
+    mesh.current.position.x = props.element.nodes[0].x - distance / 2
     mesh.current.position.y = props.element.nodes[0].y
     mesh.current.position.z = props.element.nodes[0].z
   }, [props.element])
@@ -35,7 +37,7 @@ function Nacelle(props){
           props.parent.setState({tooltip: {text: "", display: 'none'}})
       }}
     >
-      <boxGeometry args={[props.element.width, length, props.element.height]}/>
+      <boxGeometry args={[length, props.element.width, props.element.height]}/>
       <meshPhongMaterial opacity={1.0} transparent={false} color={hovered ? 'red' : defaultColor} />
     </mesh>
   )

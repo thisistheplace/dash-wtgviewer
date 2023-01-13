@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import React, {useRef} from 'react'
 import { Rotor } from './rotor'
+import { Nacelle } from './nacelle'
 
 // TODO: should make cylinders instanced meshes with scaling / rotation etc
 
@@ -10,6 +11,7 @@ const Model = (props) => {
   return (
     <group ref={ref}>
       <Rotor {...props.rotor} parent={ref}/>
+      <Nacelle {...props.nacelle} parent={ref}/>
     </group>
   )
 }
