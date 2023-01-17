@@ -38,54 +38,50 @@ DashWtgviewer.propTypes = {
         foundation: PropTypes.shape({
             name: PropTypes.string,
             id: PropTypes.string,
-            element_sets: PropTypes.arrayOf(
-            PropTypes.shape({
-                name: PropTypes.string,
-                id: PropTypes.string,
-                elements: PropTypes.arrayOf(
+            element_set: PropTypes.shape({
+            name: PropTypes.string,
+            id: PropTypes.string,
+            elements: PropTypes.arrayOf(
                 PropTypes.shape({
-                    id: PropTypes.number,
-                    eltype: PropTypes.string,
-                    nodes: PropTypes.arrayOf(
+                id: PropTypes.number,
+                eltype: PropTypes.string,
+                nodes: PropTypes.arrayOf(
                     PropTypes.shape({
-                        id: PropTypes.number,
-                        x: PropTypes.number,
-                        y: PropTypes.number,
-                        z: PropTypes.number
+                    id: PropTypes.number,
+                    x: PropTypes.number,
+                    y: PropTypes.number,
+                    z: PropTypes.number
                     })
-                    ),
-                    diameter: PropTypes.number,
-                    thickness: PropTypes.number
+                ),
+                diameter: PropTypes.number,
+                thickness: PropTypes.number
                 })
-                )
-            })
             )
+            })
         }),
         tower: PropTypes.shape({
             name: PropTypes.string,
             id: PropTypes.string,
-            element_sets: PropTypes.arrayOf(
-            PropTypes.shape({
-                name: PropTypes.string,
-                id: PropTypes.string,
-                elements: PropTypes.arrayOf(
+            element_set: PropTypes.shape({
+            name: PropTypes.string,
+            id: PropTypes.string,
+            elements: PropTypes.arrayOf(
                 PropTypes.shape({
-                    id: PropTypes.number,
-                    eltype: PropTypes.string,
-                    nodes: PropTypes.arrayOf(
+                id: PropTypes.number,
+                eltype: PropTypes.string,
+                nodes: PropTypes.arrayOf(
                     PropTypes.shape({
-                        id: PropTypes.number,
-                        x: PropTypes.number,
-                        y: PropTypes.number,
-                        z: PropTypes.number
+                    id: PropTypes.number,
+                    x: PropTypes.number,
+                    y: PropTypes.number,
+                    z: PropTypes.number
                     })
-                    ),
-                    diameters: PropTypes.arrayOf(PropTypes.number),
-                    thicknesses: PropTypes.arrayOf(PropTypes.number)
+                ),
+                diameters: PropTypes.arrayOf(PropTypes.number),
+                thicknesses: PropTypes.arrayOf(PropTypes.number)
                 })
-                )
-            })
             )
+            })
         }),
         nacelle: PropTypes.shape({
             name: PropTypes.string,

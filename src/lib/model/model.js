@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import React, {useRef} from 'react'
 import { Rotor } from './rotor'
 import { Nacelle } from './nacelle'
+import { Tower } from './tower'
 
 // TODO: should make cylinders instanced meshes with scaling / rotation etc
 
@@ -12,6 +13,7 @@ const Model = (props) => {
     <group ref={ref}>
       <Rotor {...props.rotor} parent={ref}/>
       <Nacelle {...props.nacelle} parent={ref}/>
+      <Tower {...props.tower} parent={ref}/>
     </group>
   )
 }
@@ -67,54 +69,50 @@ Model.propTypes = {
   foundation: PropTypes.shape({
     name: PropTypes.string,
     id: PropTypes.string,
-    element_sets: PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string,
-        id: PropTypes.string,
-        elements: PropTypes.arrayOf(
-          PropTypes.shape({
-            id: PropTypes.number,
-            eltype: PropTypes.string,
-            nodes: PropTypes.arrayOf(
-              PropTypes.shape({
-                id: PropTypes.number,
-                x: PropTypes.number,
-                y: PropTypes.number,
-                z: PropTypes.number
-              })
-            ),
-            diameter: PropTypes.number,
-            thickness: PropTypes.number
-          })
-        )
-      })
-    )
+    element_set: PropTypes.shape({
+      name: PropTypes.string,
+      id: PropTypes.string,
+      elements: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.number,
+          eltype: PropTypes.string,
+          nodes: PropTypes.arrayOf(
+            PropTypes.shape({
+              id: PropTypes.number,
+              x: PropTypes.number,
+              y: PropTypes.number,
+              z: PropTypes.number
+            })
+          ),
+          diameter: PropTypes.number,
+          thickness: PropTypes.number
+        })
+      )
+    })
   }),
   tower: PropTypes.shape({
     name: PropTypes.string,
     id: PropTypes.string,
-    element_sets: PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string,
-        id: PropTypes.string,
-        elements: PropTypes.arrayOf(
-          PropTypes.shape({
-            id: PropTypes.number,
-            eltype: PropTypes.string,
-            nodes: PropTypes.arrayOf(
-              PropTypes.shape({
-                id: PropTypes.number,
-                x: PropTypes.number,
-                y: PropTypes.number,
-                z: PropTypes.number
-              })
-            ),
-            diameters: PropTypes.arrayOf(PropTypes.number),
-            thicknesses: PropTypes.arrayOf(PropTypes.number)
-          })
-        )
-      })
-    )
+    element_set: PropTypes.shape({
+      name: PropTypes.string,
+      id: PropTypes.string,
+      elements: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.number,
+          eltype: PropTypes.string,
+          nodes: PropTypes.arrayOf(
+            PropTypes.shape({
+              id: PropTypes.number,
+              x: PropTypes.number,
+              y: PropTypes.number,
+              z: PropTypes.number
+            })
+          ),
+          diameters: PropTypes.arrayOf(PropTypes.number),
+          thicknesses: PropTypes.arrayOf(PropTypes.number)
+        })
+      )
+    })
   }),
   nacelle: PropTypes.shape({
     name: PropTypes.string,

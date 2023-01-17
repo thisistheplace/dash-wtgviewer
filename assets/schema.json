@@ -128,17 +128,13 @@
                     "title": "Id",
                     "type": "string"
                 },
-                "element_sets": {
-                    "title": "Element Sets",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/ElementSet"
-                    }
+                "element_set": {
+                    "$ref": "#/definitions/ElementSet"
                 }
             },
             "required": [
                 "name",
-                "element_sets"
+                "element_set"
             ]
         },
         "Tower": {
@@ -153,17 +149,13 @@
                     "title": "Id",
                     "type": "string"
                 },
-                "element_sets": {
-                    "title": "Element Sets",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/ElementSet"
-                    }
+                "element_set": {
+                    "$ref": "#/definitions/ElementSet"
                 }
             },
             "required": [
                 "name",
-                "element_sets"
+                "element_set"
             ]
         },
         "Cuboid": {

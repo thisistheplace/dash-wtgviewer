@@ -1,231 +1,227 @@
 {
     "name": "test-model",
-    "id": "629404eb-a7d1-47a9-9548-e16741f57d48",
+    "id": "f55f118e-2f73-4f10-aeeb-3fdf6224f6a0",
     "foundation": {
         "name": "trileg",
-        "id": "f379d9be-1867-4eb9-b2bc-8439bcfc7a1b",
-        "element_sets": [
-            {
-                "name": "foundation",
-                "id": "6031155e-88d3-4b7b-b7d8-4b34c36da48b",
-                "elements": [
-                    {
-                        "id": 1,
-                        "eltype": "tube",
-                        "nodes": [
-                            {
-                                "id": 1,
-                                "x": 5.0,
-                                "y": 0.0,
-                                "z": -1.0
-                            },
-                            {
-                                "id": 4,
-                                "x": 5.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            }
-                        ],
-                        "diameter": 0.3,
-                        "thickness": 0.01
-                    },
-                    {
-                        "id": 2,
-                        "eltype": "tube",
-                        "nodes": [
-                            {
-                                "id": 2,
-                                "x": -2.5,
-                                "y": 2.5,
-                                "z": -1.0
-                            },
-                            {
-                                "id": 5,
-                                "x": -2.5,
-                                "y": 2.5,
-                                "z": 0.0
-                            }
-                        ],
-                        "diameter": 0.3,
-                        "thickness": 0.01
-                    },
-                    {
-                        "id": 3,
-                        "eltype": "tube",
-                        "nodes": [
-                            {
-                                "id": 3,
-                                "x": -2.5,
-                                "y": -2.5,
-                                "z": -1.0
-                            },
-                            {
-                                "id": 6,
-                                "x": -2.5,
-                                "y": -2.5,
-                                "z": 0.0
-                            }
-                        ],
-                        "diameter": 0.3,
-                        "thickness": 0.01
-                    },
-                    {
-                        "id": 4,
-                        "eltype": "tube",
-                        "nodes": [
-                            {
-                                "id": 4,
-                                "x": 5.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            },
-                            {
-                                "id": 7,
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 5.0
-                            }
-                        ],
-                        "diameter": 0.3,
-                        "thickness": 0.01
-                    },
-                    {
-                        "id": 5,
-                        "eltype": "tube",
-                        "nodes": [
-                            {
-                                "id": 5,
-                                "x": -2.5,
-                                "y": 2.5,
-                                "z": 0.0
-                            },
-                            {
-                                "id": 7,
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 5.0
-                            }
-                        ],
-                        "diameter": 0.3,
-                        "thickness": 0.01
-                    },
-                    {
-                        "id": 6,
-                        "eltype": "tube",
-                        "nodes": [
-                            {
-                                "id": 6,
-                                "x": -2.5,
-                                "y": -2.5,
-                                "z": 0.0
-                            },
-                            {
-                                "id": 7,
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 5.0
-                            }
-                        ],
-                        "diameter": 0.3,
-                        "thickness": 0.01
-                    }
-                ]
-            }
-        ]
+        "id": "fa82fff6-7140-44d7-89f5-d1c726825ff1",
+        "element_set": {
+            "name": "foundation",
+            "id": "ba04a60b-b2b3-4f51-b1c1-be035bf5bb6e",
+            "elements": [
+                {
+                    "id": 1,
+                    "eltype": "tube",
+                    "nodes": [
+                        {
+                            "id": 1,
+                            "x": 5.0,
+                            "y": 0.0,
+                            "z": -1.0
+                        },
+                        {
+                            "id": 4,
+                            "x": 5.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    ],
+                    "diameter": 0.3,
+                    "thickness": 0.01
+                },
+                {
+                    "id": 2,
+                    "eltype": "tube",
+                    "nodes": [
+                        {
+                            "id": 2,
+                            "x": -2.5,
+                            "y": 2.5,
+                            "z": -1.0
+                        },
+                        {
+                            "id": 5,
+                            "x": -2.5,
+                            "y": 2.5,
+                            "z": 0.0
+                        }
+                    ],
+                    "diameter": 0.3,
+                    "thickness": 0.01
+                },
+                {
+                    "id": 3,
+                    "eltype": "tube",
+                    "nodes": [
+                        {
+                            "id": 3,
+                            "x": -2.5,
+                            "y": -2.5,
+                            "z": -1.0
+                        },
+                        {
+                            "id": 6,
+                            "x": -2.5,
+                            "y": -2.5,
+                            "z": 0.0
+                        }
+                    ],
+                    "diameter": 0.3,
+                    "thickness": 0.01
+                },
+                {
+                    "id": 4,
+                    "eltype": "tube",
+                    "nodes": [
+                        {
+                            "id": 4,
+                            "x": 5.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        {
+                            "id": 7,
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 5.0
+                        }
+                    ],
+                    "diameter": 0.3,
+                    "thickness": 0.01
+                },
+                {
+                    "id": 5,
+                    "eltype": "tube",
+                    "nodes": [
+                        {
+                            "id": 5,
+                            "x": -2.5,
+                            "y": 2.5,
+                            "z": 0.0
+                        },
+                        {
+                            "id": 7,
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 5.0
+                        }
+                    ],
+                    "diameter": 0.3,
+                    "thickness": 0.01
+                },
+                {
+                    "id": 6,
+                    "eltype": "tube",
+                    "nodes": [
+                        {
+                            "id": 6,
+                            "x": -2.5,
+                            "y": -2.5,
+                            "z": 0.0
+                        },
+                        {
+                            "id": 7,
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 5.0
+                        }
+                    ],
+                    "diameter": 0.3,
+                    "thickness": 0.01
+                }
+            ]
+        }
     },
     "tower": {
         "name": "tower",
-        "id": "3a7c7806-0ac1-49ba-8bd2-0bcde2e6854f",
-        "element_sets": [
-            {
-                "name": "tower",
-                "id": "5e008bd2-2c78-46e6-ad7f-fd10f2b2349d",
-                "elements": [
-                    {
-                        "id": 7,
-                        "eltype": "tube",
-                        "nodes": [
-                            {
-                                "id": 7,
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 5.0
-                            },
-                            {
-                                "id": 8,
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 10.0
-                            }
-                        ],
-                        "diameters": [
-                            0.5,
-                            0.4
-                        ],
-                        "thicknesses": [
-                            0.01,
-                            0.01
-                        ]
-                    },
-                    {
-                        "id": 8,
-                        "eltype": "tube",
-                        "nodes": [
-                            {
-                                "id": 8,
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 10.0
-                            },
-                            {
-                                "id": 9,
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 15.0
-                            }
-                        ],
-                        "diameters": [
-                            0.4,
-                            0.3
-                        ],
-                        "thicknesses": [
-                            0.01,
-                            0.01
-                        ]
-                    },
-                    {
-                        "id": 9,
-                        "eltype": "tube",
-                        "nodes": [
-                            {
-                                "id": 9,
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 15.0
-                            },
-                            {
-                                "id": 10,
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 20.0
-                            }
-                        ],
-                        "diameters": [
-                            0.3,
-                            0.2
-                        ],
-                        "thicknesses": [
-                            0.01,
-                            0.01
-                        ]
-                    }
-                ]
-            }
-        ]
+        "id": "9d30aaf8-1726-4a71-a203-9b222faf4576",
+        "element_set": {
+            "name": "tower",
+            "id": "e2f273be-b32c-445b-892e-db07f8a9cce4",
+            "elements": [
+                {
+                    "id": 7,
+                    "eltype": "tube",
+                    "nodes": [
+                        {
+                            "id": 7,
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 5.0
+                        },
+                        {
+                            "id": 8,
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 10.0
+                        }
+                    ],
+                    "diameters": [
+                        0.5,
+                        0.4
+                    ],
+                    "thicknesses": [
+                        0.01,
+                        0.01
+                    ]
+                },
+                {
+                    "id": 8,
+                    "eltype": "tube",
+                    "nodes": [
+                        {
+                            "id": 8,
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 10.0
+                        },
+                        {
+                            "id": 9,
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 15.0
+                        }
+                    ],
+                    "diameters": [
+                        0.4,
+                        0.3
+                    ],
+                    "thicknesses": [
+                        0.01,
+                        0.01
+                    ]
+                },
+                {
+                    "id": 9,
+                    "eltype": "tube",
+                    "nodes": [
+                        {
+                            "id": 9,
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 15.0
+                        },
+                        {
+                            "id": 10,
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 20.0
+                        }
+                    ],
+                    "diameters": [
+                        0.3,
+                        0.2
+                    ],
+                    "thicknesses": [
+                        0.01,
+                        0.01
+                    ]
+                }
+            ]
+        }
     },
     "nacelle": {
         "name": "nacelle",
-        "id": "11a54e44-7930-4534-b596-c4fb34e09ce6",
+        "id": "0cb03437-e797-4139-a03d-b27c3537a5b9",
         "element": {
             "id": 10,
             "eltype": "cuboid",
@@ -249,11 +245,11 @@
     },
     "rotor": {
         "name": "rotor",
-        "id": "7ba5deee-441c-451f-b2da-b55211a9e512",
+        "id": "f51e476b-12e4-47d8-bb4e-105f0c53a6ff",
         "blades": [
             {
                 "name": "Blade_1",
-                "id": "984e6267-8a04-4a31-ba33-b115ac9fddf5",
+                "id": "8cea7ac4-d4c9-4a8c-9beb-21b6d261ace2",
                 "url": "assets/models/blade.glb",
                 "node": {
                     "id": 10,
@@ -269,7 +265,7 @@
             },
             {
                 "name": "Blade_2",
-                "id": "e04fada6-077d-41a5-84ba-351bb98a692b",
+                "id": "b3ce39ab-e4da-465f-9dba-26eee5c17fcd",
                 "url": "assets/models/blade.glb",
                 "node": {
                     "id": 10,
@@ -285,7 +281,7 @@
             },
             {
                 "name": "Blade_3",
-                "id": "d8892910-e777-4389-ba0c-712810915be1",
+                "id": "3b1781c5-4e2b-41eb-b1c2-3545496c0e11",
                 "url": "assets/models/blade.glb",
                 "node": {
                     "id": 10,
@@ -302,7 +298,7 @@
         ],
         "hub": {
             "name": "hub",
-            "id": "268fc8af-bad1-4b26-85d4-61a42e8d795a",
+            "id": "643aac49-ddb1-480a-b196-795f6e9dfddc",
             "cone": {
                 "id": 11,
                 "eltype": "cone",

@@ -87,7 +87,7 @@ def read_model(json_path: str | Path):
     foundation = Foundation(
         name="trileg",
         node_sets=[node_sets["foundation"]],
-        element_sets=[element_sets["foundation"]]
+        element_set=element_sets["foundation"]
     )
     hub = Hub(
         name="hub",
@@ -109,7 +109,7 @@ def read_model(json_path: str | Path):
     tower = Tower(
         name="tower",
         node_sets=[node_sets["tower"]],
-        element_sets=[element_sets["tower"]]
+        element_set=element_sets["tower"]
     )
 
     # Compile model
