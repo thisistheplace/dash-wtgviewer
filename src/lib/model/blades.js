@@ -46,7 +46,7 @@ const Blade = (props) => {
     // ref.current.position.x = props.node.x
     // ref.current.position.y = props.node.y
     // ref.current.position.z = props.node.z
-  }, [props])
+  }, [props.axis, props.node, props.scale, props.rotation])
   
   return (
     <mesh

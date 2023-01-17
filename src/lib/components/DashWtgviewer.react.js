@@ -18,18 +18,16 @@ function DashWtgviewer(props) {
 
     useEffect(() => {
         const handleMouseMove = (event) => {
-          setMousePos({ x: event.clientX, y: event.clientY });
-        };
-    
-        window.addEventListener('mousemove', handleMouseMove);
-    
+          setMousePos({ x: event.clientX, y: event.clientY })
+        }
+        window.addEventListener('mousemove', handleMouseMove)
         return () => {
           window.removeEventListener(
             'mousemove',
             handleMouseMove
-          );
-        };
-      }, []);
+          )
+        }
+      }, [])
 
     return (
         <div ref={ref}>
@@ -51,17 +49,17 @@ function DashWtgviewer(props) {
             </div>
             <style jsx>{`
                 .cmpt_tooltip {
-                    color: white;
-                    background: rgba(0, 0, 0, 0.8);
-                    border-radius: 20px;
-                    position: absolute;
-                    font-family: Verdana;
-                    z-index: 2;
-                    text-align: right;
-                    padding: 20px;
-                    display: ${tooltipData.display};
-                    left: ${mousePos.x}px;
-                    top: ${mousePos.y}px;
+                    color: white
+                    background: rgba(0, 0, 0, 0.8)
+                    border-radius: 20px
+                    position: absolute
+                    font-family: Verdana
+                    z-index: 2
+                    text-align: right
+                    padding: 20px
+                    display: ${props.tooltip ? tooltipData.display : 'none'}
+                    left: ${mousePos.x}px
+                    top: ${mousePos.y}px
                 }
             `}</style>
         </div>
@@ -69,12 +67,14 @@ function DashWtgviewer(props) {
 }
 
 DashWtgviewer.defaultProps = {
+    tooltip: true
 }
 
 DashWtgviewer.propTypes = {
     // Converted from /assets/schema.json using https://transform.tools/json-to-proptypes
     id: PropTypes.string.isRequired,
-    model: ModelPropTypes.Model.isRequired
+    model: ModelPropTypes.Model.isRequired,
+    tooltip: PropTypes.bool
 }
 
 export default DashWtgviewer

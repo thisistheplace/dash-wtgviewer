@@ -60,7 +60,8 @@ export const Blade = PropTypes.shape({
     x: PropTypes.number,
     y: PropTypes.number,
     z: PropTypes.number
-  })
+  }),
+  rotation: PropTypes.number
 })
 
 export const Hub = PropTypes.shape({
