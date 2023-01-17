@@ -5,7 +5,6 @@ import * as THREE from 'three'
 import { nodeVector, nodeDistance } from '../geometry/vectors'
 
 function Cylinder(props){
-  console.log("cylinder", props)
   // This reference will give us direct access to the mesh
   const ref = useRef()
   const [hovered, setHover] = useState(false)
@@ -21,7 +20,11 @@ function Cylinder(props){
     if (!ref.current) {return}
     // Store updated values
     setLength(nodeDistance(props.nodes[0], props.nodes[1]))
-    setDiameters(props.diameters)
+    if (props.diameters){
+      setDiameters(props.diameters)
+    } else {
+      setDiameters([props.diameter, props.diameter])
+    }
     const axis = nodeVector(props.nodes[0], props.nodes[1])
     var quaternion = new THREE.Quaternion()
     quaternion.setFromUnitVectors(
@@ -71,6 +74,7 @@ Cylinder.propTypes = {
       z: PropTypes.number
     })
   ),
+  diameter: PropTypes.arrayOf(PropTypes.number),
   diameters: PropTypes.arrayOf(PropTypes.number),
   thicknesses: PropTypes.arrayOf(PropTypes.number),
   parent: PropTypes.any

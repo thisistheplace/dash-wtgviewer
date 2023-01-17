@@ -1,0 +1,1 @@
+// Placeholder for the whole wind farm
