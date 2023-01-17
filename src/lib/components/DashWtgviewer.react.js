@@ -8,6 +8,7 @@ import { Loader } from '@react-three/drei'
 
 import {CameraControls} from '../scene/controls'
 import { Lights } from '../scene/lights'
+import { Environment } from '../scene/environment/env'
 import { Model } from '../model/model'
 
 function DashWtgviewer(props) {
@@ -31,16 +32,17 @@ function DashWtgviewer(props) {
 
     return (
         <div ref={ref}>
-            <div className="cmpt_tooltip">
+            {/* <div className="cmpt_tooltip">
                 {tooltipData.text}
                 <br />
                 {value}
-            </div>
+            </div> */}
             <div id={props.id} style={{"height":"100%", "width":"100%"}}>
                 <Canvas style={{'background':'white'}} camera={{position: [100, 100, 100], fov:50, aspect:window.innerWidth / window.innerHeight, near: 0.1, far: 10000}}>
                     <CameraControls/>
-                    <axesHelper scale={100}/>
+                    {/* <axesHelper scale={100}/> */}
                     <Lights {...props}/>
+                    <Environment visible={props.sea}/>
                     <Suspense fallback={null}>
                         <Model {...props.model} callbacks={{tooltip: setTooltipData}}/>
                     </Suspense>
@@ -67,14 +69,16 @@ function DashWtgviewer(props) {
 }
 
 DashWtgviewer.defaultProps = {
-    tooltip: true
+    tooltip: false,
+    sea: true
 }
 
 DashWtgviewer.propTypes = {
     // Converted from /assets/schema.json using https://transform.tools/json-to-proptypes
     id: PropTypes.string.isRequired,
     model: ModelPropTypes.Model.isRequired,
-    tooltip: PropTypes.bool
+    tooltip: PropTypes.bool,
+    sea: PropTypes.bool,
 }
 
 export default DashWtgviewer
