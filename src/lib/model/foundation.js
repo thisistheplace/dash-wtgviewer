@@ -20,6 +20,7 @@ function Foundation(props){
             key={i}
             {...elementData}
             callbacks={props.callbacks}
+            color={"#fdc407"}
           />
         )
       }

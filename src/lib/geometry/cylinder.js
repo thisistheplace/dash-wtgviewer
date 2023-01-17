@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React, {useRef, useState, useEffect} from 'react'
 import * as THREE from 'three'
 
@@ -11,7 +12,6 @@ function Cylinder(props){
   const [active, setActive] = useState(false)
   const [diameters, setDiameters] = useState([0, 0])
   const [length, setLength] = useState(0)
-  const defaultColor = 0xadadad
 
   const numberOfFaces = 32
   const hoverOpacity = 0.8
@@ -57,15 +57,20 @@ function Cylinder(props){
       <cylinderGeometry args={[diameters[0], diameters[1], length, numberOfFaces, 1]}/>
       <meshPhongMaterial
         opacity={hoverOpacity}
-        color={hovered ? 'red' : defaultColor}
+        color={hovered ? 'red' : props.color}
         transparent={false}
       />
     </mesh>
   )
 }
 
+Cylinder.defaultProps = {
+  color: "#ADADAD"
+}
+
 Cylinder.propTypes = {
   callbacks: ModelPropTypes.Callbacks,
+  color: PropTypes.string,
   ...ModelPropTypes.Element
 }
 
