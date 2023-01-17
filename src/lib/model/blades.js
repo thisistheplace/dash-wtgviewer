@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import * as ModelPropTypes from './../proptypes/model'
 import React, {useRef, useState, useEffect} from 'react'
 import { useGLTF } from '@react-three/drei'
 import { extend } from '@react-three/fiber'
@@ -57,11 +58,11 @@ const Blade = (props) => {
       onClick={() => setActive(!active)}
       onPointerOver={() => {
         setHover(true)
-        props.parent.setState({tooltip: {text: props.name, display: 'block'}})
+        props.callbacks.tooltip({tooltip: {text: props.name, display: 'block'}})
       }}
       onPointerOut={() => {
         setHover(false)
-        props.parent.setState({tooltip: {text: "", display: 'none'}})
+        props.callbacks.tooltip({tooltip: {text: "", display: 'none'}})
       }}
     >
       <meshPhongMaterial opacity={1.0} transparent={false} color={hovered ? 'red' : defaultColor} />
@@ -87,7 +88,7 @@ function Blades(props){
             <Blade
               key={i}
               {...bladeData}
-              parent={props.parent}
+              callbacks={props.callbacks}
               rotation={rotation * (i + 1)}
               axis={props.axis}
             />
@@ -98,54 +99,20 @@ function Blades(props){
   }
 
 Blade.propTypes = {
-  parent: PropTypes.any,
-  name: PropTypes.string,
-  id: PropTypes.string,
-  url: PropTypes.string,
-  node: PropTypes.shape({
-    id: PropTypes.number,
-    x: PropTypes.number,
-    y: PropTypes.number,
-    z: PropTypes.number
-  }),
-  scale: PropTypes.shape({
-    x: PropTypes.number,
-    y: PropTypes.number,
-    z: PropTypes.number
-  }),
-  rotation: PropTypes.number,
-  axis: PropTypes.shape({
-    x: PropTypes.number,
-    y: PropTypes.number,
-    z: PropTypes.number
-  })
+  callbacks: ModelPropTypes.Callbacks,
+  ...ModelPropTypes.Blade
 }
 
 Blades.propTypes = {
-  parent: PropTypes.any,
+  callbacks: ModelPropTypes.Callbacks,
   blades: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string,
-      id: PropTypes.string,
-      url: PropTypes.string,
-      node: PropTypes.shape({
-        id: PropTypes.number,
-        x: PropTypes.number,
-        y: PropTypes.number,
-        z: PropTypes.number
-      }),
-      scale: PropTypes.shape({
-        x: PropTypes.number,
-        y: PropTypes.number,
-        z: PropTypes.number
-      })
-    })
-  ),
+    ModelPropTypes.Blade
+  ).isRequired,
   axis: PropTypes.shape({
     x: PropTypes.number,
     y: PropTypes.number,
     z: PropTypes.number
-  })
+  }).isRequired
 }
 
 export {Blade, Blades}

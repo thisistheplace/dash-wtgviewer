@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types'
 import React, {useRef, useEffect, useState} from 'react'
 import * as THREE from 'three'
 
+import * as ModelPropTypes from './../proptypes/model'
 import {nodeDistance, nodeVector} from './../geometry/vectors'
 
 const Hub = (props) => {
@@ -51,11 +51,11 @@ const Hub = (props) => {
     geometry={geom}
     onPointerOver={() => {
         setHover(true)
-        props.parent.setState({tooltip: {text: props.name, display: 'block'}})
+        props.callbacks.tooltip({tooltip: {text: props.name, display: 'block'}})
     }}
     onPointerOut={() => {
         setHover(false)
-        props.parent.setState({tooltip: {text: "", display: 'none'}})
+        props.callbacks.tooltip({tooltip: {text: "", display: 'none'}})
     }}
   >
     <meshPhongMaterial opacity={1.0} transparent={false} color={hovered ? 'red' : defaultColor} side={THREE.DoubleSide}/>
@@ -65,22 +65,8 @@ const Hub = (props) => {
 }
 
 Hub.propTypes = {
-  parent: PropTypes.any,
-  name: PropTypes.string,
-  id: PropTypes.string,
-  cone: PropTypes.shape({
-    id: PropTypes.number,
-    eltype: PropTypes.string,
-    nodes: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number,
-        x: PropTypes.number,
-        y: PropTypes.number,
-        z: PropTypes.number
-      })
-    ),
-    diameter: PropTypes.number
-  })
+  callbacks: ModelPropTypes.Callbacks,
+  ...ModelPropTypes.Hub.isRequired
 }
 
 export {Hub}

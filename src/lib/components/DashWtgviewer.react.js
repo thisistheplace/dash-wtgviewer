@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types'
 
-import React, { Suspense } from 'react'
+import * as ModelPropTypes from './../proptypes/model'
+
+import React, { Suspense, useState, useEffect, useRef } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { Loader } from '@react-three/drei'
 
@@ -9,18 +11,59 @@ import { Lights } from '../scene/lights'
 import { Model } from '../model/model'
 
 function DashWtgviewer(props) {
-    console.log("props", props)
+    const ref = useRef()
+    const [tooltipData, setTooltipData] = useState({display: 'none', text: ""})
+    const [value] = useState(null)
+    const [mousePos, setMousePos] = useState({})
+
+    useEffect(() => {
+        const handleMouseMove = (event) => {
+          setMousePos({ x: event.clientX, y: event.clientY });
+        };
+    
+        window.addEventListener('mousemove', handleMouseMove);
+    
+        return () => {
+          window.removeEventListener(
+            'mousemove',
+            handleMouseMove
+          );
+        };
+      }, []);
+
     return (
-        <div id={props.id} style={{"height":"100%", "width":"100%"}}>
-            <Canvas style={{'background':'white'}} camera={{position: [100, 100, 100], fov:50, aspect:window.innerWidth / window.innerHeight, near: 0.1, far: 10000}}>
-                <CameraControls/>
-                <axesHelper scale={100}/>
-                <Lights {...props}/>
-                <Suspense fallback={null}>
-                    <Model {...props.model}/>
-                </Suspense>
-            </Canvas>
-            <Loader />
+        <div ref={ref}>
+            <div className="cmpt_tooltip">
+                {tooltipData.text}
+                <br />
+                {value}
+            </div>
+            <div id={props.id} style={{"height":"100%", "width":"100%"}}>
+                <Canvas style={{'background':'white'}} camera={{position: [100, 100, 100], fov:50, aspect:window.innerWidth / window.innerHeight, near: 0.1, far: 10000}}>
+                    <CameraControls/>
+                    <axesHelper scale={100}/>
+                    <Lights {...props}/>
+                    <Suspense fallback={null}>
+                        <Model {...props.model} callbacks={{tooltip: setTooltipData}}/>
+                    </Suspense>
+                </Canvas>
+                <Loader />
+            </div>
+            <style jsx>{`
+                .cmpt_tooltip {
+                    color: white;
+                    background: rgba(0, 0, 0, 0.8);
+                    border-radius: 20px;
+                    position: absolute;
+                    font-family: Verdana;
+                    z-index: 2;
+                    text-align: right;
+                    padding: 20px;
+                    display: ${tooltipData.display};
+                    left: ${mousePos.x}px;
+                    top: ${mousePos.y}px;
+                }
+            `}</style>
         </div>
     )
 }
@@ -31,122 +74,7 @@ DashWtgviewer.defaultProps = {
 DashWtgviewer.propTypes = {
     // Converted from /assets/schema.json using https://transform.tools/json-to-proptypes
     id: PropTypes.string.isRequired,
-    model: PropTypes.shape(
-    {
-        name: PropTypes.string,
-        id: PropTypes.string,
-        foundation: PropTypes.shape({
-            name: PropTypes.string,
-            id: PropTypes.string,
-            element_set: PropTypes.shape({
-            name: PropTypes.string,
-            id: PropTypes.string,
-            elements: PropTypes.arrayOf(
-                PropTypes.shape({
-                id: PropTypes.number,
-                eltype: PropTypes.string,
-                nodes: PropTypes.arrayOf(
-                    PropTypes.shape({
-                    id: PropTypes.number,
-                    x: PropTypes.number,
-                    y: PropTypes.number,
-                    z: PropTypes.number
-                    })
-                ),
-                diameter: PropTypes.number,
-                thickness: PropTypes.number
-                })
-            )
-            })
-        }),
-        tower: PropTypes.shape({
-            name: PropTypes.string,
-            id: PropTypes.string,
-            element_set: PropTypes.shape({
-            name: PropTypes.string,
-            id: PropTypes.string,
-            elements: PropTypes.arrayOf(
-                PropTypes.shape({
-                id: PropTypes.number,
-                eltype: PropTypes.string,
-                nodes: PropTypes.arrayOf(
-                    PropTypes.shape({
-                    id: PropTypes.number,
-                    x: PropTypes.number,
-                    y: PropTypes.number,
-                    z: PropTypes.number
-                    })
-                ),
-                diameters: PropTypes.arrayOf(PropTypes.number),
-                thicknesses: PropTypes.arrayOf(PropTypes.number)
-                })
-            )
-            })
-        }),
-        nacelle: PropTypes.shape({
-            name: PropTypes.string,
-            id: PropTypes.string,
-            element: PropTypes.shape({
-            id: PropTypes.number,
-            eltype: PropTypes.string,
-            nodes: PropTypes.arrayOf(
-                PropTypes.shape({
-                id: PropTypes.number,
-                x: PropTypes.number,
-                y: PropTypes.number,
-                z: PropTypes.number
-                })
-            ),
-            width: PropTypes.number,
-            height: PropTypes.number
-            })
-        }),
-        rotor: PropTypes.shape({
-            name: PropTypes.string,
-            id: PropTypes.string,
-            blades: PropTypes.arrayOf(
-            PropTypes.shape({
-                name: PropTypes.string,
-                id: PropTypes.string,
-                url: PropTypes.string,
-                node: PropTypes.shape({
-                id: PropTypes.number,
-                x: PropTypes.number,
-                y: PropTypes.number,
-                z: PropTypes.number
-                }),
-                scale: PropTypes.shape({
-                x: PropTypes.number,
-                y: PropTypes.number,
-                z: PropTypes.number
-                })
-            })
-            ),
-            hub: PropTypes.shape({
-            name: PropTypes.string,
-            id: PropTypes.string,
-            cone: PropTypes.shape({
-                id: PropTypes.number,
-                eltype: PropTypes.string,
-                nodes: PropTypes.arrayOf(
-                PropTypes.shape({
-                    id: PropTypes.number,
-                    x: PropTypes.number,
-                    y: PropTypes.number,
-                    z: PropTypes.number
-                })
-                ),
-                diameter: PropTypes.number
-            })
-            }),
-            node: PropTypes.shape({
-            id: PropTypes.number,
-            x: PropTypes.number,
-            y: PropTypes.number,
-            z: PropTypes.number
-            })
-        })
-    }).isRequired
+    model: ModelPropTypes.Model.isRequired
 }
 
 export default DashWtgviewer

@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types'
 import React, {useRef, useState, useEffect} from 'react'
 
+import * as ModelPropTypes from './../proptypes/model'
 import { Cylinder } from './../geometry/cylinder'
 
 function Tower(props){
@@ -19,7 +19,7 @@ function Tower(props){
           <Cylinder
             key={i}
             {...elementData}
-            parent={props.parent}
+            callbacks={props.callbacks}
           />
         )
       }
@@ -29,29 +29,8 @@ function Tower(props){
 
 
 Tower.propTypes = {
-  parent: PropTypes.any,
-  name: PropTypes.string,
-  id: PropTypes.string,
-  element_set: PropTypes.shape({
-    name: PropTypes.string,
-    id: PropTypes.string,
-    elements: PropTypes.arrayOf(
-        PropTypes.shape({
-        id: PropTypes.number,
-        eltype: PropTypes.string,
-        nodes: PropTypes.arrayOf(
-            PropTypes.shape({
-            id: PropTypes.number,
-            x: PropTypes.number,
-            y: PropTypes.number,
-            z: PropTypes.number
-            })
-        ),
-        diameters: PropTypes.arrayOf(PropTypes.number),
-        thicknesses: PropTypes.arrayOf(PropTypes.number)
-        })
-    )
-  })
+  callbacks: ModelPropTypes.Callbacks,
+  ...ModelPropTypes.Tower.isRequired
 }
 
 export {Tower}

@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types'
 import React, {useRef, useState, useEffect} from 'react'
 import * as THREE from 'three'
 
+import * as ModelPropTypes from './../proptypes/model'
 import { nodeVector, nodeDistance } from '../geometry/vectors'
 
 function Cylinder(props){
@@ -46,11 +46,11 @@ function Cylinder(props){
       onClick={() => setActive(!active)}
       onPointerOver={() => {
         setHover(true)
-        props.parent.setState({tooltip: {text: props.id, display: 'block'}})
+        props.callbacks.tooltip({tooltip: {text: props.id, display: 'block'}})
       }}
       onPointerOut={() => {
         setHover(false)
-        props.parent.setState({tooltip: {text: "", display: 'none'}})
+        props.callbacks.tooltip({tooltip: {text: "", display: 'none'}})
       }}
     >
       <cylinderGeometry args={[diameters[0], diameters[1], length, numberOfFaces, 1]}/>
@@ -64,20 +64,8 @@ function Cylinder(props){
 }
 
 Cylinder.propTypes = {
-  id: PropTypes.number,
-  eltype: PropTypes.string,
-  nodes: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number,
-      x: PropTypes.number,
-      y: PropTypes.number,
-      z: PropTypes.number
-    })
-  ),
-  diameter: PropTypes.arrayOf(PropTypes.number),
-  diameters: PropTypes.arrayOf(PropTypes.number),
-  thicknesses: PropTypes.arrayOf(PropTypes.number),
-  parent: PropTypes.any
+  callbacks: ModelPropTypes.Callbacks,
+  ...ModelPropTypes.Element
 }
 
 export {Cylinder}

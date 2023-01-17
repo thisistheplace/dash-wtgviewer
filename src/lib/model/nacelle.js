@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types'
 import React, {useRef, useState, useEffect} from 'react'
 import * as THREE from 'three'
 
+import * as ModelPropTypes from './../proptypes/model'
 import {nodeDistance} from './../geometry/vectors'
 import {createBoxWithRoundedEdges} from './../geometry/box'
 
@@ -34,11 +34,11 @@ function Nacelle(props){
       geometry={geom}
       onPointerOver={() => {
           setHover(true)
-          props.parent.setState({tooltip: {text: props.name, display: 'block'}})
+          props.callbacks.tooltip({tooltip: {text: props.name, display: 'block'}})
       }}
       onPointerOut={() => {
           setHover(false)
-          props.parent.setState({tooltip: {text: "", display: 'none'}})
+          props.callbacks.tooltip({tooltip: {text: "", display: 'none'}})
       }}
     >
       <meshPhongMaterial opacity={1.0} transparent={false} color={hovered ? 'red' : defaultColor} />
@@ -48,23 +48,8 @@ function Nacelle(props){
 
 
 Nacelle.propTypes = {
-  parent: PropTypes.any,
-  name: PropTypes.string,
-  id: PropTypes.string,
-  element: PropTypes.shape({
-    id: PropTypes.number,
-    eltype: PropTypes.string,
-    nodes: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number,
-        x: PropTypes.number,
-        y: PropTypes.number,
-        z: PropTypes.number
-      })
-    ),
-    width: PropTypes.number,
-    height: PropTypes.number
-  })
+  callbacks: ModelPropTypes.Callbacks,
+  ...ModelPropTypes.Nacelle.isRequired
 }
 
 export {Nacelle}
