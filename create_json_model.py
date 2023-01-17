@@ -114,7 +114,7 @@ def read_model(json_path: str | Path):
 
     # Compile model
     return Model(
-        name="test-model",
+        name="model",
         foundation=foundation,
         nacelle=nacelle,
         rotor=rotor,
