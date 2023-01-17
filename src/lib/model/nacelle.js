@@ -28,6 +28,7 @@ function Nacelle(props){
   return (
     <mesh
       ref={mesh}
+      name={props.name}
       onClick={() => setActive(!active)}
       castShadow={true}
       receiveShadow={true}

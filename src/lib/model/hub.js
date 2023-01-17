@@ -45,6 +45,7 @@ const Hub = (props) => {
   return (
     <mesh
     ref={ref}
+    name={props.name}
     onClick={() => setActive(!active)}
     castShadow={true}
     receiveShadow={true}

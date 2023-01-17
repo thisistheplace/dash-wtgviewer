@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import * as ModelPropTypes from './../proptypes/model'
 
-import React, { Suspense, useState, useEffect, useRef } from 'react'
+import React, { Suspense, useState, useEffect, useRef, createRef } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { Loader } from '@react-three/drei'
 
@@ -9,9 +9,11 @@ import {CameraControls} from '../scene/controls'
 import { Lights } from '../scene/lights'
 import { Environment } from '../scene/environment/env'
 import { Model } from '../model/model'
+import { TurbineArray } from './array'
 
 function Farm(props) {
     const ref = useRef()
+    const modelRef = createRef()
     const [tooltipData, setTooltipData] = useState({display: 'none', text: ""})
     // const [value] = useState(null)
     const [mousePos, setMousePos] = useState({})
@@ -43,7 +45,8 @@ function Farm(props) {
                     <Lights {...props}/>
                     <Environment visible={props.sea}/>
                     <Suspense fallback={null}>
-                        <Model {...props.model} callbacks={{tooltip: setTooltipData}}/>
+                        <Model ref={modelRef} {...props.model} callbacks={{tooltip: setTooltipData}}/>
+                        <TurbineArray modelRef={modelRef}/>
                     </Suspense>
                 </Canvas>
                 <Loader />

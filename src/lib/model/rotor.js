@@ -27,7 +27,7 @@ const Rotor = (props) => {
   useFrame(() => (ref.current.rotation.x += 0.01))
 
   return (
-    <group ref={ref}>
+    <group ref={ref} name={props.name}>
       <Blades blades={props.blades} callbacks={props.callbacks} axis={axis}/>
       <Hub {...props.hub} callbacks={props.callbacks}/>
     </group>

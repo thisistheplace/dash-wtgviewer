@@ -13,7 +13,7 @@ function Foundation(props){
   }, [props.element_set])
 
   return (
-    <group ref={ref}>
+    <group ref={ref} name={props.name}>
       {
         elements.map((elementData, i) =>
           <Cylinder
