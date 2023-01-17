@@ -25,6 +25,7 @@ function Cylinder(props){
     } else {
       setDiameters([props.diameter, props.diameter])
     }
+    // Set orientation
     const axis = nodeVector(props.nodes[0], props.nodes[1])
     var quaternion = new THREE.Quaternion()
     quaternion.setFromUnitVectors(
@@ -32,10 +33,10 @@ function Cylinder(props){
       axis.normalize()
     )
     ref.current.rotation.setFromQuaternion(quaternion)
-    // Position correctly
-    ref.current.position.x = props.nodes[0].x
-    ref.current.position.y = props.nodes[0].y
-    ref.current.position.z = props.nodes[0].z
+    // Position correctly (this sets the center of the bounding box...!!!)
+    ref.current.position.x = (props.nodes[0].x + props.nodes[1].x) / 2
+    ref.current.position.y = (props.nodes[0].y + props.nodes[1].y) / 2
+    ref.current.position.z = (props.nodes[0].z + props.nodes[1].z) / 2
   }, [props.nodes])
 
   return (
