@@ -11,7 +11,7 @@ import { Environment } from '../scene/environment/env'
 import { Model } from '../model/model'
 import { TurbineArray } from './array'
 
-function Farm(props) {
+const Farm = (props) => {
     const ref = useRef()
     const modelRef = createRef()
     const [tooltipData, setTooltipData] = useState({display: 'none', text: ""})
