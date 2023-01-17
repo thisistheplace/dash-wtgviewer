@@ -1,0 +1,46 @@
+{
+  "src/lib/components/DashWtgviewer.react.js": {
+    "description": "",
+    "displayName": "DashWtgviewer",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": true,
+        "description": ""
+      },
+      "model": {
+        "type": {
+          "name": "custom",
+          "raw": "ModelPropTypes.Model.isRequired"
+        },
+        "required": false,
+        "description": ""
+      },
+      "tooltip": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "sea": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      }
+    }
+  }
+}

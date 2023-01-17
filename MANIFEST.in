@@ -1,0 +1,12 @@
+include dash_wtgviewer/dash_wtgviewer.min.js
+include dash_wtgviewer/dash_wtgviewer.min.js.map
+include dash_wtgviewer/async-*.js
+include dash_wtgviewer/async-*.js.map
+include dash_wtgviewer/*-shared.js
+include dash_wtgviewer/*-shared.js.map
+include dash_wtgviewer/metadata.json
+include dash_wtgviewer/package-info.json
+include assets/img
+include README.md
+include LICENSE
+include package.json
