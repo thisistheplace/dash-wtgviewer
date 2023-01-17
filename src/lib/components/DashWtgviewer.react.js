@@ -31,7 +31,7 @@ function DashWtgviewer(props) {
       }, [])
 
     return (
-        <div ref={ref}>
+        <div ref={ref} style={{"height":"100%", "width":"100%"}}>
             {/* <div className="cmpt_tooltip">
                 {tooltipData.text}
                 <br />

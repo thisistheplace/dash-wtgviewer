@@ -10,7 +10,11 @@ app.layout = html.Div(
     DashWtgviewer(
         id="example",
         model=json.load(open("assets/model.json", "r"))
-    )
+    ),
+    style={
+        "width":"100vw",
+        "height":"100vh"
+    }
 )
 
 if __name__ == "__main__":
