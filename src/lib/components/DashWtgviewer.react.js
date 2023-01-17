@@ -4,8 +4,8 @@ import React, { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { Loader } from '@react-three/drei'
 
-import {CameraControls} from '../model/controls'
-import { Lights } from '../model/lights'
+import {CameraControls} from '../scene/controls'
+import { Lights } from '../scene/lights'
 import { Model } from '../model/model'
 
 function DashWtgviewer(props) {
