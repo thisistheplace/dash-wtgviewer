@@ -12,12 +12,19 @@ import { Model } from '../model/model'
 import { TurbineArray } from './array'
 
 const Farm = (props) => {
+    const {setParentProps} = props
     const ref = useRef()
     const modelRef = createRef()
     const [tooltipData, setTooltipData] = useState({display: 'none', text: ""})
     // const [value] = useState(null)
     const [mousePos, setMousePos] = useState({})
     const [mapVisible, setMapVisible] = useState(props.show_map)
+
+    useEffect(()=>{
+        setParentProps({
+            show_map: mapVisible
+        })
+    }, [mapVisible])
 
     useEffect(()=>{
       if (!ref.current){return}

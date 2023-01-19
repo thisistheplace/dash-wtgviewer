@@ -48,6 +48,13 @@
         },
         "required": false,
         "description": ""
+      },
+      "show_map": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
       }
     }
   }

@@ -10,7 +10,8 @@
 }
 
 \usage{
-dashWtgviewer(id=NULL, map=NULL, model=NULL, sea=NULL, tooltip=NULL)
+dashWtgviewer(id=NULL, map=NULL, model=NULL, sea=NULL, show_map=NULL,
+tooltip=NULL)
 }
 
 \arguments{
@@ -21,6 +22,8 @@ dashWtgviewer(id=NULL, map=NULL, model=NULL, sea=NULL, tooltip=NULL)
 \item{model}{}
 
 \item{sea}{Logical. }
+
+\item{show_map}{Logical. }
 
 \item{tooltip}{Logical. }
 }

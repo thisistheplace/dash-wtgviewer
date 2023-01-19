@@ -12,7 +12,7 @@ function DashWtgviewer(props) {
 
     return (
       <div ref={ref} style={{"height":"100%", "width":"100%"}}>
-        <Farm {...props}/>
+        <Farm {...props} setParentProps={props.setProps}/>
       </div>
     )
 }
@@ -28,7 +28,8 @@ DashWtgviewer.propTypes = {
     model: ModelPropTypes.Model.isRequired,
     tooltip: PropTypes.bool,
     sea: PropTypes.bool,
-    map: FarmPropTypes.Map
+    map: FarmPropTypes.Map,
+    show_map: PropTypes.bool
 }
 
 export default DashWtgviewer
