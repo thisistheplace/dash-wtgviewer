@@ -4,6 +4,7 @@ import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 
 import {mergeBufferGeometries} from 'three/examples/jsm/utils/BufferGeometryUtils'
+import {SimplifyModifier} from 'three/examples/jsm/modifiers/SimplifyModifier'
 
 const TurbineArray = (props) => {
   const ref = useRef()
@@ -47,6 +48,10 @@ const TurbineArray = (props) => {
             if (rotorPart.isGroup){
               rotorPart.children.forEach(blade => {
                 var bladeGeom = blade.geometry.clone()
+                // const modifier = new SimplifyModifier()
+                // const numVertex = 0.6
+                // const count = Math.floor( bladeGeom.attributes.position.count * numVertex ) // number of vertices to remove
+					      // bladeGeom = modifier.modify( bladeGeom, count );
                 bladeGeom.applyQuaternion(blade.quaternion)
                 bladeGeom.translate(blade.position.x, blade.position.y, blade.position.z)
                 bladeGeom.applyQuaternion(meshOrGroup.quaternion)

@@ -8,6 +8,7 @@ import { Loader } from '@react-three/drei'
 import {CameraControls} from '../scene/controls'
 import { Lights } from '../scene/lights'
 import { Environment } from '../scene/environment/env'
+import { Map } from './map'
 import { Model } from '../model/model'
 import { TurbineArray } from './array'
 
@@ -38,19 +39,22 @@ const Farm = (props) => {
                 <br />
                 {value}
             </div> */}
-            <div id={props.id} style={{"height":"100%", "width":"100%"}}>
-                <Canvas style={{'background':'white'}} camera={{position: [100, 100, 100], fov:50, aspect:window.innerWidth / window.innerHeight, near: 0.1, far: 10000}}>
-                    <CameraControls/>
-                    {/* <axesHelper scale={100}/> */}
-                    <Lights {...props}/>
-                    <Environment visible={props.sea}/>
-                    <Suspense fallback={null}>
-                        <Model ref={modelRef} {...props.model} callbacks={{tooltip: setTooltipData}}/>
-                        <TurbineArray modelRef={modelRef}/>
-                    </Suspense>
-                </Canvas>
-                <Loader />
-            </div>
+            {!props.map
+              ? <div id={props.id} style={{"height":"100%", "width":"100%"}}>
+                  <Canvas style={{'background':'white'}} camera={{position: [100, 100, 100], fov:50, aspect:window.innerWidth / window.innerHeight, near: 0.1, far: 10000}}>
+                      <CameraControls/>
+                      {/* <axesHelper scale={100}/> */}
+                      <Lights {...props}/>
+                      <Environment visible={props.sea}/>
+                      <Suspense fallback={null}>
+                          <Model ref={modelRef} {...props.model} callbacks={{tooltip: setTooltipData}}/>
+                          <TurbineArray modelRef={modelRef} latlng={props.latlng}/>
+                      </Suspense>
+                  </Canvas>
+                  <Loader />
+              </div>
+              : <Map/>
+            }
             <style jsx>{`
                 .cmpt_tooltip {
                     color: white
@@ -72,7 +76,8 @@ const Farm = (props) => {
 
 Farm.defaultProps = {
     tooltip: false,
-    sea: true
+    sea: true,
+    map: true
 }
 
 Farm.propTypes = {
@@ -81,6 +86,15 @@ Farm.propTypes = {
     model: ModelPropTypes.Model.isRequired,
     tooltip: PropTypes.bool,
     sea: PropTypes.bool,
+    map: PropTypes.bool,
+    // key: id, value: [lat, lng]
+    latlng: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        lat: PropTypes.string.isRequired,
+        lng: PropTypes.string.isRequired
+      })
+    )
 }
 
 export { Farm }
