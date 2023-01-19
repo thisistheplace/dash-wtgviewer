@@ -15,14 +15,16 @@ const TurbineArray = (props) => {
   const [structures, setStructures] = useState(new THREE.BufferGeometry())
   const [nacelle, setNacelle] = useState(new THREE.BufferGeometry())
   const [combine, setCombine] = useState(true)
+  const [count, setCount] = useState(props.positions.length)
   const temp = new THREE.Object3D()
-  var count = 200
 
   useEffect(() => {
     if (!structureRef.current || !rotorRef.current || !nacelleRef.current){return}
     // Set positions
-    for (let i = 0; i < count; i++) {
-      temp.position.set(Math.random() * 100, Math.random() * 100, Math.random())
+    setCount(props.positions.length)
+    for (let i = 0; i < props.positions.length; i++) {
+      const point = props.positions[i]
+      temp.position.set(point.x, point.y, 0)
       temp.updateMatrix()
       rotorRef.current.setMatrixAt(i, temp.matrix)
       structureRef.current.setMatrixAt(i, temp.matrix)
@@ -32,7 +34,7 @@ const TurbineArray = (props) => {
     rotorRef.current.instanceMatrix.needsUpdate = true
     structureRef.current.instanceMatrix.needsUpdate = true
     nacelleRef.current.instanceMatrix.needsUpdate = true
-  }, [])
+  }, [props.positions])
 
   // use name to find rotor at the moment...not ideal!!!
   // TODO: do this better!!!
@@ -113,7 +115,13 @@ const TurbineArray = (props) => {
 
 
 TurbineArray.propTypes = {
-  modelRef: PropTypes.any.isRequired
+  modelRef: PropTypes.any.isRequired,
+  positions: PropTypes.arrayOf(
+    PropTypes.shape({
+      x: PropTypes.number,
+      y: PropTypes.number
+    })
+  )
 }
 
 export {TurbineArray}

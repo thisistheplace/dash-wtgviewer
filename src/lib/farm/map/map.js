@@ -1,9 +1,27 @@
 import React, {useState, useEffect} from 'react'
 import { MapContainer, TileLayer, useMap } from 'react-leaflet'
+import L from 'leaflet'
+
 import * as FarmPropTypes from './../../proptypes/farm'
 
 import { Boundary } from './boundary'
 import { Turbines } from './turbines'
+import { distance } from './math'
+
+
+function latLngtoXY(latLngArray){
+  // Relative to first point
+  const origin = L.latLng(latLngArray[0].lat, latLngArray[0].lng)
+  const xy = []
+  // skip first
+  latLngArray.slice(1).forEach((pnt)=>{
+    xy.push(
+      distance(origin, pnt)
+    )
+  })
+  return xy
+}
+
 
 function ChangeView({ center }) {
   const map = useMap()
@@ -27,6 +45,12 @@ const Map = (props) => {
       setTurbines(props.turbines)
     }
   },[props])
+
+  useEffect(() => {
+    if (!props.turbines){return}
+    const xy = latLngtoXY(props.turbines.positions)
+    props.callbacks.setTurbinexy(xy)
+  }, [props.turbines])
 
   return (
     <MapContainer center={center} zoom={9} style={{"height":"100%", "width":"100%"}}>

@@ -19,6 +19,7 @@ const Farm = (props) => {
     // const [value] = useState(null)
     const [mousePos, setMousePos] = useState({})
     const [mapVisible, setMapVisible] = useState(props.show_map)
+    const [turbinexy, setTurbinexy] = useState([])
 
     useEffect(()=>{
         setParentProps({
@@ -59,12 +60,12 @@ const Farm = (props) => {
                     <Environment visible={props.sea}/>
                     <Suspense fallback={null}>
                         <Model ref={modelRef} {...props.model} callbacks={{tooltip: setTooltipData}}/>
-                        {/* <TurbineArray modelRef={modelRef} latlng={props.latlng}/> */}
+                        <TurbineArray modelRef={modelRef} positions={turbinexy}/>
                     </Suspense>
                 </Canvas>
                 <Loader />
             </div>
-            <Map {...props.map} callbacks={{setMapVisible: setMapVisible}} className={!mapVisible?"fadeIn":"fadeOut"}/>
+            <Map {...props.map} callbacks={{setMapVisible: setMapVisible, setTurbinexy: setTurbinexy}} className={!mapVisible?"fadeIn":"fadeOut"}/>
             <style jsx>{`
                 .cmpt_tooltip {
                     color: white
