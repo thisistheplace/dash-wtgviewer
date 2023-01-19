@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 
 import * as ModelPropTypes from './../proptypes/model'
+import * as FarmPropTypes from './../proptypes/farm'
 
 import React, { useRef } from 'react'
 
@@ -27,6 +28,7 @@ DashWtgviewer.propTypes = {
     model: ModelPropTypes.Model.isRequired,
     tooltip: PropTypes.bool,
     sea: PropTypes.bool,
+    map: FarmPropTypes.Map
 }
 
 export default DashWtgviewer

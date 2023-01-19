@@ -40,6 +40,14 @@
           "value": "true",
           "computed": false
         }
+      },
+      "map": {
+        "type": {
+          "name": "custom",
+          "raw": "FarmPropTypes.Map"
+        },
+        "required": false,
+        "description": ""
       }
     }
   }

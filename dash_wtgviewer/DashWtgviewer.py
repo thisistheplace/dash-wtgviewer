@@ -11,6 +11,8 @@ Keyword arguments:
 
 - id (string; required)
 
+- map (optional)
+
 - model (optional)
 
 - sea (boolean; default True)
@@ -21,10 +23,10 @@ Keyword arguments:
     _namespace = 'dash_wtgviewer'
     _type = 'DashWtgviewer'
     @_explicitize_args
-    def __init__(self, id=Component.REQUIRED, model=Component.UNDEFINED, tooltip=Component.UNDEFINED, sea=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'model', 'sea', 'tooltip']
+    def __init__(self, id=Component.REQUIRED, model=Component.UNDEFINED, tooltip=Component.UNDEFINED, sea=Component.UNDEFINED, map=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'map', 'model', 'sea', 'tooltip']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'model', 'sea', 'tooltip']
+        self.available_properties = ['id', 'map', 'model', 'sea', 'tooltip']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

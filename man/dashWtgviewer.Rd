@@ -10,11 +10,13 @@
 }
 
 \usage{
-dashWtgviewer(id=NULL, model=NULL, sea=NULL, tooltip=NULL)
+dashWtgviewer(id=NULL, map=NULL, model=NULL, sea=NULL, tooltip=NULL)
 }
 
 \arguments{
 \item{id}{Character. }
+
+\item{map}{}
 
 \item{model}{}
 
