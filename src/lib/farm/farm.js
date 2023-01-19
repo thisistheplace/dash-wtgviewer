@@ -64,7 +64,7 @@ const Farm = (props) => {
                 </Canvas>
                 <Loader />
             </div>
-            <Map {...props.map} callbacks={{setMapVisible: setMapVisible}}/>
+            <Map {...props.map} callbacks={{setMapVisible: setMapVisible}} className={!mapVisible?"fadeIn":"fadeOut"}/>
             <style jsx>{`
                 .cmpt_tooltip {
                     color: white
