@@ -29,7 +29,7 @@ const Farm = (props) => {
     useEffect(()=>{
       if (!ref.current){return}
       setMapVisible(props.show_map)
-    }, [props.map])
+    }, [props.show_map])
 
     // useEffect(() => {
     //     const handleMouseMove = (event) => {
