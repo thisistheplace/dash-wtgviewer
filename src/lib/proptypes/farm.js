@@ -7,12 +7,17 @@ export const LatLng = PropTypes.shape({
   lng: PropTypes.number.isRequired
 })
 
+export const Turbine = PropTypes.shape({
+  position: LatLng,
+  callbacks: PropTypes.object
+})
+
 export const Boundary = PropTypes.shape({
   positions: PropTypes.arrayOf(LatLng)
 })
 
-export const Turbines = PropTypes.arrayOf({
-  positions: PropTypes.arrayOf(LatLng)
+export const Turbines = PropTypes.shape({
+  positions: PropTypes.arrayOf(Turbine)
 })
 
 export const Map = PropTypes.shape({

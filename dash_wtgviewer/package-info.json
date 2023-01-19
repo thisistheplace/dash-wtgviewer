@@ -27,6 +27,7 @@
     "@react-leaflet/core": "1.0.2",
     "@react-three/drei": "^8.20.2",
     "@react-three/fiber": "^7.0.28",
+    "jquery": "^3.6.3",
     "ramda": "^0.26.1",
     "react-bootstrap": "^2.5.0",
     "react-leaflet": "3.1.0",

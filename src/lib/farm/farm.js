@@ -12,7 +12,6 @@ import { Model } from '../model/model'
 import { TurbineArray } from './array'
 
 const Farm = (props) => {
-    console.log(props)
     const ref = useRef()
     const modelRef = createRef()
     const [tooltipData, setTooltipData] = useState({display: 'none', text: ""})

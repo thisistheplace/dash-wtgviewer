@@ -3,9 +3,8 @@ import { Circle, Popup } from 'react-leaflet'
 import * as FarmPropTypes from './../../proptypes/farm'
 
 const Turbine = (props) => {
-
   const ref = useRef()
-  const [position, setPosition] = useState(props)
+  const [position, setPosition] = useState(props.position)
 
   const eventHandlers = useMemo(
     () => ({
@@ -24,9 +23,9 @@ const Turbine = (props) => {
   )
 
   useEffect(()=>{
-    if (!props) {return}
-    setPosition(props)
-  }, [props])
+    if (!props.position || !ref.current) {return}
+    setPosition(props.position)
+  }, [props.position])
 
   return (
     <Circle ref={ref} center={[position.lat, position.lng]} radius={10} eventHandlers={eventHandlers}>
@@ -40,6 +39,6 @@ const Turbine = (props) => {
 Turbine.defaultProps = {
 }
 
-Turbine.propTypes = FarmPropTypes.LatLng
+Turbine.propTypes = FarmPropTypes.Turbine
 
 export {Turbine}

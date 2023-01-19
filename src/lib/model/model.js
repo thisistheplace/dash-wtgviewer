@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import React, {forwardRef} from 'react'
 import { Rotor } from './rotor'
 import { Nacelle } from './nacelle'
@@ -11,7 +10,7 @@ import * as ModelPropTypes from './../proptypes/model'
 // TODO: add map
 
 const Model = forwardRef((props, ref) => {
-
+  console.log("Model", ref)
   return (
     <group ref={ref} name={props.name}>
       <Rotor {...props.rotor} callbacks={props.callbacks}/>
@@ -23,9 +22,8 @@ const Model = forwardRef((props, ref) => {
 })
 
 Model.propTypes = {
-  callbacks: ModelPropTypes.Callbacks.isRequired,
-  ref: PropTypes.any.isRequired,
-  ...ModelPropTypes.Model.isRequired
+  callbacks: ModelPropTypes.Callbacks,
+  ...ModelPropTypes.Model
 }
 
 export { Model }

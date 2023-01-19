@@ -14,7 +14,7 @@ const Turbines = (props) => {
     <>
       {
         positions.map((position, i) =>
-          <Turbine key={i} {...position} callbacks={props.callbacks}/>
+          <Turbine key={i} position={position} callbacks={props.callbacks}/>
         )
       }
     </>
@@ -22,6 +22,7 @@ const Turbines = (props) => {
 }
 
 Turbines.defaultProps = {
+  positions: []
 }
 
 Turbines.propTypes = FarmPropTypes.Turbines
