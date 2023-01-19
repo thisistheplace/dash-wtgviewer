@@ -15,7 +15,6 @@ const Turbine = (props) => {
         if (ref) {ref.current.closePopup()}
       },
       click() {
-        console.log("setting", props.callbacks)
         if (ref) {props.callbacks.setMapVisible(false)}
       }
     }),

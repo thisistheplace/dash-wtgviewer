@@ -21,7 +21,6 @@ export const Turbines = PropTypes.shape({
 })
 
 export const Map = PropTypes.shape({
-  visible: PropTypes.bool.isRequired,
   center: LatLng.isRequired,
   boundary: Boundary,
   turbines: Turbines
@@ -33,5 +32,6 @@ export const Farm = PropTypes.shape({
   model: Model.isRequired,
   tooltip: PropTypes.bool,
   sea: PropTypes.bool,
-  map: Map
+  map: Map,
+  show_map: PropTypes.bool.isRequired
 })

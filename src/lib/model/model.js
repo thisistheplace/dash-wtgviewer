@@ -10,7 +10,6 @@ import * as ModelPropTypes from './../proptypes/model'
 // TODO: add map
 
 const Model = forwardRef((props, ref) => {
-  console.log("Model", ref)
   return (
     <group ref={ref} name={props.name}>
       <Rotor {...props.rotor} callbacks={props.callbacks}/>

@@ -85,15 +85,10 @@ const TurbineArray = (props) => {
       })
       if (rotorGeometries.length > 2){
         // Combine rotor geometries
-        console.log(rotorGeometries)
         const rotorBuffer = mergeBufferGeometries(rotorGeometries)
         setRotors(rotorBuffer)
-        console.log(rotorBuffer)
-        console.log(structureGeometries)
-        console.log(props.modelRef.current.children)
         const structureBuffer = mergeBufferGeometries(structureGeometries)
         setStructures(structureBuffer)
-        console.log(structureBuffer)
         setNacelle(nacelleGeometry)
         setCombine(false)
       }

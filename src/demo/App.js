@@ -17,10 +17,8 @@ const getModelData=(setProps, data)=>{
         return response.json();
       })
       .then(function(myJson) {
-        console.log("loaded model")
         data.model = myJson
         setProps(data)
-        console.log("set model")
       });
   }
 
@@ -37,10 +35,8 @@ const getMapBounds=(setProps)=>{
         return response.json();
       })
       .then(function(myJson) {
-        console.log("loaded map")
         const data = {}
         const mapData = {
-            "visible": true,
             "boundary": {
                 "positions": myJson
             },
@@ -98,6 +94,7 @@ class App extends Component {
             this.setProps,
             {
                 id: this.state.id,
+                show_map: true
             },
         )
 

@@ -17,11 +17,11 @@ const Farm = (props) => {
     const [tooltipData, setTooltipData] = useState({display: 'none', text: ""})
     // const [value] = useState(null)
     const [mousePos, setMousePos] = useState({})
-    const [mapVisible, setMapVisible] = useState(props.map.visible)
+    const [mapVisible, setMapVisible] = useState(props.show_map)
 
     useEffect(()=>{
       if (!ref.current){return}
-      setMapVisible(props.map.visible)
+      setMapVisible(props.show_map)
     }, [props.map])
 
     // useEffect(() => {
@@ -80,9 +80,7 @@ const Farm = (props) => {
 Farm.defaultProps = {
     tooltip: false,
     sea: true,
-    map: {
-      visible: false
-    }
+    show_map: false
 }
 
 Farm.propTypes = FarmPropTypes.Farm
