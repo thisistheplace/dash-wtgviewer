@@ -21,8 +21,8 @@ const Daytime = (props) => {
     uniforms.mieDirectionalG.value = 0.9
     var parameters = {
       distance: 5000,
-      inclination: 0.5,
-      azimuth: 0.3
+      inclination: 0.1,
+      azimuth: 0.5
     }
     var theta = Math.PI * ( parameters.inclination - 0.5 )
     var phi = 2 * Math.PI * ( parameters.azimuth - 0.5 )

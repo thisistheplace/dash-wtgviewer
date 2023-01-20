@@ -14,7 +14,7 @@ const Turbines = (props) => {
     <>
       {
         positions.map((position, i) =>
-          <Turbine key={i} position={position} callbacks={props.callbacks}/>
+          <Turbine key={i} index={i} position={position} callbacks={props.callbacks}/>
         )
       }
     </>

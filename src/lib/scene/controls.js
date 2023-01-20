@@ -1,45 +1,38 @@
-import React, {useRef, useEffect} from 'react'
-import {extend, useFrame, useThree} from '@react-three/fiber'
-import { TrackballControls } from "three/examples/jsm/controls/TrackballControls"
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
+import {useMemo, useEffect, useState} from 'react'
+import {useFrame, useThree} from '@react-three/fiber'
 import * as THREE from 'three'
+import CameraControls from 'camera-controls'
 
-extend({TrackballControls, OrbitControls})
+CameraControls.install({THREE: THREE})
 
-const FOCUS = new THREE.Vector3(0, 0, 15)
+const MAX_CAMERA_DISTANCE = 500
+const ZOOM_TO_DISTANCE = 75
 
-const CameraControls = () => {
-    // Get a reference to the Three.js Camera, and the canvas html element.
-    // We need these to setup the TrackballControls component.
-    // https://threejs.org/docs/#examples/en/controls/TrackballControls
-    var {
-      camera,
-      gl: { domElement },
-    } = useThree()
-    // Ref to the controls, so that we can update them on every frame using useFrame
-    const controls = useRef()
+function Controls({ zoom, focus, pos = new THREE.Vector3(), look = new THREE.Vector3() }) {
+  const camera = useThree((state) => state.camera)
+  const [zooming, setZooming] = useState(false)
+  const gl = useThree((state) => state.gl)
+  const controls = useMemo(() => new CameraControls(camera, gl.domElement), [])
+  controls.maxDistance = MAX_CAMERA_DISTANCE
 
-    useEffect(() => {
-      // initial camera position
-      camera.position.x = 20
-      camera.position.y = 100
-      camera.position.z = 15
-      camera.up.set(0, 0, 1)
-      camera.lookAt(FOCUS)
-      // initial controls setup
-      controls.current.rotateSpeed = 2.5
-      controls.current.zoomSpeed = 1.5
-      controls.current.panSpeed = 1.5
-      controls.current.noZoom = false
-      controls.current.noPan = false
-      controls.current.staticMoving = true
-      controls.current.dynamicDampingFactor = 0.3
-    }, [])
+  useEffect(()=>{
+    setZooming(true)
+  }, [focus])
 
-    useFrame(() => controls.current.update())
-    
-    return <trackballControls ref={controls} args={[camera, domElement]} />
-    // return <orbitControls ref={controls} args={[camera, domElement]} />
-  }
+  return useFrame((state, delta) => {
+    if (zooming){
+      zoom ? pos.set(focus.x, focus.y, focus.z + 0.2) : pos.set(0, 0, 5)
+      zoom ? look.set(focus.x, focus.y, focus.z - 0.2) : look.set(0, 0, 4)
 
-export {CameraControls}
+      state.camera.position.lerp(pos, 0.5)
+      state.camera.updateProjectionMatrix()
+
+      controls.setLookAt(state.camera.position.x, state.camera.position.y, state.camera.position.z, look.x, look.y, look.z, true)
+
+      if (state.camera.position.distanceTo(focus) < ZOOM_TO_DISTANCE){setZooming(false)}
+    }
+    return controls.update(delta)
+  })
+}
+
+export {Controls}

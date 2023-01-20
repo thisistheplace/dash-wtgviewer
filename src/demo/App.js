@@ -94,7 +94,8 @@ class App extends Component {
             this.setProps,
             {
                 id: this.state.id,
-                show_map: false
+                tooltip: true,
+                show_map: true
             },
         )
 

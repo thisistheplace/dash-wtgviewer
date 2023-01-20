@@ -1,4 +1,5 @@
-import React, {forwardRef} from 'react'
+import PropTypes from 'prop-types'
+import React, {forwardRef, useState, useEffect} from 'react'
 import { Rotor } from './rotor'
 import { Nacelle } from './nacelle'
 import { Tower } from './tower'
@@ -11,7 +12,7 @@ import * as ModelPropTypes from './../proptypes/model'
 
 const Model = forwardRef((props, ref) => {
   return (
-    <group ref={ref} name={props.name}>
+    <group ref={ref} name={props.name} position={props.position}>
       <Rotor {...props.rotor} callbacks={props.callbacks}/>
       <Nacelle {...props.nacelle} callbacks={props.callbacks}/>
       <Tower {...props.tower} callbacks={props.callbacks}/>
@@ -22,6 +23,10 @@ const Model = forwardRef((props, ref) => {
 
 Model.propTypes = {
   callbacks: ModelPropTypes.Callbacks,
+  xy: PropTypes.shape({
+    x: PropTypes.number,
+    y: PropTypes.number
+  }),
   ...ModelPropTypes.Model
 }
 

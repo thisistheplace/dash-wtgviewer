@@ -6,7 +6,7 @@ import { Loader } from '@react-three/drei'
 
 import * as THREE from 'three'
 
-import {CameraControls} from '../scene/controls'
+import {Controls} from '../scene/controls'
 import { Lights } from '../scene/lights'
 import { Environment } from '../scene/environment/env'
 import { Map } from './map/map'
@@ -26,13 +26,28 @@ const Farm = (props) => {
     // Holds turbine array xy coordinates
     const [turbinexy, setTurbinexy] = useState([])
     // Holds selected turbine position and matrix data
-    const [currentTurbine, setCurrentTurbine] = useState({position: turbinexy, matrices: []})
+    // idx is index in turbinexy array
+    const [currentTurbine, setCurrentTurbine] = useState(0)
+    const [modelPosition, setModelPosition] = useState(new THREE.Vector3(0, 0, 0))
     // Tooltip style to react to props
     const tooltipStyle = {
         display: props.tooltip ? tooltipData.display : 'none',
         left: mousePos.x + 'px',
         top: mousePos.y + 'px',
     }
+
+    // Camera manipulation
+    const [zoom, setZoom] = useState(false)
+
+    useEffect(()=>{
+        if (turbinexy.length < 1){return}
+        setZoom(!zoom)
+        setModelPosition(new THREE.Vector3(
+            turbinexy[currentTurbine].x,
+            turbinexy[currentTurbine].y,
+            0
+        ))
+    }, [currentTurbine])
 
     useEffect(()=>{
         setParentProps({
@@ -56,7 +71,7 @@ const Farm = (props) => {
             handleMouseMove
           )
         }
-      }, [])
+    }, [])
 
     return (
         <div ref={ref} style={{"height":"100%", "width":"100%"}}>
@@ -66,19 +81,19 @@ const Farm = (props) => {
                 {tooltipContents}
             </div>
             <div id={props.id} className={!mapVisible?"fadeIn":"fadeOut"}>
-                <Canvas style={{'background':'white'}} camera={{position: [100, 100, 100], fov:50, aspect:window.innerWidth / window.innerHeight, near: 0.1, far: 10000}}>
-                    <CameraControls/>
+                <Canvas style={{'background':'white'}} camera={{position: [100, 100, 100], up: [0, 0, 1], fov:50, aspect:window.innerWidth / window.innerHeight, near: 0.1, far: 10000}}>
+                    <Controls zoom={zoom} focus={modelPosition}/>
                     {/* <axesHelper scale={100}/> */}
                     <Lights {...props}/>
                     <Environment visible={props.sea}/>
                     <Suspense fallback={null}>
-                        <Model ref={modelRef} {...props.model} callbacks={{tooltip: setTooltipData}}/>
-                        <TurbineArray modelRef={modelRef} positions={turbinexy}/>
+                        <Model ref={modelRef} {...props.model} position={modelPosition} callbacks={{tooltip: setTooltipData}}/>
+                        <TurbineArray modelRef={modelRef} positions={turbinexy} currentTurbine={currentTurbine}/>
                     </Suspense>
                 </Canvas>
                 <Loader />
             </div>
-            <Map {...props.map} callbacks={{setMapVisible: setMapVisible, setTurbinexy: setTurbinexy}} className={!mapVisible?"fadeIn":"fadeOut"}/>
+            <Map {...props.map} callbacks={{setMapVisible: setMapVisible, setTurbinexy: setTurbinexy, setCurrentTurbine: setCurrentTurbine}} className={!mapVisible?"fadeIn":"fadeOut"}/>
         </div>
     )
 }

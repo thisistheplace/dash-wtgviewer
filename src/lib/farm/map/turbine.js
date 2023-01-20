@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React, {useEffect, useRef, useState, useMemo} from 'react'
 import { Circle, Popup } from 'react-leaflet'
 import * as FarmPropTypes from './../../proptypes/farm'
@@ -15,7 +16,10 @@ const Turbine = (props) => {
         if (ref) {ref.current.closePopup()}
       },
       click() {
-        if (ref) {props.callbacks.setMapVisible(false)}
+        if (ref) {
+          props.callbacks.setCurrentTurbine(props.index)
+          props.callbacks.setMapVisible(false)
+        }
       }
     }),
     []
@@ -38,6 +42,9 @@ const Turbine = (props) => {
 Turbine.defaultProps = {
 }
 
-Turbine.propTypes = FarmPropTypes.Turbine
+Turbine.propTypes = {
+  index: PropTypes.number,
+  ...FarmPropTypes.Turbine
+}
 
 export {Turbine}

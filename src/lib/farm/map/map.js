@@ -14,7 +14,8 @@ function latLngtoXY(latLngArray){
   const origin = L.latLng(latLngArray[0].lat, latLngArray[0].lng)
   const xy = []
   // skip first
-  latLngArray.slice(1).forEach((pnt)=>{
+  // latLngArray.slice(1).forEach((pnt)=>{
+  latLngArray.forEach((pnt)=>{
     xy.push(
       distance(origin, pnt)
     )
