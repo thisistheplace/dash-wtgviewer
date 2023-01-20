@@ -26,7 +26,7 @@
         "required": false,
         "description": "",
         "defaultValue": {
-          "value": "false",
+          "value": "true",
           "computed": false
         }
       },

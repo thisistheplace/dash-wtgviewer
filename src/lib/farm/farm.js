@@ -10,8 +10,8 @@ import {Controls} from '../scene/controls'
 import { Lights } from '../scene/lights'
 import { Environment } from '../scene/environment/env'
 import { Map } from './map/map'
-import { Model } from '../model/model'
-import { TurbineArray } from './array'
+import Model from '../model/model'
+import TurbineArray from './array'
 
 const Farm = (props) => {
     const {setParentProps} = props
@@ -81,14 +81,14 @@ const Farm = (props) => {
                 {tooltipContents}
             </div>
             <div id={props.id} className={!mapVisible?"fadeIn":"fadeOut"}>
-                <Canvas style={{'background':'white'}} camera={{position: [100, 100, 100], up: [0, 0, 1], fov:50, aspect:window.innerWidth / window.innerHeight, near: 0.1, far: 10000}}>
+                <Canvas style={{'background':'white'}} camera={{position: [100, 100, 100], up: [0, 0, 1], fov:50, aspect:window.innerWidth / window.innerHeight, near: 0.1, far: 5000}}>
                     <Controls zoom={zoom} focus={modelPosition}/>
                     {/* <axesHelper scale={100}/> */}
                     <Lights {...props}/>
                     <Environment visible={props.sea}/>
                     <Suspense fallback={null}>
                         <Model ref={modelRef} {...props.model} position={modelPosition} callbacks={{tooltip: setTooltipData}}/>
-                        <TurbineArray modelRef={modelRef} positions={turbinexy} currentTurbine={currentTurbine}/>
+                        <TurbineArray ref={modelRef} positions={turbinexy} currentTurbine={currentTurbine}/>
                     </Suspense>
                 </Canvas>
                 <Loader />

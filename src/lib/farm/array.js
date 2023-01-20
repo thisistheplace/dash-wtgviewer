@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types'
-import React, {useRef, useState, useEffect, createRef } from 'react'
+import React, {useRef, useState, useEffect, createRef, forwardRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 
 import {mergeBufferGeometries} from 'three/examples/jsm/utils/BufferGeometryUtils'
-import {SimplifyModifier} from 'three/examples/jsm/modifiers/SimplifyModifier'
 
-const TurbineArray = (props) => {
+const TurbineArray = forwardRef((props, modelRef) => {
+  console.log("rendering array")
   const ref = useRef()
   const rotorRef = createRef()
   const structureRef = createRef()
@@ -47,7 +47,7 @@ const TurbineArray = (props) => {
   // TODO: do this better!!!
   useFrame(() => {
     if (combine) {
-      const model = props.modelRef.current
+      const model = modelRef.current
       var rotorGeometries = []
       var structureGeometries = []
       var nacelleGeometry = null
@@ -57,10 +57,6 @@ const TurbineArray = (props) => {
             if (rotorPart.isGroup){
               rotorPart.children.forEach(blade => {
                 var bladeGeom = blade.geometry.clone()
-                // const modifier = new SimplifyModifier()
-                // const numVertex = 0.6
-                // const count = Math.floor( bladeGeom.attributes.position.count * numVertex ) // number of vertices to remove
-					      // bladeGeom = modifier.modify( bladeGeom, count );
                 bladeGeom.applyQuaternion(blade.quaternion)
                 // bladeGeom.translate(blade.position.x, blade.position.y, blade.position.z)
                 bladeGeom.applyQuaternion(meshOrGroup.quaternion)
@@ -122,8 +118,22 @@ const TurbineArray = (props) => {
       </instancedMesh>
     </group>
   )
-}
+})
 
+function areEqual(prevProps, nextProps){
+  var areEqual = true
+  console.log(prevProps)
+  console.log(nextProps)
+  Object.keys(prevProps).forEach(function(key){
+    if (prevProps[key] !== nextProps[key]){
+      console.log(key)
+      console.log(prevProps[key])
+      console.log(nextProps[key])
+      areEqual = false
+    }
+  })
+  return areEqual
+}
 
 TurbineArray.propTypes = {
   modelRef: PropTypes.any.isRequired,
@@ -136,4 +146,4 @@ TurbineArray.propTypes = {
   )
 }
 
-export {TurbineArray}
+export default React.memo(TurbineArray, areEqual)

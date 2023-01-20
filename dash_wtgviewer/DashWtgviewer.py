@@ -19,7 +19,7 @@ Keyword arguments:
 
 - show_map (boolean; optional)
 
-- tooltip (boolean; default False)"""
+- tooltip (boolean; default True)"""
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'dash_wtgviewer'
