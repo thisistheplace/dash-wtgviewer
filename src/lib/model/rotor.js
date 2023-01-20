@@ -42,7 +42,6 @@ function areEqual(prevProps, nextProps){
       areEqual = false
     }
   })
-  console.log(areEqual)
   return areEqual
 }
 

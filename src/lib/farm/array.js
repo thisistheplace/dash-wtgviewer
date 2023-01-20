@@ -1,13 +1,17 @@
 import PropTypes from 'prop-types'
-import React, {useRef, useState, useEffect, createRef, forwardRef } from 'react'
+import React, {useRef, useState, useEffect, createRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 
 import {mergeBufferGeometries} from 'three/examples/jsm/utils/BufferGeometryUtils'
 
-const TurbineArray = forwardRef((props, modelRef) => {
+import Model from '../model/model'
+import * as ModelPropTypes from './../proptypes/model'
+
+const TurbineArray = (props) => {
   console.log("rendering array")
   const ref = useRef()
+  const modelRef = createRef()
   const rotorRef = createRef()
   const structureRef = createRef()
   const nacelleRef = createRef()
@@ -107,6 +111,7 @@ const TurbineArray = forwardRef((props, modelRef) => {
 
   return (
     <group ref={ref}>
+      <Model ref={modelRef} {...props.model} />
       <instancedMesh ref={rotorRef} args={[null, null, count]} geometry={rotors} castShadow={false}>
         <meshPhongMaterial />
       </instancedMesh>
@@ -118,26 +123,29 @@ const TurbineArray = forwardRef((props, modelRef) => {
       </instancedMesh>
     </group>
   )
-})
+}
 
 function areEqual(prevProps, nextProps){
   var areEqual = true
-  console.log(prevProps)
-  console.log(nextProps)
   Object.keys(prevProps).forEach(function(key){
     if (prevProps[key] !== nextProps[key]){
-      console.log(key)
-      console.log(prevProps[key])
-      console.log(nextProps[key])
-      areEqual = false
+      if (key === "model"){
+        Object.keys(prevProps.model).forEach(function(modelKey){
+          if (prevProps.model[modelKey] !== nextProps.model[modelKey] && modelKey !== "callbacks"){
+            areEqual = false
+          }
+        })
+      } else {
+        areEqual = false
+      }
     }
   })
   return areEqual
 }
 
 TurbineArray.propTypes = {
-  modelRef: PropTypes.any.isRequired,
   currentTurbine: PropTypes.number.isRequired,
+  model: ModelPropTypes.Model,
   positions: PropTypes.arrayOf(
     PropTypes.shape({
       x: PropTypes.number,
