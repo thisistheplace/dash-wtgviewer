@@ -94,7 +94,7 @@ class App extends Component {
             this.setProps,
             {
                 id: this.state.id,
-                show_map: true
+                show_map: false
             },
         )
 

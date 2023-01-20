@@ -18,7 +18,7 @@ function DashWtgviewer(props) {
 }
 
 DashWtgviewer.defaultProps = {
-    tooltip: false,
+    tooltip: true,
     sea: true
 }
 

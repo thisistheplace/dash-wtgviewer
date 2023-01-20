@@ -47,11 +47,11 @@ function Cylinder(props){
       onClick={() => setActive(!active)}
       onPointerOver={() => {
         setHover(true)
-        props.callbacks.tooltip({tooltip: {text: props.id, display: 'block'}})
+        props.callbacks.tooltip({text: props.id, display: 'block'})
       }}
       onPointerOut={() => {
         setHover(false)
-        props.callbacks.tooltip({tooltip: {text: "", display: 'none'}})
+        props.callbacks.tooltip({text: "", display: 'none'})
       }}
     >
       <cylinderGeometry args={[diameters[0], diameters[1], length, numberOfFaces, 1]}/>
