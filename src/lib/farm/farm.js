@@ -13,6 +13,8 @@ import { Environment } from '../scene/environment/env'
 import { Map } from './map/map'
 import TurbineArray from './array'
 
+const FOCUS_HEIGHT = 15
+
 const Farm = (props) => {
     const {setParentProps} = props
     const ref = useRef()
@@ -30,6 +32,7 @@ const Farm = (props) => {
 
     // Camera manipulation
     const [zoom, setZoom] = useState(false)
+    const [focus, setFocus] = useState(new THREE.Vector3(0, 0, 0))
 
     useEffect(()=>{
         if (turbinexy.length < 1){return}
@@ -38,6 +41,11 @@ const Farm = (props) => {
             turbinexy[currentTurbine].x,
             turbinexy[currentTurbine].y,
             0
+        ))
+        setFocus(new THREE.Vector3(
+            turbinexy[currentTurbine].x,
+            turbinexy[currentTurbine].y,
+            FOCUS_HEIGHT
         ))
     }, [currentTurbine])
 
@@ -57,7 +65,7 @@ const Farm = (props) => {
             <Tooltip show={props.tooltip} tooltipStyle={tooltipStyle} tooltipContents={tooltipContents}/>
             <div id={props.id} className={!mapVisible?"fadeIn":"fadeOut"}>
                 <Canvas style={{'background':'white'}} camera={{position: [100, 100, 100], up: [0, 0, 1], fov:50, aspect:window.innerWidth / window.innerHeight, near: 0.1, far: 5000}}>
-                    <Controls zoom={zoom} focus={modelPosition}/>
+                    <Controls zoom={zoom} focus={focus}/>
                     {/* <axesHelper scale={100}/> */}
                     <Lights {...props}/>
                     <Environment visible={props.sea}/>
