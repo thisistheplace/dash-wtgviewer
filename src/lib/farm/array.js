@@ -8,8 +8,9 @@ import {mergeBufferGeometries} from 'three/examples/jsm/utils/BufferGeometryUtil
 import Model from '../model/model'
 import * as ModelPropTypes from './../proptypes/model'
 
+const ROTATION_INCREMENT = 0.01
+
 const TurbineArray = (props) => {
-  console.log("rendering array")
   const ref = useRef()
   const modelRef = createRef()
   const rotorRef = createRef()
@@ -106,7 +107,7 @@ const TurbineArray = (props) => {
         setCombine(false)
       }
     }
-    rotorRef.current.geometry.rotateX(0.01)
+    rotorRef.current.geometry.rotateX(ROTATION_INCREMENT)
   })
 
   return (

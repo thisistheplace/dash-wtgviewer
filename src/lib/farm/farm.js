@@ -1,6 +1,6 @@
 import * as FarmPropTypes from './../proptypes/farm'
 
-import React, { Suspense, useState, useEffect, useRef, createRef } from 'react'
+import React, { Suspense, useState, useEffect, useRef } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { Loader } from '@react-three/drei'
 
@@ -17,7 +17,7 @@ const Farm = (props) => {
     const {setParentProps} = props
     const ref = useRef()
     // Tooltip data
-    const [tooltipData, setTooltipData] = useState({display: 'none', text: ""})
+    const [tooltipStyle, setTooltipStyle] = useState({display: 'none', text: ""})
     const [tooltipContents] = useState(null)
     // Holds map overlay visibility
     const [mapVisible, setMapVisible] = useState(props.show_map)
@@ -54,7 +54,7 @@ const Farm = (props) => {
 
     return (
         <div ref={ref} style={{"height":"100%", "width":"100%"}}>
-            <Tooltip show={props.tooltip} tooltipData={tooltipData} tooltipContents={tooltipContents}/>
+            <Tooltip show={props.tooltip} tooltipStyle={tooltipStyle} tooltipContents={tooltipContents}/>
             <div id={props.id} className={!mapVisible?"fadeIn":"fadeOut"}>
                 <Canvas style={{'background':'white'}} camera={{position: [100, 100, 100], up: [0, 0, 1], fov:50, aspect:window.innerWidth / window.innerHeight, near: 0.1, far: 5000}}>
                     <Controls zoom={zoom} focus={modelPosition}/>
@@ -65,7 +65,7 @@ const Farm = (props) => {
                         <TurbineArray
                             positions={turbinexy}
                             currentTurbine={currentTurbine}
-                            model={{position: modelPosition, callbacks: {tooltip: setTooltipData}, ...props.model}}
+                            model={{position: modelPosition, callbacks: {tooltip: setTooltipStyle}, ...props.model}}
                         />
                     </Suspense>
                 </Canvas>

@@ -31,7 +31,7 @@ const Turbine = (props) => {
   }, [props.position])
 
   return (
-    <Circle ref={ref} center={[position.lat, position.lng]} radius={10} eventHandlers={eventHandlers}>
+    <Circle ref={ref} center={[position.lat, position.lng]} radius={200} eventHandlers={eventHandlers}>
       <Popup>
         {position.id}
       </Popup>
