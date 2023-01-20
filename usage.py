@@ -28,8 +28,8 @@ app.layout = html.Div(
     DashWtgviewer(
         id="example",
         model=json.load(open("assets/model.json", "r")),
+        show_map=True,
         map={
-            "visible":True,
             "center":{"id":"center", "lat":52.29733, "lng":2.35038},
             "turbines":{"positions":json.load(open("assets/ea1_turbines.json", "r"))},
             "boundary":{"positions":json.load(open("assets/ea1_boundary.json", "r"))}

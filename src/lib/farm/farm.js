@@ -36,15 +36,15 @@ const Farm = (props) => {
 
     useEffect(()=>{
         if (turbinexy.length < 1){return}
+        const tempTurbine = new THREE.Vector3()
+        tempTurbine.setX(turbinexy[currentTurbine].x)
+        tempTurbine.setY(turbinexy[currentTurbine].y)
+        tempTurbine.setZ(0)
         setZoom(!zoom)
-        setModelPosition(new THREE.Vector3(
-            turbinexy[currentTurbine].x,
-            turbinexy[currentTurbine].y,
-            0
-        ))
+        setModelPosition(tempTurbine)
         setFocus(new THREE.Vector3(
-            turbinexy[currentTurbine].x,
-            turbinexy[currentTurbine].y,
+            tempTurbine.x,
+            tempTurbine.y,
             FOCUS_HEIGHT
         ))
     }, [currentTurbine])
