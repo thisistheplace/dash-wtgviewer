@@ -32,8 +32,10 @@ const Turbine = (props) => {
 
   return (
     <Circle ref={ref} center={[position.lat, position.lng]} radius={200} eventHandlers={eventHandlers}>
-      <Popup>
-        {position.id}
+      <Popup className='request-popup'>
+        <div className='map-tooltip'>
+          {position.id}
+        </div>
       </Popup>
     </Circle>
   )

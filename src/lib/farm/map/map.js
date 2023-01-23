@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { MapContainer, TileLayer, useMap } from 'react-leaflet'
+import { MapContainer, TileLayer, useMap, ZoomControl } from 'react-leaflet'
 import L from 'leaflet'
 
 import * as FarmPropTypes from './../../proptypes/farm'
@@ -54,11 +54,12 @@ const Map = (props) => {
   }, [props.turbines])
 
   return (
-    <MapContainer center={center} zoom={9} style={{"height":"100%", "width":"100%", "zIndex":"2"}}>
+    <MapContainer center={center} zoom={9} zoomControl={false} style={{"height":"100%", "width":"100%", "zIndex":"2"}}>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
+      <ZoomControl position='bottomright'/>
       <ChangeView center={center}/>
       <Boundary {...boundary}/>
       <Turbines {...turbines} callbacks={props.callbacks}/>

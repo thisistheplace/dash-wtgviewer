@@ -28,3 +28,17 @@
     text-align: right;
     padding: 20px;
 }
+
+.request-popup .leaflet-popup-content-wrapper {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.request-popup .leaflet-popup-tip {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.map-tooltip {
+    color: white;
+    font-family: Verdana;
+    text-align: right;
+}
