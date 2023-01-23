@@ -7,7 +7,7 @@ import { Daytime } from './daytime'
 const Environment = (props) => {
     const ref = useRef()
     const sunRef = createRef()
-    const size = 20000
+    const size = 30000
     return (
         <group ref={ref}  {...props}>
             <Daytime sunRef={sunRef} size={size}/>

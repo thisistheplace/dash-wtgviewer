@@ -28,19 +28,23 @@ const TurbineArray = (props) => {
     if (!structureRef.current || !rotorRef.current || !nacelleRef.current){return}
     // Set positions
     setCount(props.positions.length - 1)
+    var j = 0
+    var indexOffset = 0
     for (let i = 0; i < props.positions.length; i++) {
       if (i === props.currentTurbine){
+        indexOffset = -1
         continue
       }
+      j = i + indexOffset
       const point = props.positions[i]
       temp.position.set(point.x, point.y, 0)
       temp.updateMatrix()
-      structureRef.current.setMatrixAt(i, temp.matrix)
-      nacelleRef.current.setMatrixAt(i, temp.matrix)
+      structureRef.current.setMatrixAt(j, temp.matrix)
+      nacelleRef.current.setMatrixAt(j, temp.matrix)
       // do something special for rotor so we can rotate it!
       temp.position.set(point.x + rotorTranslation.x, point.y + rotorTranslation.y, rotorTranslation.z)
       temp.updateMatrix()
-      rotorRef.current.setMatrixAt(i, temp.matrix)
+      rotorRef.current.setMatrixAt(j, temp.matrix)
     }
     // Update the instance
     rotorRef.current.instanceMatrix.needsUpdate = true

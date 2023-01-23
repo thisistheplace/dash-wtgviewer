@@ -40,7 +40,7 @@ const Farm = (props) => {
         tempTurbine.setX(turbinexy[currentTurbine].x)
         tempTurbine.setY(turbinexy[currentTurbine].y)
         tempTurbine.setZ(0)
-        setZoom(!zoom)
+        setZoom(true)
         setModelPosition(tempTurbine)
         setFocus(new THREE.Vector3(
             tempTurbine.x,

@@ -1,6 +1,6 @@
 import L from 'leaflet'
 
-const SCALE = 5
+const SCALE = 2.5
 
 function distance(pnt1, pnt2) {
   const temp1 = new L.latLng(0, 0)

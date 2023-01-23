@@ -54,7 +54,7 @@ const Map = (props) => {
   }, [props.turbines])
 
   return (
-    <MapContainer center={center} zoom={9} style={{"height":"100%", "width":"100%"}}>
+    <MapContainer center={center} zoom={9} style={{"height":"100%", "width":"100%", "zIndex":"2"}}>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
