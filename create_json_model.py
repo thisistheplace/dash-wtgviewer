@@ -85,36 +85,31 @@ def read_model(json_path: str | Path):
         ) for idx in range(1, 4)
     ]
     foundation = Foundation(
-        name="trileg",
         node_sets=[node_sets["foundation"]],
         element_set=element_sets["foundation"]
     )
     hub = Hub(
-        name="hub",
         cone=Cone(
             nodes=list(nodes.values())[-2:],
             diameter=1.5
         )
     )
     rotor = Rotor(
-        name="rotor",
         blades=blades,
         hub=hub,
         node=list(nodes.values())[-2]
     )
     nacelle = Nacelle(
-        name="nacelle",
         element=elements[10]
     )
     tower = Tower(
-        name="tower",
         node_sets=[node_sets["tower"]],
         element_set=element_sets["tower"]
     )
 
     # Compile model
     return Model(
-        name="test-model",
+        name="model",
         foundation=foundation,
         nacelle=nacelle,
         rotor=rotor,

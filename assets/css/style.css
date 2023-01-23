@@ -1,0 +1,44 @@
+.fadeOut{
+    opacity:0;
+    width:0;
+    height:0;
+    transition: opacity 0.5s;
+    z-index: 1;
+    visibility: hidden;
+
+}
+
+.fadeIn{
+    opacity:1;
+    width:100%;
+    height:100%;
+    transition: opacity 0.5s 0.5s;
+    z-index: 2;
+    visibility:visible;
+
+}
+
+.modelTooltip {
+    color: white;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 20px;
+    position: absolute;
+    font-family: Verdana;
+    z-index: 2;
+    text-align: right;
+    padding: 20px;
+}
+
+.request-popup .leaflet-popup-content-wrapper {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.request-popup .leaflet-popup-tip {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.map-tooltip {
+    color: white;
+    font-family: Verdana;
+    text-align: right;
+}

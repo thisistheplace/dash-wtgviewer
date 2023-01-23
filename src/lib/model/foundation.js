@@ -13,13 +13,14 @@ function Foundation(props){
   }, [props.element_set])
 
   return (
-    <group ref={ref}>
+    <group ref={ref} name={props.name}>
       {
         elements.map((elementData, i) =>
           <Cylinder
             key={i}
             {...elementData}
             callbacks={props.callbacks}
+            color={"#fdc407"}
           />
         )
       }
@@ -27,10 +28,19 @@ function Foundation(props){
   )
 }
 
+function areEqual(prevProps, nextProps){
+  var areEqual = true
+  Object.keys(prevProps).forEach(function(key){
+    if (prevProps[key] !== nextProps[key] && key !== "callbacks"){
+      areEqual = false
+    }
+  })
+  return areEqual
+}
 
 Foundation.propTypes = {
   callbacks: ModelPropTypes.Callbacks,
   ...ModelPropTypes.Foundation.isRequired
 }
 
-export {Foundation}
+export default React.memo(Foundation, areEqual)

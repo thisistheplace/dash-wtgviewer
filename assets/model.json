@@ -1,8 +1,8 @@
 {
-    "name": "test-model",
+    "name": "model",
     "id": "f55f118e-2f73-4f10-aeeb-3fdf6224f6a0",
     "foundation": {
-        "name": "trileg",
+        "name": "foundation",
         "id": "fa82fff6-7140-44d7-89f5-d1c726825ff1",
         "element_set": {
             "name": "foundation",

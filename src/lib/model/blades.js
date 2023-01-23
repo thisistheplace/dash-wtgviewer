@@ -43,9 +43,6 @@ const Blade = (props) => {
       props.scale.z
     )
 
-    // ref.current.position.x = props.node.x
-    // ref.current.position.y = props.node.y
-    // ref.current.position.z = props.node.z
   }, [props.axis, props.node, props.scale, props.rotation])
   
   return (
@@ -58,11 +55,11 @@ const Blade = (props) => {
       onClick={() => setActive(!active)}
       onPointerOver={() => {
         setHover(true)
-        props.callbacks.tooltip({tooltip: {text: props.name, display: 'block'}})
+        props.callbacks.tooltip({text: props.name, display: 'block'})
       }}
       onPointerOut={() => {
         setHover(false)
-        props.callbacks.tooltip({tooltip: {text: "", display: 'none'}})
+        props.callbacks.tooltip({text: "", display: 'none'})
       }}
     >
       <meshPhongMaterial opacity={1.0} transparent={false} color={hovered ? 'red' : defaultColor} />

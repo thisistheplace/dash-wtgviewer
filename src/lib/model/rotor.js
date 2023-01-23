@@ -27,7 +27,7 @@ const Rotor = (props) => {
   useFrame(() => (ref.current.rotation.x += 0.01))
 
   return (
-    <group ref={ref}>
+    <group ref={ref} name={props.name}>
       <Blades blades={props.blades} callbacks={props.callbacks} axis={axis}/>
       <Hub {...props.hub} callbacks={props.callbacks}/>
     </group>
@@ -35,9 +35,19 @@ const Rotor = (props) => {
 
 }
 
+function areEqual(prevProps, nextProps){
+  var areEqual = true
+  Object.keys(prevProps).forEach(function(key){
+    if (prevProps[key] !== nextProps[key] && key !== "callbacks"){
+      areEqual = false
+    }
+  })
+  return areEqual
+}
+
 Rotor.propTypes = {
   callbacks: ModelPropTypes.Callbacks,
   ...ModelPropTypes.Rotor.isRequired
 }
 
-export {Rotor}
+export default React.memo(Rotor, areEqual)

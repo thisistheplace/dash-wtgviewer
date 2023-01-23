@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React, {useEffect, useRef, useState} from 'react'
 import { useFrame, extend } from '@react-three/fiber'
-import { Water } from 'three/examples/jsm/objects/Water'
+import { Water } from './water'
 
 import * as THREE from 'three'
 
@@ -35,8 +35,6 @@ const Ocean = (props) => {
     }
     setOptions(waterOptions)
     // ref.current.material.uniforms.sunDirection.value.copy( props.sunRef.current.position ).normalize()
-    ref.current.rotation.x = - Math.PI / 2
-    ref.current.updateMatrix()
   }, [])
     
   useFrame((state, delta) => {

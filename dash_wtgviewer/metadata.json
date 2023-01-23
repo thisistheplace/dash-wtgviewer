@@ -26,11 +26,11 @@
         "required": false,
         "description": "",
         "defaultValue": {
-          "value": "false",
+          "value": "true",
           "computed": false
         }
       },
-      "sea": {
+      "environment": {
         "type": {
           "name": "bool"
         },
@@ -40,6 +40,21 @@
           "value": "true",
           "computed": false
         }
+      },
+      "map": {
+        "type": {
+          "name": "custom",
+          "raw": "FarmPropTypes.Map"
+        },
+        "required": false,
+        "description": ""
+      },
+      "show_map": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
       }
     }
   }

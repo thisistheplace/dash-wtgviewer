@@ -11,20 +11,24 @@ Keyword arguments:
 
 - id (string; required)
 
+- environment (boolean; default True)
+
+- map (optional)
+
 - model (optional)
 
-- sea (boolean; default True)
+- show_map (boolean; optional)
 
-- tooltip (boolean; default False)"""
+- tooltip (boolean; default True)"""
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'dash_wtgviewer'
     _type = 'DashWtgviewer'
     @_explicitize_args
-    def __init__(self, id=Component.REQUIRED, model=Component.UNDEFINED, tooltip=Component.UNDEFINED, sea=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'model', 'sea', 'tooltip']
+    def __init__(self, id=Component.REQUIRED, model=Component.UNDEFINED, tooltip=Component.UNDEFINED, environment=Component.UNDEFINED, map=Component.UNDEFINED, show_map=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'environment', 'map', 'model', 'show_map', 'tooltip']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'model', 'sea', 'tooltip']
+        self.available_properties = ['id', 'environment', 'map', 'model', 'show_map', 'tooltip']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

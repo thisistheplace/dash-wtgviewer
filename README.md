@@ -7,6 +7,32 @@ Get started with:
 2. Run `python usage.py`
 3. Visit http://localhost:8050 in your web browser
 
+## Usage
+This package uses [react-leaflet](https://react-leaflet.js.org/) which requires the following
+css sheets to be included in your Dash app:
+
+```python
+from dash import Dash
+# external CSS stylesheets
+external_stylesheets = [
+    {
+        'href': 'https://unpkg.com/leaflet@1.9.2/dist/leaflet.css',
+        'rel': 'stylesheet',
+        'integrity': 'sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=',
+        'crossorigin': ''
+    },
+    {
+        'href': 'https://unpkg.com/leaflet@1.9.2/dist/leaflet.js',
+        'rel': 'stylesheet',
+        'integrity': 'sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=',
+        'crossorigin': ''
+    }
+]
+app = Dash(
+    external_stylesheets=external_stylesheets
+)
+```
+
 ## Contributing
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md)

@@ -10,15 +10,20 @@
 }
 
 \usage{
-dashWtgviewer(id=NULL, model=NULL, sea=NULL, tooltip=NULL)
+dashWtgviewer(id=NULL, environment=NULL, map=NULL, model=NULL,
+show_map=NULL, tooltip=NULL)
 }
 
 \arguments{
 \item{id}{Character. }
 
+\item{environment}{Logical. }
+
+\item{map}{}
+
 \item{model}{}
 
-\item{sea}{Logical. }
+\item{show_map}{Logical. }
 
 \item{tooltip}{Logical. }
 }

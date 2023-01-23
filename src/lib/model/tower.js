@@ -13,7 +13,7 @@ function Tower(props){
   }, [props.element_set])
 
   return (
-    <group ref={ref}>
+    <group ref={ref} name={props.name}>
       {
         elements.map((elementData, i) =>
           <Cylinder
@@ -27,10 +27,19 @@ function Tower(props){
   )
 }
 
+function areEqual(prevProps, nextProps){
+  var areEqual = true
+  Object.keys(prevProps).forEach(function(key){
+    if (prevProps[key] !== nextProps[key] && key !== "callbacks"){
+      areEqual = false
+    }
+  })
+  return areEqual
+}
 
 Tower.propTypes = {
   callbacks: ModelPropTypes.Callbacks,
   ...ModelPropTypes.Tower.isRequired
 }
 
-export {Tower}
+export default React.memo(Tower, areEqual)

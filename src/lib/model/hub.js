@@ -45,17 +45,18 @@ const Hub = (props) => {
   return (
     <mesh
     ref={ref}
+    name={props.name}
     onClick={() => setActive(!active)}
     castShadow={true}
     receiveShadow={true}
     geometry={geom}
     onPointerOver={() => {
         setHover(true)
-        props.callbacks.tooltip({tooltip: {text: props.name, display: 'block'}})
+        props.callbacks.tooltip({text: props.name, display: 'block'})
     }}
     onPointerOut={() => {
         setHover(false)
-        props.callbacks.tooltip({tooltip: {text: "", display: 'none'}})
+        props.callbacks.tooltip({text: "", display: 'none'})
     }}
   >
     <meshPhongMaterial opacity={1.0} transparent={false} color={hovered ? 'red' : defaultColor} side={THREE.DoubleSide}/>
