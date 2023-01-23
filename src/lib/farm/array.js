@@ -55,8 +55,34 @@ const TurbineArray = (props) => {
   // use name to find rotor at the moment...not ideal!!!
   // TODO: do this better!!!
   useFrame(() => {
+    rotorRef.current.geometry.rotateX(ROTATION_INCREMENT)
     if (combine) {
       const model = modelRef.current
+
+      // check model parts exist
+      const names = ["rotor", "foundation", "tower", "nacelle"]
+      const inScene = model.children.map(meshOrGroup => meshOrGroup.name)
+      names.forEach(name => {
+        if (!inScene.includes(name)){
+          return
+        }
+      })
+      
+      // Check we've got three blades
+      const blades = []
+      model.children.map(meshOrGroup => {
+        if (meshOrGroup.name === "rotor"){
+          meshOrGroup.children.forEach(rotorPart => {
+            if (rotorPart.isGroup){
+              rotorPart.children.forEach(blade => blades.push(blade))
+            }
+          })
+        }
+      })
+      if (blades.length < 3){return}
+      console.log(inScene)
+
+      // Combine geometries
       var rotorGeometries = []
       var structureGeometries = []
       var nacelleGeometry = null
@@ -111,20 +137,19 @@ const TurbineArray = (props) => {
         setCombine(false)
       }
     }
-    rotorRef.current.geometry.rotateX(ROTATION_INCREMENT)
   })
 
   return (
     <group ref={ref}>
       <Model ref={modelRef} {...props.model} />
       <instancedMesh ref={rotorRef} visible={props.array} args={[null, null, count]} geometry={rotors} castShadow={false}>
-        <meshPhongMaterial />
+        <meshBasicMaterial />
       </instancedMesh>
       <instancedMesh ref={structureRef} visible={props.array} args={[null, null, count]} geometry={structures} castShadow={false}>
-        <meshPhongMaterial />
+        <meshBasicMaterial />
       </instancedMesh>
       <instancedMesh ref={nacelleRef} visible={props.array} args={[null, null, count]} geometry={nacelle} castShadow={false}>
-        <meshPhongMaterial />
+        <meshBasicMaterial />
       </instancedMesh>
     </group>
   )

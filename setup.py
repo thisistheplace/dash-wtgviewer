@@ -12,7 +12,7 @@ setup(
     name=package_name,
     version=package["version"],
     author=package['author'],
-    packages=[package_name],
+    packages=[package_name, f"{package_name}/model"],
     include_package_data=True,
     license=package['license'],
     description=package.get('description', package_name),

@@ -5,6 +5,7 @@ from .fea.nodes import Node
 
 
 class Rotor(Base):
+    name: str = "rotor"
     blades: list[Blade]
     hub: Hub
     node: Node
