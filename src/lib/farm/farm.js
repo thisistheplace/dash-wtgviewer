@@ -68,9 +68,10 @@ const Farm = (props) => {
                     <Controls zoom={zoom} focus={focus}/>
                     {/* <axesHelper scale={100}/> */}
                     <Lights {...props}/>
-                    <Environment visible={props.sea}/>
+                    {props.environment ? <Environment/> : null }
                     <Suspense fallback={null}>
                         <TurbineArray
+                            array={props.environment}
                             positions={turbinexy}
                             currentTurbine={currentTurbine}
                             model={{position: modelPosition, callbacks: {tooltip: setTooltipStyle}, ...props.model}}
@@ -86,7 +87,7 @@ const Farm = (props) => {
 
 Farm.defaultProps = {
     tooltip: true,
-    sea: true,
+    environment: true,
     show_map: false
 }
 

@@ -31,7 +31,7 @@ app.layout = html.Div(
             id="viewer",
             model=json.load(open("assets/model.json", "r")),
             show_map=True,
-            sea=True,
+            environment=True,
             tooltip=True,
             map={
                 "center":{"id":"center", "lat":52.29733, "lng":2.35038},
@@ -47,7 +47,7 @@ app.layout = html.Div(
                     value=True,
                 ),
                 dbc.Switch(
-                    id="toggle_sea",
+                    id="toggle_environment",
                     label="environment",
                     value=True,
                 ),
@@ -88,8 +88,8 @@ def toggle_map(toggle):
 
 
 @app.callback(
-    Output("viewer", "sea"),
-    Input("toggle_sea", "value"),
+    Output("viewer", "environment"),
+    Input("toggle_environment", "value"),
     prevent_initial_call=True,
 )
 def toggle_map(toggle):
@@ -97,7 +97,7 @@ def toggle_map(toggle):
 
 @app.callback(
     Output("viewer", "show_map"),
-    # Output("toggle_sea", "style"),
+    # Output("toggle_environment", "style"),
     Input("toggle_map", "value"),
     State("viewer", "show_map"),
     prevent_initial_call=True,

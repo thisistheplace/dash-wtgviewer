@@ -19,7 +19,7 @@ function DashWtgviewer(props) {
 
 DashWtgviewer.defaultProps = {
     tooltip: true,
-    sea: true
+    environment: true
 }
 
 DashWtgviewer.propTypes = {
@@ -27,7 +27,7 @@ DashWtgviewer.propTypes = {
     id: PropTypes.string.isRequired,
     model: ModelPropTypes.Model.isRequired,
     tooltip: PropTypes.bool,
-    sea: PropTypes.bool,
+    environment: PropTypes.bool,
     map: FarmPropTypes.Map,
     show_map: PropTypes.bool
 }

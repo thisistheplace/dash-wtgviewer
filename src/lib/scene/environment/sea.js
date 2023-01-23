@@ -17,7 +17,6 @@ const Ocean = (props) => {
     if (!ref.current || !props.sunRef.current) {return}
     // Get geometry
     const waterGeometry = new THREE.PlaneBufferGeometry( props.size, props.size )
-    // waterGeometry.rotateX(Math.PI / 2)
     
     setGeom(waterGeometry)
 
@@ -36,7 +35,6 @@ const Ocean = (props) => {
     }
     setOptions(waterOptions)
     // ref.current.material.uniforms.sunDirection.value.copy( props.sunRef.current.position ).normalize()
-    console.log(ref.current)
   }, [])
     
   useFrame((state, delta) => {

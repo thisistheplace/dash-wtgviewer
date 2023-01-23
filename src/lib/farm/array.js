@@ -117,13 +117,13 @@ const TurbineArray = (props) => {
   return (
     <group ref={ref}>
       <Model ref={modelRef} {...props.model} />
-      <instancedMesh ref={rotorRef} args={[null, null, count]} geometry={rotors} castShadow={false}>
+      <instancedMesh ref={rotorRef} visible={props.array} args={[null, null, count]} geometry={rotors} castShadow={false}>
         <meshPhongMaterial />
       </instancedMesh>
-      <instancedMesh ref={structureRef} args={[null, null, count]} geometry={structures} castShadow={false}>
+      <instancedMesh ref={structureRef} visible={props.array} args={[null, null, count]} geometry={structures} castShadow={false}>
         <meshPhongMaterial />
       </instancedMesh>
-      <instancedMesh ref={nacelleRef} args={[null, null, count]} geometry={nacelle} castShadow={false}>
+      <instancedMesh ref={nacelleRef} visible={props.array} args={[null, null, count]} geometry={nacelle} castShadow={false}>
         <meshPhongMaterial />
       </instancedMesh>
     </group>
@@ -150,7 +150,8 @@ function areEqual(prevProps, nextProps){
 
 TurbineArray.propTypes = {
   currentTurbine: PropTypes.number.isRequired,
-  model: ModelPropTypes.Model,
+  array: PropTypes.bool.isRequired,
+  model: ModelPropTypes.Model.isRequired,
   positions: PropTypes.arrayOf(
     PropTypes.shape({
       x: PropTypes.number,

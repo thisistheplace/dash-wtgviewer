@@ -30,7 +30,7 @@
           "computed": false
         }
       },
-      "sea": {
+      "environment": {
         "type": {
           "name": "bool"
         },
