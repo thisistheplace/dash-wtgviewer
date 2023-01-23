@@ -95,7 +95,7 @@ class App extends Component {
             {
                 id: this.state.id,
                 tooltip: true,
-                show_map: true
+                show_map: false
             },
         )
 

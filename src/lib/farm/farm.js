@@ -66,7 +66,7 @@ const Farm = (props) => {
             <div id={props.id} className={!mapVisible?"fadeIn":"fadeOut"}>
                 <Canvas style={{'background':'white'}} camera={{position: [100, 100, 100], up: [0, 0, 1], fov:50, aspect:window.innerWidth / window.innerHeight, near: 0.1, far: 5000}}>
                     <Controls zoom={zoom} focus={focus}/>
-                    {/* <axesHelper scale={100}/> */}
+                    <axesHelper scale={100}/>
                     <Lights {...props}/>
                     <Environment visible={props.sea}/>
                     <Suspense fallback={null}>

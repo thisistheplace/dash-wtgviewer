@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React, {useEffect, useRef, useState} from 'react'
 import { useFrame, extend } from '@react-three/fiber'
-import { Water } from 'three/examples/jsm/objects/Water'
+import { Water } from './water'
 
 import * as THREE from 'three'
 
@@ -17,6 +17,7 @@ const Ocean = (props) => {
     if (!ref.current || !props.sunRef.current) {return}
     // Get geometry
     const waterGeometry = new THREE.PlaneBufferGeometry( props.size, props.size )
+    // waterGeometry.rotateX(Math.PI / 2)
     
     setGeom(waterGeometry)
 
@@ -35,8 +36,7 @@ const Ocean = (props) => {
     }
     setOptions(waterOptions)
     // ref.current.material.uniforms.sunDirection.value.copy( props.sunRef.current.position ).normalize()
-    ref.current.rotation.x = - Math.PI / 2
-    ref.current.updateMatrix()
+    console.log(ref.current)
   }, [])
     
   useFrame((state, delta) => {
