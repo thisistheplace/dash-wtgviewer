@@ -1,6 +1,6 @@
 import json
 import os
-from setuptools import setup
+from setuptools import setup, find_packages
 
 
 with open('package.json') as f:
@@ -12,7 +12,12 @@ setup(
     name=package_name,
     version=package["version"],
     author=package['author'],
-    packages=[package_name, f"{package_name}/model"],
+    packages=[
+        package_name,
+        f"{package_name}/model",
+        f"{package_name}/model/fea",
+        f"{package_name}/model/geometry"
+    ],
     include_package_data=True,
     license=package['license'],
     description=package.get('description', package_name),

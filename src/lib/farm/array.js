@@ -80,7 +80,6 @@ const TurbineArray = (props) => {
         }
       })
       if (blades.length < 3){return}
-      console.log(inScene)
 
       // Combine geometries
       var rotorGeometries = []
