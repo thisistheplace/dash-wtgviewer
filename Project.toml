@@ -2,7 +2,7 @@
 name = "DashWtgviewer"
 uuid = "1b08a953-4be3-4667-9a23-3938d6b5b4b8"
 authors = ["Ben Cannell <bean.can.design@gmail.com>"]
-version = "0.0.15"
+version = "0.0.16"
 
 [deps]
 Dash = "1b08a953-4be3-4667-9a23-3db579824955"
