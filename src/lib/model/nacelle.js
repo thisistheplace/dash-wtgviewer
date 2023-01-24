@@ -62,4 +62,5 @@ Nacelle.propTypes = {
   ...ModelPropTypes.Nacelle.isRequired
 }
 
-export default React.memo(Nacelle, areEqual)
+// export default React.memo(Nacelle, areEqual)
+export default Nacelle

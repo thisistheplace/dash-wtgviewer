@@ -50,4 +50,5 @@ Rotor.propTypes = {
   ...ModelPropTypes.Rotor.isRequired
 }
 
-export default React.memo(Rotor, areEqual)
+// export default React.memo(Rotor, areEqual)
+export default Rotor

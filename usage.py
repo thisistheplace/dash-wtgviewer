@@ -121,4 +121,4 @@ def monitor_map(show_map, toggle):
         return no_update
 
 if __name__ == "__main__":
-    app.run_server(debug=False)
+    app.run_server(debug=False, port=8080)

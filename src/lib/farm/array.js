@@ -55,7 +55,10 @@ const TurbineArray = (props) => {
   // use name to find rotor at the moment...not ideal!!!
   // TODO: do this better!!!
   useFrame(() => {
+    // Rotate the geometry not the mesh, not the most performant
     rotorRef.current.geometry.rotateX(ROTATION_INCREMENT)
+
+    // Build array from initial model
     if (combine) {
       const model = modelRef.current
 
@@ -126,28 +129,27 @@ const TurbineArray = (props) => {
           }
         }
       })
-      if (rotorGeometries.length > 2){
-        // Combine rotor geometries
-        const rotorBuffer = mergeBufferGeometries(rotorGeometries)
-        setRotors(rotorBuffer)
-        const structureBuffer = mergeBufferGeometries(structureGeometries)
-        setStructures(structureBuffer)
-        setNacelle(nacelleGeometry)
-        setCombine(false)
-      }
+
+      // Combine rotor geometries
+      const rotorBuffer = mergeBufferGeometries(rotorGeometries)
+      setRotors(rotorBuffer)
+      const structureBuffer = mergeBufferGeometries(structureGeometries)
+      setStructures(structureBuffer)
+      setNacelle(nacelleGeometry)
+      setCombine(false)
     }
   })
 
   return (
     <group ref={ref}>
       <Model ref={modelRef} {...props.model} />
-      <instancedMesh ref={rotorRef} visible={props.array} args={[null, null, count]} geometry={rotors} castShadow={false}>
+      <instancedMesh ref={rotorRef} visible={props.array} args={[null, null, count]} geometry={rotors} castShadow={false} receiveShadow={false}>
         <meshBasicMaterial />
       </instancedMesh>
-      <instancedMesh ref={structureRef} visible={props.array} args={[null, null, count]} geometry={structures} castShadow={false}>
+      <instancedMesh ref={structureRef} visible={props.array} args={[null, null, count]} geometry={structures} castShadow={false} receiveShadow={false}>
         <meshBasicMaterial />
       </instancedMesh>
-      <instancedMesh ref={nacelleRef} visible={props.array} args={[null, null, count]} geometry={nacelle} castShadow={false}>
+      <instancedMesh ref={nacelleRef} visible={props.array} args={[null, null, count]} geometry={nacelle} castShadow={false} receiveShadow={false}>
         <meshBasicMaterial />
       </instancedMesh>
     </group>

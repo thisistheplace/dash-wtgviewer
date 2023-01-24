@@ -28,7 +28,7 @@ const Farm = (props) => {
     // Holds selected turbine position and matrix data
     // idx is index in turbinexy array
     const [currentTurbine, setCurrentTurbine] = useState(0)
-    const [modelPosition, setModelPosition] = useState(new THREE.Vector3(0, 0, 0))
+    const [modelPosition, setModelPosition] = useState([0, 0, 0])
 
     // Camera manipulation
     const [zoom, setZoom] = useState(false)
@@ -36,15 +36,15 @@ const Farm = (props) => {
 
     useEffect(()=>{
         if (turbinexy.length < 1){return}
-        const tempTurbine = new THREE.Vector3()
-        tempTurbine.setX(turbinexy[currentTurbine].x)
-        tempTurbine.setY(turbinexy[currentTurbine].y)
-        tempTurbine.setZ(0)
         setZoom(true)
-        setModelPosition(tempTurbine)
+        setModelPosition([
+            turbinexy[currentTurbine].x,
+            turbinexy[currentTurbine].y,
+            0
+        ])
         setFocus(new THREE.Vector3(
-            tempTurbine.x,
-            tempTurbine.y,
+            turbinexy[currentTurbine].x,
+            turbinexy[currentTurbine].y,
             FOCUS_HEIGHT
         ))
     }, [currentTurbine])

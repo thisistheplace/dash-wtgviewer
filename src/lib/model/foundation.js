@@ -43,4 +43,5 @@ Foundation.propTypes = {
   ...ModelPropTypes.Foundation.isRequired
 }
 
-export default React.memo(Foundation, areEqual)
+// export default React.memo(Foundation, areEqual)
+export default Foundation
