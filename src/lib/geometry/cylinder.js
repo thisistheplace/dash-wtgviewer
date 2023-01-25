@@ -47,7 +47,7 @@ function Cylinder(props){
       onClick={() => setActive(!active)}
       onPointerOver={() => {
         setHover(true)
-        props.callbacks.tooltip({text: props.id, display: 'block'})
+        props.callbacks.tooltip({text: "element: " + props.id, display: 'block'})
       }}
       onPointerOut={() => {
         setHover(false)

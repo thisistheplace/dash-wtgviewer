@@ -64,9 +64,7 @@ const Farm = (props) => {
     return (
         <div ref={ref} style={{"height":"100%", "width":"100%"}}>
             <Tooltip show={props.tooltip} tooltipStyle={tooltipStyle} tooltipContents={tooltipContents}/>
-            {
-                !props.show_map ?
-                <div id={props.id} style={{"height":"100%", "width":"100%"}}>
+                <div id={props.id} style={{"height":"100%", "width":"100%", "display": props.show_map ? "none" : "block"}}>
                     <Canvas style={{'background':'white'}} camera={{position: [100, 100, 100], up: [0, 0, 1], fov:50, aspect:window.innerWidth / window.innerHeight, near: 0.1, far: 5000}}>
                         <Controls zoom={zoom} focus={focus}/>
                         {/* <axesHelper scale={100}/> */}
@@ -74,8 +72,7 @@ const Farm = (props) => {
                         {props.environment ? <Environment/> : null }
                         <Suspense fallback={null}>
                             <TurbineArray
-                                // One time check to avoid rendering array on mobiles
-                                array={props.environment && window.innerWidth > MOBILE_SIZE && window.innerHeight < MOBILE_SIZE}
+                                array={props.environment}
                                 positions={turbinexy}
                                 currentTurbine={currentTurbine}
                                 model={{position: modelPosition, callbacks: {tooltip: setTooltipStyle}, ...props.model}}
@@ -85,9 +82,8 @@ const Farm = (props) => {
                     </Canvas>
                     <Loader />
                 </div>
-                :
-                <Map {...props.map} style={{"height":"100%", "width":"100%"}} callbacks={{setMapVisible: setMapVisible, setTurbinexy: setTurbinexy, setCurrentTurbine: setCurrentTurbine}}/>
-            }
+                {/* The map calculates the turbine positions */}
+                <Map {...props.map} style={{"height":"100%", "width":"100%", "display": props.show_map ? "block" : "none"}} callbacks={{setMapVisible: setMapVisible, setTurbinexy: setTurbinexy, setCurrentTurbine: setCurrentTurbine}}/>
         </div>
     )
 }
