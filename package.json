@@ -1,6 +1,6 @@
 {
   "name": "dash_wtgviewer",
-  "version": "0.0.26",
+  "version": "0.0.27",
   "description": "Viewer for wind turbine simulation results built using threejs for python Dash",
   "repository": {
     "type": "git",
