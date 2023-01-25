@@ -27,7 +27,7 @@ app.layout = html.Div(
     [
         DashWtgviewer(
             id="viewer",
-            model=json.load(open("assets/model.json", "r")),
+            model=json.load(open("assets/ea1_model.json", "r")),
             show_map=True,
             environment=True,
             tooltip=True,

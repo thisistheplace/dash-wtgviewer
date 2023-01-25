@@ -58,34 +58,37 @@ const Farm = (props) => {
     }, [mapVisible])
 
     useEffect(()=>{
-      if (!ref.current){return}
-      setMapVisible(props.show_map)
+        if (!ref.current){return}
+        setMapVisible(props.show_map)
     }, [props.show_map])
 
     return (
         <div ref={ref} style={{"height":"100%", "width":"100%"}}>
             <Tooltip show={props.tooltip} tooltipStyle={tooltipStyle} tooltipContents={tooltipContents}/>
-                <div id={props.id} style={{"height":"100%", "width":"100%", "display": props.show_map ? "none" : "block"}}>
-                    {/* Only select the closest item while raycasting */}
-                    <Canvas raycaster={{ filter: items => items.slice(0, 1) }} style={{'background':'white'}} camera={{position: [100, 100, 100], up: [0, 0, 1], fov:50, aspect:window.innerWidth / window.innerHeight, near: 0.1, far: 10000}}>
-                        <Controls zoom={zoom} focus={focus} focusHeight={focusHeight}/>
-                        {/* <axesHelper scale={100}/> */}
-                        <Lights {...props}/>
-                        {props.environment ? <Environment/> : null }
-                        <Suspense fallback={null}>
-                            <TurbineArray
-                                array={props.environment && window.innerWidth > MOBILE_SIZE && window.innerHeight < MOBILE_SIZE}
-                                positions={turbinexy}
-                                currentTurbine={currentTurbine}
-                                model={{position: modelPosition, callbacks: {tooltip: setTooltipStyle}, ...props.model}}
-                            />
-                        </Suspense>
-                        {props.stats ? <Stats className='stats'/> : null}
-                    </Canvas>
-                    <Loader />
-                </div>
-                {/* The map calculates the turbine positions */}
-                <Map {...props.map} style={{"height":"100%", "width":"100%", "display": props.show_map ? "block" : "none"}} callbacks={{setMapVisible: setMapVisible, setTurbinexy: setTurbinexy, setCurrentTurbine: setCurrentTurbine}}/>
+            <div id={props.id} style={{"height":"100%", "width":"100%", "display": mapVisible ? "none" : "block"}}>
+                {/* Only select the closest item while raycasting */}
+                <Canvas raycaster={{ filter: items => items.slice(0, 1) }} style={{'background':'white'}} camera={{position: [100, 100, 100], up: [0, 0, 1], fov:50, aspect:window.innerWidth / window.innerHeight, near: 0.1, far: 10000}}>
+                    <Controls zoom={zoom} focus={focus} focusHeight={focusHeight}/>
+                    {/* <axesHelper scale={100}/> */}
+                    <Lights {...props}/>
+                    {props.environment ? <Environment/> : null }
+                    <Suspense fallback={null}>
+                        <TurbineArray
+                            array={props.environment && window.innerWidth > MOBILE_SIZE && window.innerHeight < MOBILE_SIZE}
+                            positions={turbinexy}
+                            currentTurbine={currentTurbine}
+                            model={{position: modelPosition, callbacks: {tooltip: setTooltipStyle}, ...props.model}}
+                        />
+                    </Suspense>
+                    {props.stats ? <Stats className='stats'/> : null}
+                </Canvas>
+                <Loader />
+            </div>
+            {mapVisible ?
+                // The map calculates the turbine positions
+                <Map {...props.map} style={{height:"100%", width:"100%", zIndex: 2}} callbacks={{setMapVisible: setMapVisible, setTurbinexy: setTurbinexy, setCurrentTurbine: setCurrentTurbine}}/>
+                : null
+            }
         </div>
     )
 }
