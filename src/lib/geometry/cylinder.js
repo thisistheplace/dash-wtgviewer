@@ -54,7 +54,7 @@ function Cylinder(props){
         props.callbacks.tooltip({text: "", display: 'none'})
       }}
     >
-      <cylinderGeometry args={[diameters[0], diameters[1], length, numberOfFaces, 1]}/>
+      <cylinderGeometry args={[diameters[0] / 2, diameters[1] / 2, length, numberOfFaces, 1]}/>
       <meshPhongMaterial
         opacity={hoverOpacity}
         color={hovered ? 'red' : props.color}

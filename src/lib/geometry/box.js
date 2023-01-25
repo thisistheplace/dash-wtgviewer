@@ -4,9 +4,9 @@ import * as THREE from 'three'
 
 import * as ModelPropTypes from './../proptypes/model'
 import { nodeDistance } from '../geometry/vectors'
+import { nodeVector } from '../geometry/vectors'
 
 const Box = (props) => {
-  console.log(props)
   const ref = useRef()
   const [hovered, setHover] = useState(false)
   const [active, setActive] = useState(false)
@@ -23,11 +23,11 @@ const Box = (props) => {
     const radius0 = length / 10
     const radius = radius0 - eps
     shape.absarc( eps, eps, eps, -Math.PI / 2, -Math.PI, true )
-    shape.absarc( eps, props.height -  radius * 2, eps, Math.PI, Math.PI / 2, true )
-    shape.absarc( length - radius * 2, props.height -  radius * 2, eps, Math.PI / 2, 0, true )
-    shape.absarc( length - radius * 2, eps, eps, 0, -Math.PI / 2, true )
+    shape.absarc( eps, length -  radius * 2, eps, Math.PI, Math.PI / 2, true )
+    shape.absarc( props.width - radius * 2, length -  radius * 2, eps, Math.PI / 2, 0, true )
+    shape.absarc( props.width - radius * 2, eps, eps, 0, -Math.PI / 2, true )
     const geometry = new THREE.ExtrudeGeometry( shape, {
-      amount: props.width - radius0 * 2,
+      depth: props.height - radius0 * 2,
       bevelEnabled: true,
       bevelSegments: props.smoothness,
       steps: 1,
@@ -38,7 +38,16 @@ const Box = (props) => {
     geometry.center()
     setGeometry(geometry)
 
-    // TODO: handle orientation!
+    // Set orientation
+    const axis = nodeVector(props.nodes[0], props.nodes[1])
+    var quaternion = new THREE.Quaternion()
+    quaternion.setFromUnitVectors(
+      new THREE.Vector3(0, -1, 0).normalize(),
+      axis.normalize()
+    )
+    ref.current.rotation.setFromQuaternion(quaternion)
+
+    // Set position
     ref.current.position.x = props.nodes[0].x - length / 2
     ref.current.position.y = props.nodes[0].y
     ref.current.position.z = props.nodes[0].z
@@ -53,7 +62,7 @@ const Box = (props) => {
       onClick={() => setActive(!active)}
       onPointerOver={() => {
         setHover(true)
-        props.callbacks.tooltip({text: "element: " + props.id, display: 'block'})
+        props.callbacks.tooltip({text: props.id, display: 'block'})
       }}
       onPointerOut={() => {
         setHover(false)
@@ -67,6 +76,10 @@ const Box = (props) => {
       />
     </mesh>
   )
+}
+
+Box.defaultProps = {
+  color: "#ADADAD"
 }
 
 Box.propTypes = {

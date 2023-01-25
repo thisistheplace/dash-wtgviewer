@@ -81,6 +81,7 @@ ELEMENT_BUILDER = {
     ElementType.cone: Cone,
 }
 
+
 class ElementSet(Base):
     elements: list[Element]
 
@@ -88,10 +89,10 @@ class ElementSet(Base):
     def select_element_type(cls, values):
         elements = []
         for el in values:
-            eltype = el.get("eltype")
-            elements.append(
-                ELEMENT_BUILDER[ElementType[eltype]](
-                    **el
-                )
-            )
+            if isinstance(el, Element):
+                elements.append(el)
+            else:
+                # Loading from dict
+                eltype = el.get("eltype")
+                elements.append(ELEMENT_BUILDER[ElementType[eltype]](**el))
         return elements

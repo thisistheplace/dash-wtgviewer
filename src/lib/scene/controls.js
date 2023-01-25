@@ -6,9 +6,9 @@ import CameraControls from 'camera-controls'
 CameraControls.install({THREE: THREE})
 
 const MAX_CAMERA_DISTANCE = 500
-const ZOOM_TO_DISTANCE = 75
+const ZOOM_TO_DISTANCE = 300
 
-function Controls({ zoom, focus, pos = new THREE.Vector3(), look = new THREE.Vector3() }) {
+function Controls({ focusHeight = 0, zoom, focus, pos = new THREE.Vector3(), look = new THREE.Vector3() }) {
   const camera = useThree((state) => state.camera)
   const [zooming, setZooming] = useState(false)
   const gl = useThree((state) => state.gl)
@@ -21,8 +21,8 @@ function Controls({ zoom, focus, pos = new THREE.Vector3(), look = new THREE.Vec
 
   return useFrame((state, delta) => {
     if (zooming){
-      zoom ? pos.set(focus.x, focus.y, focus.z + 0.2) : pos.set(0, 0, 5)
-      zoom ? look.set(focus.x, focus.y, focus.z - 0.2) : look.set(0, 0, 4)
+      zoom ? pos.set(focus.x, focus.y, focus.z + 0.2) : pos.set(250, 250, focusHeight)
+      zoom ? look.set(focus.x, focus.y, focus.z - 0.2) : look.set(0, 0, focusHeight)
 
       state.camera.position.lerp(pos, 0.5)
       state.camera.updateProjectionMatrix()

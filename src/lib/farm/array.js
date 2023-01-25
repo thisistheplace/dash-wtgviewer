@@ -14,10 +14,12 @@ const TurbineArray = (props) => {
   const ref = useRef()
   const modelRef = createRef()
   const rotorRef = createRef()
-  const structureRef = createRef()
+  const foundationRef = createRef()
+  const towerRef = createRef()
   const nacelleRef = createRef()
   const [rotors, setRotors] = useState(new THREE.BufferGeometry())
-  const [structures, setStructures] = useState(new THREE.BufferGeometry())
+  const [foundation, setFoundation] = useState(new THREE.BufferGeometry())
+  const [tower, setTower] = useState(new THREE.BufferGeometry())
   const [nacelle, setNacelle] = useState(new THREE.BufferGeometry())
   const [combine, setCombine] = useState(true)
   const [count, setCount] = useState(0)
@@ -30,7 +32,7 @@ const TurbineArray = (props) => {
   }, [props.positions])
 
   useEffect(() => {
-    if (!structureRef.current || !rotorRef.current || !nacelleRef.current){return}
+    if (!foundationRef.current || !towerRef.current || !rotorRef.current || !nacelleRef.current){return}
     var j = 0
     var indexOffset = 0
     for (let i = 0; i < props.positions.length; i++) {
@@ -42,7 +44,8 @@ const TurbineArray = (props) => {
       const point = props.positions[i]
       temp.position.set(point.x, point.y, 0)
       temp.updateMatrix()
-      structureRef.current.setMatrixAt(j, temp.matrix)
+      foundationRef.current.setMatrixAt(j, temp.matrix)
+      towerRef.current.setMatrixAt(j, temp.matrix)
       nacelleRef.current.setMatrixAt(j, temp.matrix)
       // do something special for rotor so we can rotate it!
       temp.position.set(point.x + rotorTranslation.x, point.y + rotorTranslation.y, rotorTranslation.z)
@@ -51,7 +54,8 @@ const TurbineArray = (props) => {
     }
     // Update the instance
     rotorRef.current.instanceMatrix.needsUpdate = true
-    structureRef.current.instanceMatrix.needsUpdate = true
+    towerRef.current.instanceMatrix.needsUpdate = true
+    foundationRef.current.instanceMatrix.needsUpdate = true
     nacelleRef.current.instanceMatrix.needsUpdate = true
   }, [count, props.currentTurbine, rotorTranslation])
 
@@ -89,7 +93,8 @@ const TurbineArray = (props) => {
 
       // Combine geometries
       var rotorGeometries = []
-      var structureGeometries = []
+      var foundationGeometries = []
+      var towerGeometries = []
       var nacelleGeometry = null
       model.children.map(meshOrGroup => {
         if (meshOrGroup.name === "rotor"){
@@ -97,6 +102,7 @@ const TurbineArray = (props) => {
             if (rotorPart.isGroup){
               rotorPart.children.forEach(blade => {
                 var bladeGeom = blade.geometry.clone()
+                bladeGeom.scale(blade.scale.x, blade.scale.y, blade.scale.z)
                 bladeGeom.applyQuaternion(blade.quaternion)
                 // bladeGeom.translate(blade.position.x, blade.position.y, blade.position.z)
                 bladeGeom.applyQuaternion(meshOrGroup.quaternion)
@@ -113,29 +119,39 @@ const TurbineArray = (props) => {
             }
           })
         } else if (meshOrGroup.name === "nacelle"){
-            nacelleGeometry = meshOrGroup.geometry.clone()
-            nacelleGeometry.applyQuaternion(meshOrGroup.quaternion)
-            nacelleGeometry.translate(meshOrGroup.position.x, meshOrGroup.position.y, meshOrGroup.position.z)
-        } else if (meshOrGroup.isGroup){
+            const nacelleMesh = meshOrGroup.children[0]
+            nacelleGeometry = nacelleMesh.geometry.clone()
+            nacelleGeometry.applyQuaternion(nacelleMesh.quaternion)
+            nacelleGeometry.translate(nacelleMesh.position.x, nacelleMesh.position.y, nacelleMesh.position.z)
+        } else if (meshOrGroup.name === "foundation"){
           meshOrGroup.children.map(mesh => {
             var geom = mesh.geometry.clone()
             geom.applyQuaternion(mesh.quaternion)
             geom.translate(mesh.position.x, mesh.position.y, mesh.position.z)
-            structureGeometries.push(geom)
+            foundationGeometries.push(geom)
+          })
+        } else if (meshOrGroup.name === "tower"){
+          meshOrGroup.children.map(mesh => {
+            var geom = mesh.geometry.clone()
+            geom.applyQuaternion(mesh.quaternion)
+            geom.translate(mesh.position.x, mesh.position.y, mesh.position.z)
+            towerGeometries.push(geom)
           })
         } else {
           var geom = meshOrGroup.geometry.clone()
           geom.applyQuaternion(meshOrGroup.quaternion)
           geom.translate(meshOrGroup.position.x, meshOrGroup.position.y, meshOrGroup.position.z)
-          structureGeometries.push(geom)
+          foundationGeometries.push(geom)
         }
       })
 
       // Combine rotor geometries
       const rotorBuffer = mergeBufferGeometries(rotorGeometries)
       setRotors(rotorBuffer)
-      const structureBuffer = mergeBufferGeometries(structureGeometries)
-      setStructures(structureBuffer)
+      const foundationBuffer = mergeBufferGeometries(foundationGeometries)
+      setFoundation(foundationBuffer)
+      const towerBuffer = mergeBufferGeometries(towerGeometries)
+      setTower(towerBuffer)
       setNacelle(nacelleGeometry)
       setCombine(false)
     }
@@ -147,7 +163,10 @@ const TurbineArray = (props) => {
       <instancedMesh ref={rotorRef} visible={props.array} args={[null, null, count]} geometry={rotors} castShadow={false} receiveShadow={false}>
         <meshBasicMaterial />
       </instancedMesh>
-      <instancedMesh ref={structureRef} visible={props.array} args={[null, null, count]} geometry={structures} castShadow={false} receiveShadow={false}>
+      <instancedMesh ref={foundationRef} visible={props.array} args={[null, null, count]} geometry={foundation} castShadow={false} receiveShadow={false}>
+        <meshBasicMaterial color={"#fdc407"}/>
+      </instancedMesh>
+      <instancedMesh ref={towerRef} visible={props.array} args={[null, null, count]} geometry={tower} castShadow={false} receiveShadow={false}>
         <meshBasicMaterial />
       </instancedMesh>
       <instancedMesh ref={nacelleRef} visible={props.array} args={[null, null, count]} geometry={nacelle} castShadow={false} receiveShadow={false}>

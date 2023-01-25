@@ -13,7 +13,7 @@ import { Environment } from '../scene/environment/env'
 import { Map } from './map/map'
 import TurbineArray from './array'
 
-const FOCUS_HEIGHT = 15
+const FOCUS_HEIGHT = 50
 const MOBILE_SIZE = 1000
 
 const Farm = (props) => {
@@ -34,6 +34,7 @@ const Farm = (props) => {
     // Camera manipulation
     const [zoom, setZoom] = useState(false)
     const [focus, setFocus] = useState(new THREE.Vector3(0, 0, 0))
+    const [focusHeight] = useState(FOCUS_HEIGHT)
 
     useEffect(()=>{
         if (turbinexy.length < 1){return}
@@ -65,15 +66,15 @@ const Farm = (props) => {
         <div ref={ref} style={{"height":"100%", "width":"100%"}}>
             <Tooltip show={props.tooltip} tooltipStyle={tooltipStyle} tooltipContents={tooltipContents}/>
                 <div id={props.id} style={{"height":"100%", "width":"100%", "display": props.show_map ? "none" : "block"}}>
-                    <Canvas style={{'background':'white'}} camera={{position: [100, 100, 100], up: [0, 0, 1], fov:50, aspect:window.innerWidth / window.innerHeight, near: 0.1, far: 5000}}>
-                        <Controls zoom={zoom} focus={focus}/>
+                    {/* Only select the closest item while raycasting */}
+                    <Canvas raycaster={{ filter: items => items.slice(0, 1) }} style={{'background':'white'}} camera={{position: [100, 100, 100], up: [0, 0, 1], fov:50, aspect:window.innerWidth / window.innerHeight, near: 0.1, far: 10000}}>
+                        <Controls zoom={zoom} focus={focus} focusHeight={focusHeight}/>
                         {/* <axesHelper scale={100}/> */}
                         <Lights {...props}/>
                         {props.environment ? <Environment/> : null }
                         <Suspense fallback={null}>
                             <TurbineArray
-                                // array={props.environment && window.innerWidth > MOBILE_SIZE && window.innerHeight < MOBILE_SIZE}
-                                array={false}
+                                array={props.environment && window.innerWidth > MOBILE_SIZE && window.innerHeight < MOBILE_SIZE}
                                 positions={turbinexy}
                                 currentTurbine={currentTurbine}
                                 model={{position: modelPosition, callbacks: {tooltip: setTooltipStyle}, ...props.model}}

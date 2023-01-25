@@ -2,7 +2,6 @@ import React, {useRef, useState, useEffect} from 'react'
 
 import * as ModelPropTypes from './../proptypes/model'
 import { Cylinder } from './../geometry/cylinder'
-import {createBoxWithRoundedEdges} from './../geometry/box'
 
 function Foundation(props){
   const ref = useRef()
@@ -16,27 +15,14 @@ function Foundation(props){
   return (
     <group ref={ref} name={props.name}>
       {
-        elements.map((elementData, i) =>{
-          var element = null
-          if (elementData.eltype === "cube"){
-            element = <Cylinder
-              key={i}
-              {...elementData}
-              callbacks={props.callbacks}
-              color={"#fdc407"}
-            />
-          }
-          else
-          {
-            element = <Cylinder
-                key={i}
-                {...elementData}
-                callbacks={props.callbacks}
-                color={"#fdc407"}
-              />
-          }
-          return element
-        })
+        elements.map((elementData, i) =>
+          <Cylinder
+            key={i}
+            {...elementData}
+            callbacks={props.callbacks}
+            color={"#fdc407"}
+          />
+        )
       }
     </group>
   )
