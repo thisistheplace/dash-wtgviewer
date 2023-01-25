@@ -112,6 +112,10 @@ const TurbineArray = (props) => {
               // rotorGeometries.push(rotorPart.geometry.clone())
             }
           })
+        } else if (meshOrGroup.name === "nacelle"){
+            nacelleGeometry = meshOrGroup.geometry.clone()
+            nacelleGeometry.applyQuaternion(meshOrGroup.quaternion)
+            nacelleGeometry.translate(meshOrGroup.position.x, meshOrGroup.position.y, meshOrGroup.position.z)
         } else if (meshOrGroup.isGroup){
           meshOrGroup.children.map(mesh => {
             var geom = mesh.geometry.clone()
@@ -120,16 +124,10 @@ const TurbineArray = (props) => {
             structureGeometries.push(geom)
           })
         } else {
-          if (meshOrGroup.name === "nacelle"){
-            nacelleGeometry = meshOrGroup.geometry.clone()
-            nacelleGeometry.applyQuaternion(meshOrGroup.quaternion)
-            nacelleGeometry.translate(meshOrGroup.position.x, meshOrGroup.position.y, meshOrGroup.position.z)
-          } else {
-            var geom = meshOrGroup.geometry.clone()
-            geom.applyQuaternion(meshOrGroup.quaternion)
-            geom.translate(meshOrGroup.position.x, meshOrGroup.position.y, meshOrGroup.position.z)
-            structureGeometries.push(geom)
-          }
+          var geom = meshOrGroup.geometry.clone()
+          geom.applyQuaternion(meshOrGroup.quaternion)
+          geom.translate(meshOrGroup.position.x, meshOrGroup.position.y, meshOrGroup.position.z)
+          structureGeometries.push(geom)
         }
       })
 

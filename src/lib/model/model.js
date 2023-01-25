@@ -14,10 +14,10 @@ import * as ModelPropTypes from './../proptypes/model'
 const Model = forwardRef((props, ref) => {
   return (
     <group ref={ref} name={props.name} position={props.position}>
-      <Rotor {...props.rotor} callbacks={props.callbacks}/>
+      {/* <Rotor {...props.rotor} callbacks={props.callbacks}/> */}
       <Nacelle {...props.nacelle} callbacks={props.callbacks}/>
-      <Tower {...props.tower} callbacks={props.callbacks}/>
-      <Foundation {...props.foundation} callbacks={props.callbacks}/>
+      {/* <Tower {...props.tower} callbacks={props.callbacks}/>
+      <Foundation {...props.foundation} callbacks={props.callbacks}/> */}
     </group>
   )
 })

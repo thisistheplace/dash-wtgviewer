@@ -37,7 +37,7 @@ function Cylinder(props){
     ref.current.position.x = (props.nodes[0].x + props.nodes[1].x) / 2
     ref.current.position.y = (props.nodes[0].y + props.nodes[1].y) / 2
     ref.current.position.z = (props.nodes[0].z + props.nodes[1].z) / 2
-  }, [props.nodes])
+  }, [props.nodes, props.diameter])
 
   return (
     <mesh

@@ -19,12 +19,6 @@ NUM_ELEMENT_NODES = {
     ElementType.cuboid: 2,
     ElementType.cone: 2,
 }
-ELEMENT_BUILDER = {
-    ElementType.tube: 2,
-    ElementType.conicaltube: 2,
-    ElementType.cuboid: 2,
-    ElementType.cone: 2,
-}
 
 
 class Element(ElementBase):
@@ -80,13 +74,24 @@ class Cone(Element):
     diameter: float
 
 
+ELEMENT_BUILDER = {
+    ElementType.tube: Tube,
+    ElementType.conicaltube: ConicalTube,
+    ElementType.cuboid: Cuboid,
+    ElementType.cone: Cone,
+}
+
 class ElementSet(Base):
     elements: list[Element]
 
-    @root_validator
+    @validator("elements", pre=True, always=True)
     def select_element_type(cls, values):
         elements = []
         for el in values:
             eltype = el.get("eltype")
-            elements.append()
-        return eltype()
+            elements.append(
+                ELEMENT_BUILDER[ElementType[eltype]](
+                    **el
+                )
+            )
+        return elements
