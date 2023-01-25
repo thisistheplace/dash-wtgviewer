@@ -140,7 +140,7 @@
             "elements": [
                 {
                     "id": 7,
-                    "eltype": "tube",
+                    "eltype": "conicaltube",
                     "nodes": [
                         {
                             "id": 7,
@@ -166,7 +166,7 @@
                 },
                 {
                     "id": 8,
-                    "eltype": "tube",
+                    "eltype": "conicaltube",
                     "nodes": [
                         {
                             "id": 8,
@@ -192,7 +192,7 @@
                 },
                 {
                     "id": 9,
-                    "eltype": "tube",
+                    "eltype": "conicaltube",
                     "nodes": [
                         {
                             "id": 9,

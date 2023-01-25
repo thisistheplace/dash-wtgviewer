@@ -8,22 +8,20 @@ from dash_wtgviewer.DashWtgviewer import DashWtgviewer
 # external CSS stylesheets
 external_stylesheets = [
     {
-        'href': 'https://unpkg.com/leaflet@1.9.2/dist/leaflet.css',
-        'rel': 'stylesheet',
-        'integrity': 'sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=',
-        'crossorigin': ''
+        "href": "https://unpkg.com/leaflet@1.9.2/dist/leaflet.css",
+        "rel": "stylesheet",
+        "integrity": "sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=",
+        "crossorigin": "",
     },
     {
-        'href': 'https://unpkg.com/leaflet@1.9.2/dist/leaflet.js',
-        'rel': 'stylesheet',
-        'integrity': 'sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=',
-        'crossorigin': ''
-    }
+        "href": "https://unpkg.com/leaflet@1.9.2/dist/leaflet.js",
+        "rel": "stylesheet",
+        "integrity": "sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=",
+        "crossorigin": "",
+    },
 ]
 
-app = Dash(
-    external_stylesheets=external_stylesheets
-)
+app = Dash(external_stylesheets=external_stylesheets)
 
 app.layout = html.Div(
     [
@@ -35,10 +33,14 @@ app.layout = html.Div(
             tooltip=True,
             stats=True,
             map={
-                "center":{"id":"center", "lat":52.29733, "lng":2.35038},
-                "turbines":{"positions":json.load(open("assets/ea1_turbines.json", "r"))},
-                "boundary":{"positions":json.load(open("assets/ea1_boundary.json", "r"))}
-            }
+                "center": {"id": "center", "lat": 52.29733, "lng": 2.35038},
+                "turbines": {
+                    "positions": json.load(open("assets/ea1_turbines.json", "r"))
+                },
+                "boundary": {
+                    "positions": json.load(open("assets/ea1_boundary.json", "r"))
+                },
+            },
         ),
         html.Div(
             [
@@ -71,12 +73,9 @@ app.layout = html.Div(
                 "position": "absolute",
                 "display": "block",
             },
-        )
+        ),
     ],
-    style={
-        "width":"100vw",
-        "height":"100vh"
-    }
+    style={"width": "100vw", "height": "100vh"},
 )
 
 
@@ -88,6 +87,7 @@ app.layout = html.Div(
 def toggle_map(toggle):
     return toggle
 
+
 @app.callback(
     Output("viewer", "tooltip"),
     Input("toggle_tooltip", "value"),
@@ -96,6 +96,7 @@ def toggle_map(toggle):
 def toggle_map(toggle):
     return toggle
 
+
 @app.callback(
     Output("viewer", "environment"),
     Input("toggle_environment", "value"),
@@ -103,6 +104,7 @@ def toggle_map(toggle):
 )
 def toggle_map(toggle):
     return toggle
+
 
 @app.callback(
     Output("viewer", "show_map"),
@@ -116,6 +118,7 @@ def toggle_map(toggle, show_map):
     else:
         return no_update
 
+
 @app.callback(
     Output("toggle_map", "value"),
     Input("viewer", "show_map"),
@@ -127,6 +130,7 @@ def monitor_map(show_map, toggle):
         return show_map
     else:
         return no_update
+
 
 if __name__ == "__main__":
     app.run_server(debug=False, port=8080)

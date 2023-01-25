@@ -5,7 +5,7 @@ import $ from 'jquery'
 import { DashWtgviewer } from '../lib'
 
 const getModelData=(setProps, data)=>{
-    fetch('/assets/model.json'
+    fetch('/assets/ea1_model.json'
     ,{
       headers : { 
         'Content-Type': 'application/json',
