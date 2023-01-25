@@ -72,7 +72,7 @@ const Farm = (props) => {
                         {props.environment ? <Environment/> : null }
                         <Suspense fallback={null}>
                             <TurbineArray
-                                array={props.environment}
+                                array={props.environment && window.innerWidth > MOBILE_SIZE && window.innerHeight < MOBILE_SIZE}
                                 positions={turbinexy}
                                 currentTurbine={currentTurbine}
                                 model={{position: modelPosition, callbacks: {tooltip: setTooltipStyle}, ...props.model}}
