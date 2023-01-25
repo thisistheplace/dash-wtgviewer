@@ -86,7 +86,7 @@ const Farm = (props) => {
                     <Loader />
                 </div>
                 :
-                <Map {...props.map} callbacks={{setMapVisible: setMapVisible, setTurbinexy: setTurbinexy, setCurrentTurbine: setCurrentTurbine}}/>
+                <Map {...props.map} style={{"height":"100%", "width":"100%"}} callbacks={{setMapVisible: setMapVisible, setTurbinexy: setTurbinexy, setCurrentTurbine: setCurrentTurbine}}/>
             }
         </div>
     )
