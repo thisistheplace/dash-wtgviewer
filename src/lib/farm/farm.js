@@ -79,7 +79,7 @@ const Farm = (props) => {
                             model={{position: modelPosition, callbacks: {tooltip: setTooltipStyle}, ...props.model}}
                         />
                     </Suspense>
-                    {props.stats ? <Stats className='stats'/> : null}
+                    {props.stats && !props.show_map ? <Stats className='stats'/> : null}
                 </Canvas>
                 <Loader />
             </div>

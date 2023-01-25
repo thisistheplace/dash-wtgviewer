@@ -33,6 +33,7 @@ app.layout = html.Div(
             show_map=True,
             environment=True,
             tooltip=True,
+            stats=True,
             map={
                 "center":{"id":"center", "lat":52.29733, "lng":2.35038},
                 "turbines":{"positions":json.load(open("assets/ea1_turbines.json", "r"))},
@@ -56,6 +57,11 @@ app.layout = html.Div(
                     label="tooltip",
                     value=True,
                 ),
+                dbc.Switch(
+                    id="toggle_stats",
+                    label="stats",
+                    value=True,
+                ),
             ],
             style={
                 "zIndex": "100",
@@ -74,9 +80,13 @@ app.layout = html.Div(
 )
 
 
-@app.callback(Output('output', 'children'), [Input('input', 'value')])
-def display_output(value):
-    return 'You have entered {}'.format(value)
+@app.callback(
+    Output("viewer", "stats"),
+    Input("toggle_stats", "value"),
+    prevent_initial_call=True,
+)
+def toggle_map(toggle):
+    return toggle
 
 @app.callback(
     Output("viewer", "tooltip"),
@@ -85,7 +95,6 @@ def display_output(value):
 )
 def toggle_map(toggle):
     return toggle
-
 
 @app.callback(
     Output("viewer", "environment"),
@@ -97,7 +106,6 @@ def toggle_map(toggle):
 
 @app.callback(
     Output("viewer", "show_map"),
-    # Output("toggle_environment", "style"),
     Input("toggle_map", "value"),
     State("viewer", "show_map"),
     prevent_initial_call=True,
