@@ -20,14 +20,17 @@ const TurbineArray = (props) => {
   const [structures, setStructures] = useState(new THREE.BufferGeometry())
   const [nacelle, setNacelle] = useState(new THREE.BufferGeometry())
   const [combine, setCombine] = useState(true)
-  const [count, setCount] = useState(props.positions.length - 1)
+  const [count, setCount] = useState(0)
   const [rotorTranslation, setRotorTranslation] = useState(new THREE.Vector3(0, 0, 0))
   const temp = new THREE.Object3D()
 
   useEffect(() => {
-    if (!structureRef.current || !rotorRef.current || !nacelleRef.current){return}
     // Set positions
-    setCount(props.positions.length - 1)
+    setCount(Math.max(props.positions.length - 1, 0))
+  }, [props.positions])
+
+  useEffect(() => {
+    if (!structureRef.current || !rotorRef.current || !nacelleRef.current){return}
     var j = 0
     var indexOffset = 0
     for (let i = 0; i < props.positions.length; i++) {
@@ -50,7 +53,7 @@ const TurbineArray = (props) => {
     rotorRef.current.instanceMatrix.needsUpdate = true
     structureRef.current.instanceMatrix.needsUpdate = true
     nacelleRef.current.instanceMatrix.needsUpdate = true
-  }, [props.positions, props.currentTurbine, rotorTranslation])
+  }, [count, props.currentTurbine, rotorTranslation])
 
   // use name to find rotor at the moment...not ideal!!!
   // TODO: do this better!!!

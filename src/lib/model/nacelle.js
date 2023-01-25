@@ -30,8 +30,8 @@ function Nacelle(props){
       ref={mesh}
       name={props.name}
       onClick={() => setActive(!active)}
-      castShadow={true}
-      receiveShadow={true}
+      castShadow={false}
+      receiveShadow={false}
       geometry={geom}
       onPointerOver={() => {
           setHover(true)

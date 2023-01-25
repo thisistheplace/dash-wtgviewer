@@ -29,7 +29,8 @@ DashWtgviewer.propTypes = {
     tooltip: PropTypes.bool,
     environment: PropTypes.bool,
     map: FarmPropTypes.Map,
-    show_map: PropTypes.bool
+    show_map: PropTypes.bool,
+    stats: PropTypes.bool
 }
 
 export default DashWtgviewer

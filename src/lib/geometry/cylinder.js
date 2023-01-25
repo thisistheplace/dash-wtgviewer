@@ -42,8 +42,8 @@ function Cylinder(props){
   return (
     <mesh
       ref={ref}
-      castShadow={true}
-      receiveShadow={true}
+      castShadow={false}
+      receiveShadow={false}
       onClick={() => setActive(!active)}
       onPointerOver={() => {
         setHover(true)

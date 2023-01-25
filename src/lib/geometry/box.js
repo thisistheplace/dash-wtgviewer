@@ -12,7 +12,7 @@ function createBoxWithRoundedEdges( width, height, depth, radius0, smoothness ) 
   const geometry = new THREE.ExtrudeGeometry( shape, {
     amount: depth - radius0 * 2,
     bevelEnabled: true,
-    bevelSegments: smoothness * 2,
+    bevelSegments: smoothness,
     steps: 1,
     bevelSize: radius,
     bevelThickness: radius0,

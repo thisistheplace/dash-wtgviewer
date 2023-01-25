@@ -2,7 +2,7 @@ import * as FarmPropTypes from './../proptypes/farm'
 
 import React, { Suspense, useState, useEffect, useRef } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { Loader } from '@react-three/drei'
+import { Loader, Stats } from '@react-three/drei'
 
 import * as THREE from 'three'
 
@@ -14,6 +14,7 @@ import { Map } from './map/map'
 import TurbineArray from './array'
 
 const FOCUS_HEIGHT = 15
+const MOBILE_SIZE = 1000
 
 const Farm = (props) => {
     const {setParentProps} = props
@@ -71,12 +72,14 @@ const Farm = (props) => {
                     {props.environment ? <Environment/> : null }
                     <Suspense fallback={null}>
                         <TurbineArray
-                            array={props.environment}
+                            // One time check to avoid rendering array on mobiles
+                            array={props.environment && window.innerWidth > MOBILE_SIZE && window.innerHeight < MOBILE_SIZE}
                             positions={turbinexy}
                             currentTurbine={currentTurbine}
                             model={{position: modelPosition, callbacks: {tooltip: setTooltipStyle}, ...props.model}}
                         />
                     </Suspense>
+                    {props.stats ? <Stats className='stats'/> : null}
                 </Canvas>
                 <Loader />
             </div>
@@ -88,7 +91,8 @@ const Farm = (props) => {
 Farm.defaultProps = {
     tooltip: true,
     environment: true,
-    show_map: false
+    show_map: false,
+    stats: false
 }
 
 Farm.propTypes = FarmPropTypes.Farm

@@ -42,3 +42,11 @@
     font-family: Verdana;
     text-align: right;
 }
+
+/* threejs rendering stats on mobile */
+@media (max-width:1000px) {
+    .stats > canvas {
+        width: 200px !important;
+        height: 120px !important;
+    }
+}

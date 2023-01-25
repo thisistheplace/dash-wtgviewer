@@ -50,8 +50,8 @@ const Blade = (props) => {
       ref={ref}
       geometry={gltf.scene.children[0].geometry}
       name={props.name}
-      castShadow={true}
-      receiveShadow={true}
+      castShadow={false}
+      receiveShadow={false}
       onClick={() => setActive(!active)}
       onPointerOver={() => {
         setHover(true)
