@@ -75,7 +75,7 @@ const Farm = (props) => {
                         <Suspense fallback={null}>
                             <TurbineArray
                                 // One time check to avoid rendering array on mobiles
-                                array={props.environment}
+                                array={props.environment && window.innerWidth > MOBILE_SIZE && window.innerHeight < MOBILE_SIZE}
                                 positions={turbinexy}
                                 currentTurbine={currentTurbine}
                                 model={{position: modelPosition, callbacks: {tooltip: setTooltipStyle}, ...props.model}}
