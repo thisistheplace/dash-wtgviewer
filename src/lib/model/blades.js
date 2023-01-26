@@ -78,7 +78,7 @@ function Blades(props){
     }, [props.blades])
   
     return (
-      <group ref={ref}>
+      <group ref={ref} name={"blades"}>
         {
           blades.map((bladeData, i) =>
             <Blade
