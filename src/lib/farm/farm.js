@@ -11,7 +11,7 @@ import {Controls} from '../scene/controls'
 import { Lights } from '../scene/lights'
 import { Environment } from '../scene/environment/env'
 import { Map } from './map/map'
-import TurbineModel from './turbines'
+import {TurbineModel} from './turbines'
 
 const FOCUS_HEIGHT = 50
 const MOBILE_SIZE = 1000

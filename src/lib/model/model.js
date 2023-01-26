@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types'
 import React, {forwardRef} from 'react'
-import Rotor from './rotor'
-import Nacelle from './nacelle'
-import Tower from './tower'
-import Foundation from './foundation'
+import {Rotor} from './rotor'
+import {Nacelle} from './nacelle'
+import {Tower} from './tower'
+import {Foundation} from './foundation'
 import * as ModelPropTypes from './../proptypes/model'
 
 // TODO: should make cylinders instanced meshes with scaling / rotation etc

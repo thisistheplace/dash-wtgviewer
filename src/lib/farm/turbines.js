@@ -28,24 +28,6 @@ const TurbineModel = (props) => {
   )
 }
 
-function areEqual(prevProps, nextProps){
-  var areEqual = true
-  Object.keys(prevProps).forEach(function(key){
-    if (prevProps[key] !== nextProps[key]){
-      if (key === "model"){
-        Object.keys(prevProps.model).forEach(function(modelKey){
-          if (prevProps.model[modelKey] !== nextProps.model[modelKey] && modelKey !== "callbacks"){
-            areEqual = false
-          }
-        })
-      } else {
-        areEqual = false
-      }
-    }
-  })
-  return areEqual
-}
-
 TurbineModel.propTypes = {
   currentTurbine: PropTypes.number.isRequired,
   array: PropTypes.bool.isRequired,
@@ -58,6 +40,4 @@ TurbineModel.propTypes = {
   )
 }
 
-// memo really helps with performance here!!!
-// export default React.memo(TurbineModel, areEqual)
-export default TurbineModel
+export { TurbineModel }

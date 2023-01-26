@@ -27,20 +27,9 @@ function Tower(props){
   )
 }
 
-function areEqual(prevProps, nextProps){
-  var areEqual = true
-  Object.keys(prevProps).forEach(function(key){
-    if (prevProps[key] !== nextProps[key] && key !== "callbacks"){
-      areEqual = false
-    }
-  })
-  return areEqual
-}
-
 Tower.propTypes = {
   callbacks: ModelPropTypes.Callbacks,
   ...ModelPropTypes.Tower.isRequired
 }
 
-// export default React.memo(Tower, areEqual)
-export default Tower
+export { Tower }

@@ -17,20 +17,9 @@ function Nacelle(props){
   )
 }
 
-function areEqual(prevProps, nextProps){
-  var areEqual = true
-  Object.keys(prevProps).forEach(function(key){
-    if (prevProps[key] !== nextProps[key] && key !== "callbacks"){
-      areEqual = false
-    }
-  })
-  return areEqual
-}
-
 Nacelle.propTypes = {
   callbacks: ModelPropTypes.Callbacks,
   ...ModelPropTypes.Nacelle.isRequired
 }
 
-// export default React.memo(Nacelle, areEqual)
-export default Nacelle
+export {Nacelle}
