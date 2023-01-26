@@ -1,4 +1,4 @@
-import * as FarmPropTypes from './../proptypes/farm'
+import * as FarmPropTypes from '../proptypes/farm'
 
 import React, { Suspense, useState, useEffect, useRef } from 'react'
 import { Canvas } from '@react-three/fiber'
@@ -11,7 +11,7 @@ import {Controls} from '../scene/controls'
 import { Lights } from '../scene/lights'
 import { Environment } from '../scene/environment/env'
 import { Map } from './map/map'
-import TurbineArray from './array'
+import {TurbineModel} from './turbines'
 
 const FOCUS_HEIGHT = 50
 const MOBILE_SIZE = 1000
@@ -73,7 +73,7 @@ const Farm = (props) => {
                     <Lights {...props}/>
                     {props.environment ? <Environment/> : null }
                     <Suspense fallback={null}>
-                        <TurbineArray
+                        <TurbineModel
                             array={props.environment && window.innerWidth > MOBILE_SIZE && window.innerHeight < MOBILE_SIZE}
                             positions={turbinexy}
                             currentTurbine={currentTurbine}

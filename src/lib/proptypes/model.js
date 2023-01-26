@@ -55,7 +55,6 @@ export const Blade = PropTypes.shape({
   name: PropTypes.string,
   id: PropTypes.string,
   url: PropTypes.string,
-  node: Node,
   scale: PropTypes.shape({
     x: PropTypes.number,
     y: PropTypes.number,

@@ -28,20 +28,9 @@ function Foundation(props){
   )
 }
 
-function areEqual(prevProps, nextProps){
-  var areEqual = true
-  Object.keys(prevProps).forEach(function(key){
-    if (prevProps[key] !== nextProps[key] && key !== "callbacks"){
-      areEqual = false
-    }
-  })
-  return areEqual
-}
-
 Foundation.propTypes = {
   callbacks: ModelPropTypes.Callbacks,
   ...ModelPropTypes.Foundation.isRequired
 }
 
-// export default React.memo(Foundation, areEqual)
-export default Foundation
+export { Foundation }

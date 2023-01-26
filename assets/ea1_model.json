@@ -1,12 +1,12 @@
 {
     "name": "model",
-    "id": "61bbaba2-c64e-4415-84e4-24ad819d4c1c",
+    "id": "9fec7dbd-9303-4e27-96df-451c860e66f3",
     "foundation": {
         "name": "foundation",
-        "id": "c5c7fb92-3809-48dc-a6e0-b82af3fa82f6",
+        "id": "b2be417c-7606-4c52-8aa6-6cdd526a2ef7",
         "element_set": {
             "name": "foundation",
-            "id": "2f50221d-5ea7-44df-b416-acca3ee892df",
+            "id": "d42bb9e7-eb1b-4b71-b979-99c1586832e0",
             "elements": [
                 {
                     "id": 1,
@@ -773,10 +773,10 @@
     },
     "tower": {
         "name": "tower",
-        "id": "45d0f20a-1c93-4fa2-9d8f-4009510b4192",
+        "id": "3361852d-db02-401d-bee2-f9eaad63b247",
         "element_set": {
             "name": "tower",
-            "id": "7e7a9b20-704d-4482-8ee5-47a06a547d7a",
+            "id": "59e1ed5a-5262-44bc-975c-de89691f13c9",
             "elements": [
                 {
                     "id": 39,
@@ -1043,19 +1043,19 @@
     },
     "nacelle": {
         "name": "nacelle",
-        "id": "d38f0a80-9c66-423c-9955-4f088c1945f8",
+        "id": "46d9fdde-fec9-4bdb-b19d-0408521f0070",
         "element": {
             "id": 50,
             "eltype": "cuboid",
             "nodes": [
                 {
-                    "id": 1067,
+                    "id": 1064,
                     "x": 5.25,
                     "y": 0.0,
                     "z": 92.0
                 },
                 {
-                    "id": 1068,
+                    "id": 1065,
                     "x": -2.75,
                     "y": 0.0,
                     "z": 92.0
@@ -1067,18 +1067,12 @@
     },
     "rotor": {
         "name": "rotor",
-        "id": "0d0c1a57-1e62-490c-a4fe-d9765efef840",
+        "id": "c4e0724a-6661-4e0d-b2a0-3687bec8f200",
         "blades": [
             {
                 "name": "Blade_1",
-                "id": "a4b6f36a-b946-4ca0-881d-8d148631c4fb",
+                "id": "6d2a819c-99da-421f-81f8-86c1fec4d3d5",
                 "url": "assets/models/blade.glb",
-                "node": {
-                    "id": 1061,
-                    "x": 4.0,
-                    "y": 2.0,
-                    "z": 92.0
-                },
                 "scale": {
                     "x": 5.0,
                     "y": 2.0,
@@ -1087,14 +1081,8 @@
             },
             {
                 "name": "Blade_2",
-                "id": "e86b6693-ec30-4d05-9628-bd9fa9c91d77",
+                "id": "d49e8d29-9ee2-43f3-8e1d-ffcf84bc4022",
                 "url": "assets/models/blade.glb",
-                "node": {
-                    "id": 1062,
-                    "x": 4.0,
-                    "y": 2.0,
-                    "z": 92.0
-                },
                 "scale": {
                     "x": 5.0,
                     "y": 2.0,
@@ -1103,14 +1091,8 @@
             },
             {
                 "name": "Blade_3",
-                "id": "8f819243-7eb7-4998-bba2-6a26531191df",
+                "id": "d0900fdb-4bfd-46ad-9bf3-cb5fda02f128",
                 "url": "assets/models/blade.glb",
-                "node": {
-                    "id": 1063,
-                    "x": 4.0,
-                    "y": 2.0,
-                    "z": 92.0
-                },
                 "scale": {
                     "x": 5.0,
                     "y": 2.0,
@@ -1120,19 +1102,19 @@
         ],
         "hub": {
             "name": "hub",
-            "id": "8e4b8a8e-1665-454f-88d3-c6285104b96b",
+            "id": "525c753e-081c-46bc-83e3-438021767f3d",
             "cone": {
                 "id": 49,
                 "eltype": "cone",
                 "nodes": [
                     {
-                        "id": 1064,
+                        "id": 1061,
                         "x": -9.0,
                         "y": 0.0,
                         "z": 92.0
                     },
                     {
-                        "id": 1065,
+                        "id": 1062,
                         "x": -4.0,
                         "y": 0.0,
                         "z": 92.0
@@ -1142,7 +1124,7 @@
             }
         },
         "node": {
-            "id": 1066,
+            "id": 1063,
             "x": 5.25,
             "y": 0.0,
             "z": 92.0
