@@ -5,7 +5,7 @@ import $ from 'jquery'
 import { DashWtgviewer } from '../lib'
 
 const getModelData=(setProps, data)=>{
-    fetch('/assets/model.json'
+    fetch('/assets/ea1_model.json'
     ,{
       headers : { 
         'Content-Type': 'application/json',
@@ -95,8 +95,9 @@ class App extends Component {
             {
                 id: this.state.id,
                 tooltip: true,
-                show_map: false,
-                environment: true
+                show_map: true,
+                environment: true,
+                stats: true
             },
         )
 

@@ -1,4 +1,4 @@
-from pydantic import validator, ValidationError
+from pydantic import validator
 from pathlib import Path
 
 from .base import Base
@@ -17,7 +17,7 @@ class Blade(Base):
     def set_url_now(cls, url):
         url_path = Path(url)
         if url_path.suffix.lower() not in SUPPORTED_MODELS:
-            raise ValidationError(
+            raise TypeError(
                 f"Cannot support blade model of file type {url_path.suffix}, please provide one of {SUPPORTED_MODELS}"
             )
         return url

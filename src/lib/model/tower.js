@@ -42,4 +42,5 @@ Tower.propTypes = {
   ...ModelPropTypes.Tower.isRequired
 }
 
-export default React.memo(Tower, areEqual)
+// export default React.memo(Tower, areEqual)
+export default Tower

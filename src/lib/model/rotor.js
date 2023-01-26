@@ -24,7 +24,7 @@ const Rotor = (props) => {
     ref.current.position.z = props.node.z
   }, [props.node])
 
-  useFrame(() => (ref.current.rotation.x += 0.01))
+  useFrame(() => (ref.current.rotation.x -= 0.01))
 
   return (
     <group ref={ref} name={props.name}>
@@ -50,4 +50,5 @@ Rotor.propTypes = {
   ...ModelPropTypes.Rotor.isRequired
 }
 
-export default React.memo(Rotor, areEqual)
+// export default React.memo(Rotor, areEqual)
+export default Rotor

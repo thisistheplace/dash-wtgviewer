@@ -13,10 +13,11 @@ Keyword arguments:
 - `map` (optional)
 - `model` (optional)
 - `show_map` (Bool; optional)
+- `stats` (Bool; optional)
 - `tooltip` (Bool; optional)
 """
 function dashwtgviewer(; kwargs...)
-        available_props = Symbol[:id, :environment, :map, :model, :show_map, :tooltip]
+        available_props = Symbol[:id, :environment, :map, :model, :show_map, :stats, :tooltip]
         wild_props = Symbol[]
         return Component("dashwtgviewer", "DashWtgviewer", "dash_wtgviewer", available_props, wild_props; kwargs...)
 end

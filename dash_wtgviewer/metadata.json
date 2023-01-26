@@ -55,6 +55,13 @@
         },
         "required": false,
         "description": ""
+      },
+      "stats": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
       }
     }
   }

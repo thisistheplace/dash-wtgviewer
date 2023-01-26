@@ -37,24 +37,24 @@ function Cylinder(props){
     ref.current.position.x = (props.nodes[0].x + props.nodes[1].x) / 2
     ref.current.position.y = (props.nodes[0].y + props.nodes[1].y) / 2
     ref.current.position.z = (props.nodes[0].z + props.nodes[1].z) / 2
-  }, [props.nodes])
+  }, [props.nodes, props.diameter])
 
   return (
     <mesh
       ref={ref}
-      castShadow={true}
-      receiveShadow={true}
+      castShadow={false}
+      receiveShadow={false}
       onClick={() => setActive(!active)}
       onPointerOver={() => {
         setHover(true)
-        props.callbacks.tooltip({text: props.id, display: 'block'})
+        props.callbacks.tooltip({text: "element: " + props.id, display: 'block'})
       }}
       onPointerOut={() => {
         setHover(false)
         props.callbacks.tooltip({text: "", display: 'none'})
       }}
     >
-      <cylinderGeometry args={[diameters[0], diameters[1], length, numberOfFaces, 1]}/>
+      <cylinderGeometry args={[diameters[0] / 2, diameters[1] / 2, length, numberOfFaces, 1]}/>
       <meshPhongMaterial
         opacity={hoverOpacity}
         color={hovered ? 'red' : props.color}

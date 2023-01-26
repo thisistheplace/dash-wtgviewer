@@ -8,36 +8,39 @@ from dash_wtgviewer.DashWtgviewer import DashWtgviewer
 # external CSS stylesheets
 external_stylesheets = [
     {
-        'href': 'https://unpkg.com/leaflet@1.9.2/dist/leaflet.css',
-        'rel': 'stylesheet',
-        'integrity': 'sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=',
-        'crossorigin': ''
+        "href": "https://unpkg.com/leaflet@1.9.2/dist/leaflet.css",
+        "rel": "stylesheet",
+        "integrity": "sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=",
+        "crossorigin": "",
     },
     {
-        'href': 'https://unpkg.com/leaflet@1.9.2/dist/leaflet.js',
-        'rel': 'stylesheet',
-        'integrity': 'sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=',
-        'crossorigin': ''
-    }
+        "href": "https://unpkg.com/leaflet@1.9.2/dist/leaflet.js",
+        "rel": "stylesheet",
+        "integrity": "sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=",
+        "crossorigin": "",
+    },
 ]
 
-app = Dash(
-    external_stylesheets=external_stylesheets
-)
+app = Dash(external_stylesheets=external_stylesheets)
 
 app.layout = html.Div(
     [
         DashWtgviewer(
             id="viewer",
-            model=json.load(open("assets/model.json", "r")),
+            model=json.load(open("assets/ea1_model.json", "r")),
             show_map=True,
             environment=True,
             tooltip=True,
+            stats=True,
             map={
-                "center":{"id":"center", "lat":52.29733, "lng":2.35038},
-                "turbines":{"positions":json.load(open("assets/ea1_turbines.json", "r"))},
-                "boundary":{"positions":json.load(open("assets/ea1_boundary.json", "r"))}
-            }
+                "center": {"id": "center", "lat": 52.29733, "lng": 2.35038},
+                "turbines": {
+                    "positions": json.load(open("assets/ea1_turbines.json", "r"))
+                },
+                "boundary": {
+                    "positions": json.load(open("assets/ea1_boundary.json", "r"))
+                },
+            },
         ),
         html.Div(
             [
@@ -56,6 +59,11 @@ app.layout = html.Div(
                     label="tooltip",
                     value=True,
                 ),
+                dbc.Switch(
+                    id="toggle_stats",
+                    label="stats",
+                    value=True,
+                ),
             ],
             style={
                 "zIndex": "100",
@@ -65,18 +73,20 @@ app.layout = html.Div(
                 "position": "absolute",
                 "display": "block",
             },
-        )
+        ),
     ],
-    style={
-        "width":"100vw",
-        "height":"100vh"
-    }
+    style={"width": "100vw", "height": "100vh"},
 )
 
 
-@app.callback(Output('output', 'children'), [Input('input', 'value')])
-def display_output(value):
-    return 'You have entered {}'.format(value)
+@app.callback(
+    Output("viewer", "stats"),
+    Input("toggle_stats", "value"),
+    prevent_initial_call=True,
+)
+def toggle_map(toggle):
+    return toggle
+
 
 @app.callback(
     Output("viewer", "tooltip"),
@@ -95,9 +105,9 @@ def toggle_map(toggle):
 def toggle_map(toggle):
     return toggle
 
+
 @app.callback(
     Output("viewer", "show_map"),
-    # Output("toggle_environment", "style"),
     Input("toggle_map", "value"),
     State("viewer", "show_map"),
     prevent_initial_call=True,
@@ -107,6 +117,7 @@ def toggle_map(toggle, show_map):
         return toggle
     else:
         return no_update
+
 
 @app.callback(
     Output("toggle_map", "value"),
@@ -120,5 +131,6 @@ def monitor_map(show_map, toggle):
     else:
         return no_update
 
+
 if __name__ == "__main__":
-    app.run_server(debug=False)
+    app.run_server(debug=False, port=8080)

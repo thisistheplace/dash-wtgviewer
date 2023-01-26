@@ -1,4 +1,5 @@
-from pydantic import BaseModel, validator, ValidationError
+from pydantic import BaseModel, validator
+from typing import Optional
 
 # Both registers will start at index = 1
 NODE_REGISTER = set([])
@@ -6,14 +7,14 @@ ELEMENT_REGISTER = set([])
 
 
 def register(id: int, register: set[int]):
-    if id in register:
-        varname = f"{register=}".split("=")[0]
-        raise ValidationError(f"id: {id} was already registered in {varname}")
+    # if id in register:
+    #     varname = f"{register=}".split("=")[0]
+    #     raise ValueError(f"id: {id} was already registered in {varname}")
     register.add(id)
 
 
 class NodeBase(BaseModel):
-    id: int | None
+    id: Optional[int]
 
     @validator("id", pre=True, always=True)
     def set_id_now(cls, v):

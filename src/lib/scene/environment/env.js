@@ -7,17 +7,21 @@ import { Daytime } from './daytime'
 const Environment = (props) => {
     const ref = useRef()
     const sunRef = createRef()
-    const size = 30000
     return (
         <group ref={ref}  {...props}>
-            <Daytime sunRef={sunRef} size={size}/>
-            <Ocean sunRef={sunRef} size={size}/>
+            <Daytime sunRef={sunRef} size={props.size}/>
+            <Ocean sunRef={sunRef} size={props.size}/>
         </group>
     )
 }
 
+Environment.defaultProps = {
+    size: 70000
+}
+
 Environment.propTypes = {
-    visible: PropTypes.bool.isRequired
+    visible: PropTypes.bool.isRequired,
+    size: PropTypes.number
   }
 
 export {Environment}
