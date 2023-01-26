@@ -1,13 +1,25 @@
 # dash_wtgviewer
 
-dash_wtgviewer is a Dash component library.
+`dash_wtgviewer` is a React component library developed for compatibility with Plotly Dash.
+
+This library aims to provide efficient 3D visualisation of geo located offshore wind turbine
+structures within a wind farm 
+
+`dash_wtgviewer` includes the following features:
+- Map overlay of wind farm and wind turbine locations using https://react-leaflet.js.org/
+- 3D visualisation of wind farm and wind turbines using [threejs](https://threejs.org), [react-three-fibre](https://docs.pmnd.rs/react-three-fiber/getting-started/introduction) and [drei](https://github.com/pmndrs/drei) 
+- Environmental rendering using https://threejs.org/examples/webgl_shaders_ocean.html
+- Generic wind turbine model definition using [pydantic](https://docs.pydantic.dev), which is compatible
+with [FastAPI](https://fastapi.tiangolo.com) and conforms to [OpenAPI](https://www.openapis.org/)
 
 Get started with:
 1. Install Dash and its dependencies: https://dash.plotly.com/installation
 2. Run `python usage.py`
-3. Visit http://localhost:8050 in your web browser
+3. Visit http://localhost:8080 in your web browser
 
 ## Usage
+
+### react-leaflet requirements
 This package uses [react-leaflet](https://react-leaflet.js.org/) which requires the following
 css sheets to be included in your Dash app:
 
@@ -61,9 +73,19 @@ If you have selected install_dependencies during the prompt, you can skip this p
     $ pip install -r tests/requirements.txt
     ```
 
-### Write your component code in `src/lib/components/DashWtgviewer.react.js`.
+### Develop code in `src/lib/components/DashWtgviewer.react.js`.
 
-- The demo app is in `src/demo` and you will import your example component code into your demo app.
+- Test your code using node:
+    1. Build your code
+        ```
+        $ npm run build
+        ```
+    2. Start the node server:
+        ```
+        $ npm start
+        ```        
+    3. Visit http://localhost:8080 in your web browser
+
 - Test your code in a Python environment:
     1. Build your code
         ```
@@ -73,13 +95,16 @@ If you have selected install_dependencies during the prompt, you can skip this p
         ```
         $ python usage.py
         ```
+
 - Write tests for your component.
     - A sample test is available in `tests/test_usage.py`, it will load `usage.py` and you can then automate interactions with selenium.
     - Run the tests with `$ pytest tests`.
     - The Dash team uses these types of integration tests extensively. Browse the Dash component code on GitHub for more examples of testing (e.g. https://github.com/plotly/dash-core-components)
+
 - Add custom styles to your component by putting your custom CSS files into your distribution folder (`dash_wtgviewer`).
     - Make sure that they are referenced in `MANIFEST.in` so that they get properly included when you're ready to publish your component.
     - Make sure the stylesheets are added to the `_css_dist` dict in `dash_wtgviewer/__init__.py` so dash will serve them automatically when the component suite is requested.
+    
 - [Review your code](./review_checklist.md)
 
 ### Create a production build and publish:
