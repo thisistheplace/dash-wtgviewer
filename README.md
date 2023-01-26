@@ -35,7 +35,6 @@ blades = [
         # Url to blade .gltf or .glb file which Dash is serving in the assets directory
         # This blade model should have it's length orientated with the X axis
         url='assets/path/to/my/blade/model.glb',
-        node=Node(x=1, y=0, z=0),
         scale=Vector3(x=1, y=0.5, z=0.5),
     )
     for idx in range(1, 4)

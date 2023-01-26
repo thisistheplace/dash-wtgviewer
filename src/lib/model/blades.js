@@ -16,7 +16,6 @@ const Blade = (props) => {
 
   useEffect(() => {
     if (!ref.current) { return }
-    if (!props.node) { return }
 
     // Adjust geometry by axis first
     const axis = new THREE.Vector3(props.axis.x, props.axis.y, props.axis.z)
@@ -43,7 +42,7 @@ const Blade = (props) => {
       props.scale.z
     )
 
-  }, [props.axis, props.node, props.scale, props.rotation])
+  }, [props.axis, props.scale, props.rotation])
   
   return (
     <mesh

@@ -59,6 +59,11 @@ const TurbineArray = (props) => {
     nacelleRef.current.instanceMatrix.needsUpdate = true
   }, [count, props.currentTurbine, rotorTranslation])
 
+  useEffect(() => {
+    // Rebuild instanced meshes
+    setCombine(true)
+  }, [props.model])
+
   // use name to find rotor at the moment...not ideal!!!
   // TODO: do this better!!!
   useFrame(() => {

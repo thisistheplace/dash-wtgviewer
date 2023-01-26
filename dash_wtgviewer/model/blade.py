@@ -2,7 +2,6 @@ from pydantic import validator
 from pathlib import Path
 
 from .base import Base
-from .fea.nodes import Node
 from .geometry.vectors import Vector3
 
 SUPPORTED_MODELS = [".gltf", ".glb"]
@@ -10,7 +9,6 @@ SUPPORTED_MODELS = [".gltf", ".glb"]
 
 class Blade(Base):
     url: str  # url to the gltf or glb file to load
-    node: Node
     scale: Vector3
 
     @validator("url", pre=True, always=True)

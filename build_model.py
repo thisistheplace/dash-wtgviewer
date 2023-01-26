@@ -162,11 +162,6 @@ blades = [
     Blade(
         name=f"Blade_{idx}",
         url=BLADE_URL,
-        node=Node(
-            x=NACELLE_LENGTH / 2,
-            y=NACELLE_WIDTH / 2,
-            z=TOP + TOWER_HEIGHT + TP_HEIGHT + NACELLE_HEIGHT / 2,
-        ),
         scale=Vector3(x=5, y=2, z=2),
     )
     for idx in range(1, 4)
