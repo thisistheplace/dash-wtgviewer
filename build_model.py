@@ -1,5 +1,4 @@
 import math
-import json
 
 from dash_wtgviewer.model import Model, Foundation, Blade, Nacelle, Rotor, Hub, Tower
 from dash_wtgviewer.model.fea.elements import (
