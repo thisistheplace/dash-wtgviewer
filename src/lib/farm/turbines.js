@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types'
 import React, {useRef, useState, useEffect, createRef } from 'react'
 
-import Model from '../model/model'
+import { Model } from '../model/model'
 import * as ModelPropTypes from '../proptypes/model'
+import * as ResultPropTypes from '../proptypes/results'
 
 import { InstanceArray } from './array/array'
 import { BladesArray } from './array/blades'
@@ -32,6 +33,7 @@ TurbineModel.propTypes = {
   currentTurbine: PropTypes.number.isRequired,
   array: PropTypes.bool.isRequired,
   model: ModelPropTypes.Model.isRequired,
+  results: ResultPropTypes.Results,
   positions: PropTypes.arrayOf(
     PropTypes.shape({
       x: PropTypes.number,

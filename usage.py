@@ -64,6 +64,11 @@ app.layout = html.Div(
                     label="stats",
                     value=True,
                 ),
+                dbc.Switch(
+                    id="toggle_results",
+                    label="results",
+                    value=False,
+                ),
             ],
             style={
                 "zIndex": "100",
@@ -95,6 +100,18 @@ def toggle_map(toggle):
 )
 def toggle_map(toggle):
     return toggle
+
+
+@app.callback(
+    Output("viewer", "results"),
+    Input("toggle_results", "value"),
+    prevent_initial_call=True,
+)
+def toggle_results(toggle):
+    if toggle:
+        return json.load(open("assets/ea1_results.json", "r"))
+    else:
+        return {}
 
 
 @app.callback(

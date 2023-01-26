@@ -77,7 +77,7 @@ const Farm = (props) => {
                             array={props.environment && window.innerWidth > MOBILE_SIZE && window.innerHeight < MOBILE_SIZE}
                             positions={turbinexy}
                             currentTurbine={currentTurbine}
-                            model={{position: modelPosition, callbacks: {tooltip: setTooltipStyle}, ...props.model}}
+                            model={{position: modelPosition, results: props.results, callbacks: {tooltip: setTooltipStyle}, ...props.model}}
                         />
                     </Suspense>
                     {props.stats ? <Stats className='stats'/> : null}
@@ -97,7 +97,7 @@ Farm.defaultProps = {
     tooltip: true,
     environment: true,
     show_map: false,
-    stats: false
+    stats: false,
 }
 
 Farm.propTypes = FarmPropTypes.Farm

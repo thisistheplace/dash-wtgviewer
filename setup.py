@@ -17,6 +17,7 @@ setup(
         f"{package_name}/model",
         f"{package_name}/model/fea",
         f"{package_name}/model/geometry",
+        f"{package_name}/model/results",
     ],
     include_package_data=True,
     license=package["license"],

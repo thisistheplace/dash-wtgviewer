@@ -19,6 +19,14 @@
         "required": false,
         "description": ""
       },
+      "results": {
+        "type": {
+          "name": "custom",
+          "raw": "ResultPropTypes.Results"
+        },
+        "required": false,
+        "description": ""
+      },
       "tooltip": {
         "type": {
           "name": "bool"

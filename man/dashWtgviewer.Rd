@@ -11,7 +11,7 @@
 
 \usage{
 dashWtgviewer(id=NULL, environment=NULL, map=NULL, model=NULL,
-show_map=NULL, stats=NULL, tooltip=NULL)
+results=NULL, show_map=NULL, stats=NULL, tooltip=NULL)
 }
 
 \arguments{
@@ -22,6 +22,8 @@ show_map=NULL, stats=NULL, tooltip=NULL)
 \item{map}{}
 
 \item{model}{}
+
+\item{results}{}
 
 \item{show_map}{Logical. }
 
