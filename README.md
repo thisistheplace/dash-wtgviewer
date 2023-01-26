@@ -3,14 +3,16 @@
 `dash_wtgviewer` is a React component library developed for compatibility with Plotly Dash.
 
 This library aims to provide efficient 3D visualisation of geo located offshore wind turbine
-structures within a wind farm 
-
-`dash_wtgviewer` includes the following features:
+structures within a wind farm and includes the following features:
 - Map overlay of wind farm and wind turbine locations using https://react-leaflet.js.org/
 - 3D visualisation of wind farm and wind turbines using [threejs](https://threejs.org), [react-three-fibre](https://docs.pmnd.rs/react-three-fiber/getting-started/introduction) and [drei](https://github.com/pmndrs/drei) 
 - Environmental rendering using https://threejs.org/examples/webgl_shaders_ocean.html
 - Generic wind turbine model definition using [pydantic](https://docs.pydantic.dev), which is compatible
 with [FastAPI](https://fastapi.tiangolo.com) and conforms to [OpenAPI](https://www.openapis.org/)
+
+A live demo of it's functionality is available at https://spillthebeans.beancandesign.com/wind
+
+![demo](dash_wtgviewer.gif)
 
 ## Usage
 Install `dash-wtgviewer` into your python environment using:
