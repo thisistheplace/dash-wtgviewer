@@ -28,6 +28,7 @@
     "@react-three/drei": "^8.20.2",
     "@react-three/fiber": "^7.0.28",
     "camera-controls": "^1.37.6",
+    "component-material": "^1.0.7",
     "jquery": "^3.6.3",
     "ramda": "^0.26.1",
     "react-bootstrap": "^2.5.0",

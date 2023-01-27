@@ -31,9 +31,9 @@ for element in elements:
             target=element.id,
             results=[
                 BaseResult(
-                    value= MIN_VAL + (MAX_VAL - MIN_VAL) * (max_height - element.nodes[0].z) / height
+                    value= MIN_VAL + (MAX_VAL - MIN_VAL) * (max_height - node.z) / height
                 )
-                for _ in element.nodes
+                for node in element.nodes
             ]
         )
     )

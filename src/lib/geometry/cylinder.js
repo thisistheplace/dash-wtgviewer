@@ -1,20 +1,39 @@
 import PropTypes from 'prop-types'
 import React, {useRef, useState, useEffect} from 'react'
+import { extend } from '@react-three/fiber'
 import * as THREE from 'three'
 
 import * as ModelPropTypes from './../proptypes/model'
 import { nodeVector, nodeDistance } from '../geometry/vectors'
+import { GradientPhongMaterial } from './gradientphong'
+
+extend({GradientPhongMaterial})
+
+const DEFAULT_COLOR = "#ADADAD"
 
 function Cylinder(props){
   // This reference will give us direct access to the mesh
   const ref = useRef()
+  const [color1, setColor1] = useState(DEFAULT_COLOR)
+  const [color2, setColor2] = useState(DEFAULT_COLOR)
   const [hovered, setHover] = useState(false)
   const [active, setActive] = useState(false)
   const [diameters, setDiameters] = useState([0, 0])
   const [length, setLength] = useState(0)
 
   const numberOfFaces = 32
-  const hoverOpacity = 0.8
+  const hoverOpacity = 0.6
+
+  useEffect(()=>{
+    if (!props.colors){return}
+    if (props.colors.length < 2){
+      setColor1(props.colors[0])
+      setColor2(props.colors[0])
+    } else {
+      setColor1(props.colors[0])
+      setColor2(props.colors[1])
+    }
+  }, [props.colors])
 
   useEffect(() => {
     if (!ref.current) {return}
@@ -55,22 +74,18 @@ function Cylinder(props){
       }}
     >
       <cylinderGeometry args={[diameters[0] / 2, diameters[1] / 2, length, numberOfFaces, 1]}/>
-      <meshPhongMaterial
-        opacity={hoverOpacity}
-        color={hovered ? 'red' : props.color}
-        transparent={false}
-      />
+      <gradientPhongMaterial attach="material" args={[color1, color2, hoverOpacity]}/>
     </mesh>
   )
 }
 
 Cylinder.defaultProps = {
-  color: "#ADADAD"
+  colors: [DEFAULT_COLOR, DEFAULT_COLOR]
 }
 
 Cylinder.propTypes = {
   callbacks: ModelPropTypes.Callbacks,
-  color: PropTypes.string,
+  colors: PropTypes.arrayOf(PropTypes.string),
   ...ModelPropTypes.Element
 }
 

@@ -34,7 +34,7 @@ function Tower(props){
     const newResults = {}
     props.element_set.elements.map(element => {
       const elementResults = props.results[element.id]
-      newResults[element.id] = elementResults[0].color
+      newResults[element.id] = [elementResults[0].color, elementResults[1].color]
     })
     setResults(newResults)
   }, [props.results])
@@ -47,7 +47,7 @@ function Tower(props){
             key={i}
             {...elementData}
             callbacks={props.callbacks}
-            color={results[elementData.id]}
+            colors={results[elementData.id]}
           />
         )
       }

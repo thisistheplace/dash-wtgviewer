@@ -16,18 +16,18 @@ const blue = lowercolor.slice(); blue.push(...lowercolor.slice()); blue.push(...
 function frac2color(frac, min, max) {
   var base = (max - min);
 
-  if (base == 0) { frac = 1; }
+  if (base === 0) { frac = 1; }
   else {
       frac = (frac - min) / base;
   }
   var r, g, b, idx = 0;
 
-  if (frac <= 1 && frac >= 0){
+  if (frac < 1 && frac >= 0){
       // get closest index
       idx = Math.max(parseInt(frac * red.length), 0);
   } else if (frac < 0){
       idx = 1;
-  } else if (frac > 1){
+  } else if (frac >= 1){
       idx = red.length - 1;
   }
   // select RGB integer from our lists of RGBs based on fraction
