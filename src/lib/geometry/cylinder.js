@@ -30,7 +30,11 @@ function Cylinder(props){
   }, [props.defaultColor])
 
   useEffect(()=>{
-    if (!props.results){return}
+    if (!props.results){
+      setColor1(props.defaultColor)
+      setColor2(props.defaultColor)
+      return
+    }
     if (props.results.length < 2){
       setColor1(props.results[0].color)
       setColor2(props.results[0].color)
