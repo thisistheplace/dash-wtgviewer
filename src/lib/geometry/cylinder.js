@@ -74,7 +74,11 @@ function Cylinder(props){
       }}
     >
       <cylinderGeometry args={[diameters[0] / 2, diameters[1] / 2, length, numberOfFaces, 1]}/>
-      <gradientPhongMaterial attach="material" args={[color1, color2, hoverOpacity]}/>
+      <gradientPhongMaterial attach="material" args={[
+        hovered ? "red" : color1,
+        hovered ? "red" : color2,
+        hovered ? hoverOpacity : 1.0
+      ]}/>
     </mesh>
   )
 }
