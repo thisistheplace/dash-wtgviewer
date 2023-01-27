@@ -21,7 +21,7 @@ const Farm = (props) => {
     const ref = useRef()
     // Tooltip data
     const [tooltipStyle, setTooltipStyle] = useState({display: 'none', text: ""})
-    const [tooltipContents] = useState(null)
+    const [tooltipContents, setTooltipContents] = useState([])
     // Holds map overlay visibility
     const [mapVisible, setMapVisible] = useState(props.show_map)
     // Holds turbine array xy coordinates
@@ -77,7 +77,7 @@ const Farm = (props) => {
                             array={props.environment && window.innerWidth > MOBILE_SIZE && window.innerHeight < MOBILE_SIZE}
                             positions={turbinexy}
                             currentTurbine={currentTurbine}
-                            model={{position: modelPosition, results: props.results, callbacks: {tooltip: setTooltipStyle}, ...props.model}}
+                            model={{position: modelPosition, results: props.results, callbacks: {tooltipStyle: setTooltipStyle, tooltipContents: setTooltipContents}, ...props.model}}
                         />
                     </Suspense>
                     {props.stats ? <Stats className='stats'/> : null}

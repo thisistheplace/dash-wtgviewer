@@ -27,9 +27,11 @@ const Tooltip = (props) => {
 
   return (
     <div className="modelTooltip" style={tooltipStyle}>
-        {props.tooltipStyle.text}
-        <br />
-        {props.tooltipContents}
+        {
+          props.tooltipContents.map((text, i) => {
+            return (<span key={i}>{text}{props.tooltipContents.length > 1 ? <br/> : null}</span>)
+          })
+        }
     </div>
   )
 }
@@ -39,7 +41,7 @@ Tooltip.propTypes = {
     text: PropTypes.any,
     display: PropTypes.string
   }),
-  tooltipContents: PropTypes.string,
+  tooltipContents: PropTypes.arrayOf(PropTypes.string),
   show: PropTypes.bool
 }
 

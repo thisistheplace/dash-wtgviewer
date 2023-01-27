@@ -96,6 +96,7 @@ export const Model = PropTypes.shape({
 })
 
 export const Callbacks = PropTypes.shape({
-  tooltip: PropTypes.func.isRequired
+  tooltipStyle: PropTypes.func.isRequired,
+  tooltipContents: PropTypes.func.isRequired
 })
 
