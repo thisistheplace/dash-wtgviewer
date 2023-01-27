@@ -9,7 +9,7 @@ const DEFAULT_COLOR = "#fdc407"
 const defaultResults = (elementSet) => {
   const newResults = {}
   elementSet.elements.map(element => {
-    newResults[element.id] = DEFAULT_COLOR
+    newResults[element.id] = [DEFAULT_COLOR, DEFAULT_COLOR]
   })
   return newResults
 }
