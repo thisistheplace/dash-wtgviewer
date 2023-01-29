@@ -13,9 +13,15 @@ export const ElementResults = PropTypes.shape({
   )
 })
 
+export const Limits = PropTypes.shape({
+  min: PropTypes.number,
+  max: PropTypes.number
+})
+
 export const Results = PropTypes.shape({
   id: PropTypes.string,
   element_results: PropTypes.arrayOf(
     ElementResults
-  )
+  ),
+  limits: Limits
 })

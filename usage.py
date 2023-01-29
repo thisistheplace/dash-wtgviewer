@@ -28,10 +28,10 @@ app.layout = html.Div(
         DashWtgviewer(
             id="viewer",
             model=json.load(open("assets/ea1_model.json", "r")),
-            show_map=True,
-            environment=True,
+            show_map=False,
+            environment=False,
             tooltip=True,
-            stats=True,
+            stats=False,
             map={
                 "center": {"id": "center", "lat": 52.29733, "lng": 2.35038},
                 "turbines": {
@@ -71,16 +71,20 @@ app.layout = html.Div(
                 ),
                 dbc.Card(
                     dbc.CardBody(
-                        html.H6("Change colorscale limits:", className="card-subtitle"),
-                        dbc.InputGroup(
-                            dbc.Input(placeholder="minimum", type="number"),
-                            dbc.Input(placeholder="maximum", type="number")
-                        ),
-                        dbc.Button("Done", id="change_colorscale")
+                        [
+                            html.H6("Change colorscale limits:", className="card-subtitle"),
+                            dbc.InputGroup(
+                                [
+                                    dbc.Input(id="minimum", placeholder="minimum", type="number"),
+                                    dbc.Input(id="maximum", placeholder="maximum", type="number")
+                                ]
+                            ),
+                            dbc.Button("Done", id="change_colorscale")
+                        ]
                     ),
                     id="input_colorscale_limits",
                     style={
-                        "display": "block",
+                        "display": "none",
                         "position": "center"
                     }
                 )
@@ -98,6 +102,31 @@ app.layout = html.Div(
     style={"width": "100vw", "height": "100vh"},
 )
 
+@app.callback(
+    Output("viewer", "colorscale"),
+    Input("change_colorscale", "n_clicks"),
+    State("minimum", "value"),
+    State("maximum", "value"),
+    prevent_initial_call=True,
+)
+def set_min_max(n, min, max):
+    return {
+        "visible": True,
+        "limits": {
+            "min": min,
+            "max": max
+        }
+    }
+
+@app.callback(
+    Output("input_colorscale_limits", "style"),
+    Input("viewer", "colorscale_clicked"),
+    prevent_initial_call=True,
+)
+def show_min_max(show_viewer):
+    if show_viewer:
+        return {"display": "block"}
+    return {"display": "none"}
 
 @app.callback(
     Output("viewer", "stats"),

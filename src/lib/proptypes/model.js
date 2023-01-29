@@ -99,4 +99,3 @@ export const Callbacks = PropTypes.shape({
   tooltipStyle: PropTypes.func.isRequired,
   tooltipContents: PropTypes.func.isRequired
 })
-

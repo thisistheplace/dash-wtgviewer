@@ -4,15 +4,24 @@ import * as ResultPropTypes from './../proptypes/results'
 
 const processResults = (results) => {
   if (!results.element_results){return {}}
-  // get range in results
+  // check for limits
   var min = Infinity
   var max = -Infinity
-  results.element_results.map(elementResult => {
-    elementResult.results.map(result => {
-      min = Math.min(min, result.value)
-      max = Math.max(max, result.value)
+  if (results.limits){
+    if (results.limits.min && results.limits.max){
+      min = results.limits.min
+      max = results.limits.max
+    }
+  } else {
+    // get range in results
+    results.element_results.map(elementResult => {
+      elementResult.results.map(result => {
+        min = Math.min(min, result.value)
+        max = Math.max(max, result.value)
+      })
     })
-  })
+  }
+
   const range = max - min
   const scale = chroma
     .scale(["blue", "green", "yellow", "red"])

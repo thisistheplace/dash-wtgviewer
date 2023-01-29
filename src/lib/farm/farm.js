@@ -1,4 +1,6 @@
+import PropTypes from 'prop-types'
 import * as FarmPropTypes from '../proptypes/farm'
+import * as ResultPropTypes from '../proptypes/results'
 
 import React, { Suspense, useState, useEffect, useRef } from 'react'
 import { Canvas } from '@react-three/fiber'
@@ -76,8 +78,7 @@ const Farm = (props) => {
             <Tooltip show={props.tooltip} tooltipStyle={tooltipStyle} tooltipContents={tooltipContents}/>
             <ResultsColorScale
                 results={props.colorscale.visible ? props.results : null}
-                min={props.colorscale.min}
-                max={props.colorscale.max}
+                limits={props.colorscale.limits}
                 clicked={setColorscaleClicked}
             />
             <div id={props.id} style={{"height":"100%", "width":"100%", "display": mapVisible ? "none" : "block"}}>
@@ -92,7 +93,14 @@ const Farm = (props) => {
                             array={props.environment && window.innerWidth > MOBILE_SIZE && window.innerHeight < MOBILE_SIZE}
                             positions={turbinexy}
                             currentTurbine={currentTurbine}
-                            model={{position: modelPosition, results: props.results, callbacks: {tooltipStyle: setTooltipStyle, tooltipContents: setTooltipContents}, ...props.model}}
+                            model={{
+                                position: modelPosition,
+                                results: {
+                                    ...props.results,
+                                    limits: props.colorscale.limits
+                                },
+                                callbacks: {tooltipStyle: setTooltipStyle, tooltipContents: setTooltipContents}, ...props.model
+                            }}
                         />
                     </Suspense>
                     {props.stats ? <Stats className='stats'/> : null}
@@ -103,7 +111,7 @@ const Farm = (props) => {
                 // The map calculates the turbine positions
                 <Map
                     {...props.map}
-                    style={{height:"100%", width:"100%", zIndex: 2}}
+                    style={{height:"100%", width:"100%", zIndex: 20}}
                     callbacks={{setMapVisible: setMapVisible, setTurbinexy: setTurbinexy, setCurrentTurbine: setCurrentTurbine}}
                 />
                 : null
@@ -117,12 +125,16 @@ Farm.defaultProps = {
     environment: true,
     show_map: false,
     colorscale: {
-        visible: true
+        visible: true,
+        limits: null
     },
     colorscale_clicked: false,
     stats: false
 }
 
-Farm.propTypes = FarmPropTypes.Farm
+Farm.propTypes = {
+    setParentProps: PropTypes.func,
+    ...FarmPropTypes.Farm
+}
 
 export { Farm }

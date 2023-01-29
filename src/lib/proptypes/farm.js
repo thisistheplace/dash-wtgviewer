@@ -36,10 +36,10 @@ export const Farm = PropTypes.shape({
   environment: PropTypes.bool,
   colorscale: PropTypes.shape({
     visible: PropTypes.bool,
-    min: PropTypes.number,
-    max: PropTypes.number
+    limits: Results.Limits,
   }),
   colorscale_clicked: PropTypes.bool,
   map: Map,
-  show_map: PropTypes.bool.isRequired
+  show_map: PropTypes.bool.isRequired,
+  stats: false
 })

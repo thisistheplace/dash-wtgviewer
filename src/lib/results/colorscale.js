@@ -12,16 +12,19 @@ const ResultsColorScale = (props) => {
   const [min, setMin] = useState(0)
   const [max, setMax] = useState(1)
   const [number, setNumber] = useState(props.number)
+  const [toggleClicked, setToggleClicked] = useState(false)
 
   useEffect(()=>{
-    if (!props.max){return}
-    setMax(props.max)
-  }, [props.max])
+    props.clicked(toggleClicked)
+  }, [toggleClicked])
 
   useEffect(()=>{
-    if (!props.min){return}
-    setMin(props.min)
-  }, [props.min])
+    if (!props.limits){return}
+    if (!props.limits.min){return}
+    setMin(props.limits.min)
+    if (!props.limits.max){return}
+    setMax(props.limits.max)
+  }, [props.limits])
 
   useEffect(()=>{
     const newColors = []
@@ -66,11 +69,11 @@ const ResultsColorScale = (props) => {
       {
         results ?
         <div className='colorscale-holder'>
-          <div className='gradient'>
+          <div className='gradient' onClick={() => {setToggleClicked(!toggleClicked)}}>
             <div className='colorscale-text-top'>{max.toExponential(2).toString()}</div>
             <div className='colorscale-text-middle'>{((max + min)/2).toExponential(2).toString()}</div>
             <div className='colorscale-text-bottom'>{min.toExponential(2).toString()}</div>
-            <div onClick={props.clicked}>
+            <div style={{height: "100%"}}>
               {
                 colors.map((thisColor, i) =>
                   <li
@@ -101,8 +104,7 @@ ResultsColorScale.defaultProps = {
 ResultsColorScale.propTypes = {
   results: ResultPropTypes.Results,
   number: PropTypes.number,
-  min: PropTypes.number,
-  max: PropTypes.number,
+  limits: ResultPropTypes.Limits,
   clicked: PropTypes.func
 }
 
