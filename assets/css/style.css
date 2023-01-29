@@ -23,10 +23,55 @@
     text-align: right;
 }
 
-/* threejs rendering stats on mobile */
-/* @media (max-width:1000px) {
-    .stats > canvas {
-        width: 200px !important;
-        height: 120px !important;
-    }
-} */
+.gradient {
+    width: 100%;
+    position: relative;
+    display: inline-block;
+    top: 4px;
+    height: 100%;
+    width: 2vh;
+    margin: 1px;
+}
+
+.grad-step {
+    display: inline-block;
+    width: 100%;
+}
+
+.colorscale-holder {
+    position: absolute;
+    display: block;
+    z-index: 10;
+    height: 50%;
+    font-family: Verdana;
+    font-size: 2vh;
+    color: black;
+    top: 10%;
+    margin: 20px;
+}
+
+.colorscale-text-top {
+    display: block;
+    position: absolute;
+    z-index: 11;
+    margin-left: 3vh;
+    top: 0px;
+}
+
+.colorscale-text-middle {
+    display: block;
+    position: absolute;
+    z-index: 11;
+    bottom: 50%;
+    margin-left: 3vh;
+    margin-bottom: 10px;
+}
+
+.colorscale-text-bottom {
+    display: block;
+    position: absolute;
+    z-index: 11;
+    bottom: 0px;
+    margin-left: 3vh;
+    margin-bottom: 10px;
+}

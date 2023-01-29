@@ -1,5 +1,6 @@
+import * as chroma from 'chroma-js'
+
 import * as ResultPropTypes from './../proptypes/results'
-import { frac2color } from "./contours";
 
 const processResults = (results) => {
   if (!results.element_results){return {}}
@@ -12,6 +13,10 @@ const processResults = (results) => {
       max = Math.max(max, result.value)
     })
   })
+  const range = max - min
+  const scale = chroma
+    .scale(["blue", "green", "yellow", "red"])
+    .domain([min, min + range / 3, min + 2 * range / 3, max])
 
   // generate hash table of results with colors attached
   // key is the target element id
@@ -19,7 +24,7 @@ const processResults = (results) => {
   results.element_results.map(elementResult => {
     const newResults = []
     elementResult.results.map(result => {
-      result.color = frac2color(result.value, min, max)
+      result.color = scale(result.value).toString()
       newResults.push(result)
     })
     output[elementResult.target] = newResults

@@ -34,6 +34,7 @@ export const Farm = PropTypes.shape({
   results: Results,
   tooltip: PropTypes.bool,
   sea: PropTypes.bool,
+  colorscale: PropTypes.bool,
   map: Map,
   show_map: PropTypes.bool.isRequired
 })

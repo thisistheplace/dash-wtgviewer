@@ -6,12 +6,13 @@ import { Loader, Stats } from '@react-three/drei'
 
 import * as THREE from 'three'
 
-import {Tooltip} from './ui'
-import {Controls} from '../scene/controls'
+import { Tooltip } from './tooltip'
+import { Controls } from '../scene/controls'
 import { Lights } from '../scene/lights'
 import { Environment } from '../scene/environment/env'
 import { Map } from './map/map'
-import {TurbineModel} from './turbines'
+import { TurbineModel } from './turbines'
+import { ResultsColorScale } from '../results/colorscale'
 
 const FOCUS_HEIGHT = 50
 const MOBILE_SIZE = 1000
@@ -65,6 +66,7 @@ const Farm = (props) => {
     return (
         <div ref={ref} style={{"height":"100%", "width":"100%"}}>
             <Tooltip show={props.tooltip} tooltipStyle={tooltipStyle} tooltipContents={tooltipContents}/>
+            <ResultsColorScale results={props.colorscale ? props.results : null}/>
             <div id={props.id} style={{"height":"100%", "width":"100%", "display": mapVisible ? "none" : "block"}}>
                 {/* Only select the closest item while raycasting */}
                 <Canvas raycaster={{ filter: items => items.slice(0, 1) }} style={{'background':'white'}} camera={{position: [100, 100, 100], up: [0, 0, 1], fov:50, aspect:window.innerWidth / window.innerHeight, near: 0.1, far: 10000}}>
@@ -97,6 +99,7 @@ Farm.defaultProps = {
     tooltip: true,
     environment: true,
     show_map: false,
+    colorscale: true,
     stats: false,
 }
 
