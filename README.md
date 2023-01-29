@@ -87,6 +87,12 @@ app.layout = html.Div(
             "boundary": {
                 "positions": json.load(open("assets/path/to/my/wind_farm_boundary_lat_lng_positions.json", "r"))
             }
+        },
+        results=json.load(open("assets/path/to/my/results.json", "r")),
+        colorscale={
+            "visible": True,
+            "min": 0, # optional, else takes results minimum value
+            "max": 100 # optional, else takes results maximum value
         }
     )
 )

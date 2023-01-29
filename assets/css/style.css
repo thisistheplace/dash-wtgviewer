@@ -31,6 +31,7 @@
     height: 100%;
     width: 2vh;
     margin: 1px;
+    cursor: pointer;
 }
 
 .grad-step {

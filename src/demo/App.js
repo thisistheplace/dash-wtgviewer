@@ -116,7 +116,6 @@ class App extends Component {
                 tooltip: true,
                 show_map: false,
                 environment: false,
-                colorscale: true,
                 stats: false
             },
         )

@@ -31,6 +31,8 @@ const Farm = (props) => {
     // idx is index in turbinexy array
     const [currentTurbine, setCurrentTurbine] = useState(0)
     const [modelPosition, setModelPosition] = useState([0, 0, 0])
+    // Colorscale
+    const [colorscaleClicked, setColorscaleClicked] = useState(props.colorscale_clicked)
 
     // Camera manipulation
     const [zoom, setZoom] = useState(false)
@@ -59,6 +61,12 @@ const Farm = (props) => {
     }, [mapVisible])
 
     useEffect(()=>{
+        setParentProps({
+            colorscale_clicked: colorscaleClicked
+        })
+    }, [colorscaleClicked])
+
+    useEffect(()=>{
         if (!ref.current){return}
         setMapVisible(props.show_map)
     }, [props.show_map])
@@ -66,7 +74,12 @@ const Farm = (props) => {
     return (
         <div ref={ref} style={{"height":"100%", "width":"100%"}}>
             <Tooltip show={props.tooltip} tooltipStyle={tooltipStyle} tooltipContents={tooltipContents}/>
-            <ResultsColorScale results={props.colorscale ? props.results : null}/>
+            <ResultsColorScale
+                results={props.colorscale.visible ? props.results : null}
+                min={props.colorscale.min}
+                max={props.colorscale.max}
+                clicked={setColorscaleClicked}
+            />
             <div id={props.id} style={{"height":"100%", "width":"100%", "display": mapVisible ? "none" : "block"}}>
                 {/* Only select the closest item while raycasting */}
                 <Canvas raycaster={{ filter: items => items.slice(0, 1) }} style={{'background':'white'}} camera={{position: [100, 100, 100], up: [0, 0, 1], fov:50, aspect:window.innerWidth / window.innerHeight, near: 0.1, far: 10000}}>
@@ -88,7 +101,11 @@ const Farm = (props) => {
             </div>
             {mapVisible ?
                 // The map calculates the turbine positions
-                <Map {...props.map} style={{height:"100%", width:"100%", zIndex: 2}} callbacks={{setMapVisible: setMapVisible, setTurbinexy: setTurbinexy, setCurrentTurbine: setCurrentTurbine}}/>
+                <Map
+                    {...props.map}
+                    style={{height:"100%", width:"100%", zIndex: 2}}
+                    callbacks={{setMapVisible: setMapVisible, setTurbinexy: setTurbinexy, setCurrentTurbine: setCurrentTurbine}}
+                />
                 : null
             }
         </div>
@@ -99,8 +116,11 @@ Farm.defaultProps = {
     tooltip: true,
     environment: true,
     show_map: false,
-    colorscale: true,
-    stats: false,
+    colorscale: {
+        visible: true
+    },
+    colorscale_clicked: false,
+    stats: false
 }
 
 Farm.propTypes = FarmPropTypes.Farm

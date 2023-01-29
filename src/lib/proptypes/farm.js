@@ -33,8 +33,13 @@ export const Farm = PropTypes.shape({
   model: Model.isRequired,
   results: Results,
   tooltip: PropTypes.bool,
-  sea: PropTypes.bool,
-  colorscale: PropTypes.bool,
+  environment: PropTypes.bool,
+  colorscale: PropTypes.shape({
+    visible: PropTypes.bool,
+    min: PropTypes.number,
+    max: PropTypes.number
+  }),
+  colorscale_clicked: PropTypes.bool,
   map: Map,
   show_map: PropTypes.bool.isRequired
 })

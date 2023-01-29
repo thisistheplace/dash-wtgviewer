@@ -69,6 +69,21 @@ app.layout = html.Div(
                     label="results",
                     value=False,
                 ),
+                dbc.Card(
+                    dbc.CardBody(
+                        html.H6("Change colorscale limits:", className="card-subtitle"),
+                        dbc.InputGroup(
+                            dbc.Input(placeholder="minimum", type="number"),
+                            dbc.Input(placeholder="maximum", type="number")
+                        ),
+                        dbc.Button("Done", id="change_colorscale")
+                    ),
+                    id="input_colorscale_limits",
+                    style={
+                        "display": "block",
+                        "position": "center"
+                    }
+                )
             ],
             style={
                 "zIndex": "100",

@@ -70,15 +70,21 @@ const ResultsColorScale = (props) => {
             <div className='colorscale-text-top'>{max.toExponential(2).toString()}</div>
             <div className='colorscale-text-middle'>{((max + min)/2).toExponential(2).toString()}</div>
             <div className='colorscale-text-bottom'>{min.toExponential(2).toString()}</div>
-            {
-              colors.map((thisColor, i) =>
-                <li
-                  key={i}
-                  className="grad-step"
-                  style={{backgroundColor: thisColor, listStyle: "none", height: 100 / number + "%"}}
-                />
-              )
-            }
+            <div onClick={props.clicked}>
+              {
+                colors.map((thisColor, i) =>
+                  <li
+                    key={i}
+                    className="grad-step"
+                    style={{
+                      backgroundColor: thisColor,
+                      listStyle: "none",
+                      height: 100 / number + "%"
+                    }}
+                  />
+                )
+              }
+            </div>
           </div>
         </div>
         : null
@@ -96,7 +102,8 @@ ResultsColorScale.propTypes = {
   results: ResultPropTypes.Results,
   number: PropTypes.number,
   min: PropTypes.number,
-  max: PropTypes.number
+  max: PropTypes.number,
+  clicked: PropTypes.func
 }
 
 export { ResultsColorScale }
