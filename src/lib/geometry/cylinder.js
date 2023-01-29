@@ -33,6 +33,7 @@ function Cylinder(props){
     if (!props.results){
       setColor1(props.defaultColor)
       setColor2(props.defaultColor)
+      setResults([])
       return
     }
     if (props.results.length < 2){

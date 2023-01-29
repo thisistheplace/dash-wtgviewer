@@ -19,6 +19,10 @@ const Model = forwardRef((props, ref) => {
       setResults(null)
       return
     }
+    if (Object.keys(props.results).length === 0){
+      setResults(null)
+      return
+    }
     setResults(
       processResults(props.results)
     )
@@ -28,8 +32,8 @@ const Model = forwardRef((props, ref) => {
     <group ref={ref} name={props.name} position={props.position}>
       <Rotor {...props.rotor} callbacks={props.callbacks}/>
       <Nacelle {...props.nacelle} callbacks={props.callbacks}/>
-      <Tower {...props.tower} results={results} callbacks={props.callbacks}/>
-      <Foundation {...props.foundation} results={results}  callbacks={props.callbacks}/>
+      <Tower {...props.tower} results={results} defaultColor={results ? "#adadad" : "#adadad"} callbacks={props.callbacks}/>
+      <Foundation {...props.foundation} results={results} defaultColor={results ? "#adadad" : "#fdc407"} callbacks={props.callbacks}/>
     </group>
   )
 })
