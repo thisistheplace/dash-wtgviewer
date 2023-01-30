@@ -2,8 +2,17 @@
 import json
 from dash import Dash, html, Input, Output, State, no_update
 import dash_bootstrap_components as dbc
+from pydantic import BaseModel
+from pathlib import Path
 
 from dash_wtgviewer.DashWtgviewer import DashWtgviewer
+from dash_wtgviewer.model import Model
+from dash_wtgviewer.model.results import Results
+
+def load_valid_model(json_path: str, model: BaseModel) -> dict:
+    data = json.load(open(Path(json_path).resolve(), "r"))
+    valid = model.parse_obj(data)
+    return json.loads(valid.json())
 
 # external CSS stylesheets
 external_stylesheets = [
@@ -27,7 +36,7 @@ app.layout = html.Div(
     [
         DashWtgviewer(
             id="viewer",
-            model=json.load(open("assets/ea1_model.json", "r")),
+            model=load_valid_model("assets/ea1_model.json", Model),
             show_map=False,
             environment=False,
             tooltip=True,
@@ -153,7 +162,7 @@ def toggle_map(toggle):
 )
 def toggle_results(toggle):
     if toggle:
-        return json.load(open("assets/ea1_results.json", "r"))
+        return load_valid_model("assets/ea1_results.json", Results)
     else:
         return {}
 
