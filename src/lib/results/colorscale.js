@@ -4,6 +4,13 @@ import * as chroma from 'chroma-js'
 
 import * as ResultPropTypes from './../proptypes/results'
 
+const makeScale = (min, max) => {
+  const range = max - min
+  return chroma
+    .scale(["blue", "yellow", "red"])
+    .domain([min, min + range / 2, max])
+}
+
 const ResultsColorScale = (props) => {
   const ref = useRef()
   const [results, setResults] = useState(null)
@@ -27,13 +34,11 @@ const ResultsColorScale = (props) => {
   }, [props.limits])
 
   useEffect(()=>{
+    const scale = makeScale(min, max)
+
     const newColors = []
     const inc = (max - min) / number
-    const range = max - min
     var current = max
-    const scale = chroma
-      .scale(["blue", "green", "yellow", "red"])
-      .domain([min, min + range / 3, min + 2 * range / 3, max])
 
     while (newColors.length < number){
       newColors.push(
@@ -108,4 +113,4 @@ ResultsColorScale.propTypes = {
   clicked: PropTypes.func
 }
 
-export { ResultsColorScale }
+export { ResultsColorScale, makeScale }

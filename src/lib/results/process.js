@@ -1,5 +1,6 @@
 import * as chroma from 'chroma-js'
 
+import { makeScale } from './colorscale'
 import * as ResultPropTypes from './../proptypes/results'
 
 const processResults = (results) => {
@@ -22,10 +23,7 @@ const processResults = (results) => {
     })
   }
 
-  const range = max - min
-  const scale = chroma
-    .scale(["blue", "green", "yellow", "red"])
-    .domain([min, min + range / 3, min + 2 * range / 3, max])
+  const scale = makeScale(min, max)
 
   // generate hash table of results with colors attached
   // key is the target element id
