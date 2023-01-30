@@ -1,5 +1,3 @@
-import * as chroma from 'chroma-js'
-
 import { makeScale } from './colorscale'
 import * as ResultPropTypes from './../proptypes/results'
 
