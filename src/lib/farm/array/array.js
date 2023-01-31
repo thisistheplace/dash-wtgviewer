@@ -82,6 +82,10 @@ const InstanceArray = (props) => {
       // get correct geometries and combine into a single geometry
       const geometries = findModelParts(model, props.name)
       const buffer = mergeBufferGeometries(geometries)
+      if (!buffer.attributes.normal){return}
+      // check if geometries are NaNs
+      if (isNaN(buffer.attributes.normal.array[0])){return}
+
       setGeometry(buffer)
       setCombine(false)
     }

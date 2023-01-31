@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React, {useRef, useState, useEffect} from 'react'
 
 import * as ModelPropTypes from './../proptypes/model'
@@ -31,15 +32,15 @@ function Foundation(props){
   return (
     <group ref={ref} name={props.name}>
       {
-        elements.map((elementData, i) =>
-          <Cylinder
+        elements.map((elementData, i) =>{
+          return (<Cylinder
             key={i}
             {...elementData}
             callbacks={props.callbacks}
             results={results[elementData.id]}
             defaultColor={props.defaultColor}
           />
-        )
+        )})
       }
     </group>
   )
@@ -52,6 +53,7 @@ Foundation.defaultProps = {
 Foundation.propTypes = {
   callbacks: ModelPropTypes.Callbacks,
   results: ResultPropTypes.Results,
+  defaultColor: PropTypes.string,
   ...ModelPropTypes.Foundation.isRequired
 }
 

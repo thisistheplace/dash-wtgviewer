@@ -116,7 +116,7 @@ class App extends Component {
                 tooltip: true,
                 show_map: false,
                 environment: false,
-                stats: false
+                stats: true
             },
         )
 
@@ -128,9 +128,9 @@ class App extends Component {
             this.setProps
         )
 
-        getResults(
-          this.setProps
-        )
+        // getResults(
+        //   this.setProps
+        // )
     }
 
     render() {

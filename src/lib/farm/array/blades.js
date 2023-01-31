@@ -42,19 +42,23 @@ const BladesArray = (props) => {
       // check model parts exist
       const inScene = model.children.map(meshOrGroup => meshOrGroup.name)
       if (!inScene.includes(ROTOR_NAME)){ return }
-      const group = model.children.filter(meshOrGroup => {return meshOrGroup.name === ROTOR_NAME})
-      if (!(group[0].children.length > 0)){ return }
-      const bladeGroup = group[0].children.filter(meshOrGroup => {return meshOrGroup.name === BLADES_NAME})
+      const rotorGroup = model.children.filter(meshOrGroup => {return meshOrGroup.name === ROTOR_NAME})
+      if (!(rotorGroup[0].children.length > 0)){ return }
+      const bladeGroup = rotorGroup[0].children.filter(meshOrGroup => {return meshOrGroup.name === BLADES_NAME})
       if (bladeGroup[0].children.length < 3){ return }
 
       // set rotor transformation
       setRotorTranslation(
-        new THREE.Vector3(group[0].position.x, group[0].position.y, group[0].position.z)
+        new THREE.Vector3(rotorGroup[0].position.x, rotorGroup[0].position.y, rotorGroup[0].position.z)
       )
       
       // get correct geometries and combine into a single geometry
       const geometries = findModelParts(model, BLADES_NAME)
       const buffer = mergeBufferGeometries(geometries)
+      if (!buffer.attributes.normal){return}
+      // check if geometries are NaNs
+      if (isNaN(buffer.attributes.normal.array[0])){return}
+      
       setGeometry(buffer)
       setCombine(false)
     }

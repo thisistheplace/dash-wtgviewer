@@ -19,7 +19,8 @@ const Model = forwardRef((props, ref) => {
       setResults(null)
       return
     }
-    if (Object.keys(props.results).length === 0){
+    // Just limits
+    if (Object.keys(props.results).length === 1){
       setResults(null)
       return
     }
