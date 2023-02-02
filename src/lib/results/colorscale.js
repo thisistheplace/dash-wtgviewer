@@ -4,11 +4,13 @@ import * as chroma from 'chroma-js'
 
 import * as ResultPropTypes from './../proptypes/results'
 
+const EXTREMES = "#ADADAD"
+
 const makeScale = (min, max) => {
   const range = max - min
   return chroma
-    .scale(["blue", "yellow", "red"])
-    .domain([min, min + range / 2, max])
+    .scale([EXTREMES, EXTREMES, "blue", "yellow", "red", EXTREMES, EXTREMES])
+    .domain([min - range, min - range / 1000, min, min + range / 2, max, max + range / 1000, max + range])
 }
 
 const ResultsColorScale = (props) => {

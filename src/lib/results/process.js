@@ -6,19 +6,21 @@ const processResults = (results) => {
   // check for limits
   var min = Infinity
   var max = -Infinity
+  // get range in results
+  results.element_results.map(elementResult => {
+    elementResult.results.map(result => {
+      min = Math.min(min, result.value)
+      max = Math.max(max, result.value)
+    })
+  })
+  // Overwrite limits
   if (results.limits){
-    if (results.limits.min && results.limits.max){
+    if (results.limits.min){
       min = results.limits.min
+    }
+    if (results.limits.max){
       max = results.limits.max
     }
-  } else {
-    // get range in results
-    results.element_results.map(elementResult => {
-      elementResult.results.map(result => {
-        min = Math.min(min, result.value)
-        max = Math.max(max, result.value)
-      })
-    })
   }
 
   const scale = makeScale(min, max)

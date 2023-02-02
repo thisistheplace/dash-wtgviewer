@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types'
 
 import * as ModelPropTypes from './../proptypes/model'
-import * as FarmPropTypes from './../proptypes/farm'
 import * as ResultPropTypes from './../proptypes/results'
 
 import React, { useRef } from 'react'

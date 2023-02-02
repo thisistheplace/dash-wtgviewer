@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types'
 import * as FarmPropTypes from '../proptypes/farm'
-import * as ResultPropTypes from '../proptypes/results'
 
 import React, { Suspense, useState, useEffect, useRef } from 'react'
 import { Canvas } from '@react-three/fiber'
