@@ -114,8 +114,8 @@ class App extends Component {
             {
                 id: this.state.id,
                 tooltip: true,
-                show_map: false,
-                environment: false,
+                show_map: true,
+                environment: true,
                 stats: true
             },
         )
@@ -128,9 +128,9 @@ class App extends Component {
             this.setProps
         )
 
-        // getResults(
-        //   this.setProps
-        // )
+        getResults(
+          this.setProps
+        )
     }
 
     render() {

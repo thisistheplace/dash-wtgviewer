@@ -39,7 +39,7 @@ app.layout = html.Div(
             model=load_valid_model("assets/ea1_model.json", Model),
             show_map=False,
             environment=False,
-            tooltip=True,
+            tooltip=False,
             stats=False,
             map={
                 "center": {"id": "center", "lat": 52.29733, "lng": 2.35038},
@@ -56,22 +56,22 @@ app.layout = html.Div(
                 dbc.Switch(
                     id="toggle_map",
                     label="map",
-                    value=True,
+                    value=False,
                 ),
                 dbc.Switch(
                     id="toggle_environment",
                     label="environment",
-                    value=True,
+                    value=False,
                 ),
                 dbc.Switch(
                     id="toggle_tooltip",
                     label="tooltip",
-                    value=True,
+                    value=False,
                 ),
                 dbc.Switch(
                     id="toggle_stats",
                     label="stats",
-                    value=True,
+                    value=False,
                 ),
                 dbc.Switch(
                     id="toggle_results",
