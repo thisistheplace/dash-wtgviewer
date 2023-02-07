@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import React, {useRef, useState, useEffect} from 'react'
 import { extend } from '@react-three/fiber'
 import * as THREE from 'three'
@@ -10,7 +9,13 @@ import { GradientPhongMaterial } from './gradientphong'
 
 extend({GradientPhongMaterial})
 
-function Cylinder(props){
+type CylinderProps = {
+  callbacks: ModelPropTypes.Callbacks,
+  defaultColor: string,
+  results: ResultPropTypes.Result[]
+} & ModelPropTypes.Element
+
+function Cylinder(props: CylinderProps){
   // This reference will give us direct access to the mesh
   const ref = useRef()
   const [results, setResults] = useState([])
@@ -101,13 +106,6 @@ function Cylinder(props){
       ]}/>
     </mesh>
   )
-}
-
-Cylinder.propTypes = {
-  callbacks: ModelPropTypes.Callbacks,
-  defaultColor: PropTypes.string,
-  results: PropTypes.arrayOf(ResultPropTypes.Result),
-  ...ModelPropTypes.Element
 }
 
 export {Cylinder}

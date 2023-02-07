@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import React, {useRef, useState, useEffect} from 'react'
 import * as THREE from 'three'
 
@@ -6,7 +5,13 @@ import * as ModelPropTypes from './../proptypes/model'
 import { nodeDistance } from '../geometry/vectors'
 import { nodeVector } from '../geometry/vectors'
 
-const Box = (props) => {
+type BoxProps = {
+  callbacks: ModelPropTypes.Callbacks,
+  color: string,
+  smoothness: number
+} & ModelPropTypes.Element
+
+const Box = (props: BoxProps) => {
   const ref = useRef()
   const [hovered, setHover] = useState(false)
   const [active, setActive] = useState(false)
@@ -82,13 +87,6 @@ const Box = (props) => {
 
 Box.defaultProps = {
   color: "#ADADAD"
-}
-
-Box.propTypes = {
-  callbacks: ModelPropTypes.Callbacks,
-  color: PropTypes.string,
-  smoothness: PropTypes.number,
-  ...ModelPropTypes.Element
 }
 
 export {Box}

@@ -4,7 +4,11 @@ import * as THREE from 'three'
 import * as ModelPropTypes from './../proptypes/model'
 import {nodeDistance, nodeVector} from './../geometry/vectors'
 
-const Hub = (props) => {
+type HubProps = {
+  callbacks: ModelPropTypes.Callbacks
+} & ModelPropTypes.Hub
+
+const Hub = (props: HubProps) => {
   const ref = useRef()
   const [hovered, setHover] = useState(false)
   const [active, setActive] = useState(false)
@@ -65,11 +69,6 @@ const Hub = (props) => {
   </mesh>
   )
 
-}
-
-Hub.propTypes = {
-  callbacks: ModelPropTypes.Callbacks,
-  ...ModelPropTypes.Hub.isRequired
 }
 
 export {Hub}

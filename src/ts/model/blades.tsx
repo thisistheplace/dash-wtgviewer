@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import * as ModelPropTypes from './../proptypes/model'
 import React, {useRef, useState, useEffect} from 'react'
 import { useGLTF } from '@react-three/drei'
@@ -6,8 +5,21 @@ import { extend } from '@react-three/fiber'
 import * as THREE from 'three'
 extend({THREE})
 
+type BladeProps = {
+  callbacks: ModelPropTypes.Callbacks
+} & ModelPropTypes.Blade
 
-const Blade = (props) => {
+type BladesProps = {
+  callbacks: ModelPropTypes.Callbacks,
+  blades: ModelPropTypes.Blade[],
+  axis: {
+    x: number,
+    y: number,
+    z: number
+  }
+}
+
+const Blade = (props: BladeProps) => {
   const ref = useRef()
   const [hovered, setHover] = useState(false)
   const [active, setActive] = useState(false)
@@ -68,49 +80,32 @@ const Blade = (props) => {
   )
 }
 
-function Blades(props){
-    const ref = useRef()
-    const [blades, setBlades] = useState([])
-    const [rotation, setRotation] = useState(0)
+function Blades(props: BladesProps){
+  const ref = useRef()
+  const [blades, setBlades] = useState([])
+  const [rotation, setRotation] = useState(0)
 
-    useEffect(() => {
-      if (!props.blades) { return }
-      setBlades(props.blades)
-      setRotation(Math.PI * 2 / props.blades.length)
-    }, [props.blades])
-  
-    return (
-      <group ref={ref} name={"blades"}>
-        {
-          blades.map((bladeData, i) =>
-            <Blade
-              key={i}
-              {...bladeData}
-              callbacks={props.callbacks}
-              rotation={rotation * (i + 1)}
-              axis={props.axis}
-            />
-          )
-        }
-      </group>
-    )
-  }
+  useEffect(() => {
+    if (!props.blades) { return }
+    setBlades(props.blades)
+    setRotation(Math.PI * 2 / props.blades.length)
+  }, [props.blades])
 
-Blade.propTypes = {
-  callbacks: ModelPropTypes.Callbacks,
-  ...ModelPropTypes.Blade
-}
-
-Blades.propTypes = {
-  callbacks: ModelPropTypes.Callbacks,
-  blades: PropTypes.arrayOf(
-    ModelPropTypes.Blade
-  ).isRequired,
-  axis: PropTypes.shape({
-    x: PropTypes.number,
-    y: PropTypes.number,
-    z: PropTypes.number
-  }).isRequired
+  return (
+    <group ref={ref} name={"blades"}>
+      {
+        blades.map((bladeData, i) =>
+          <Blade
+            key={i}
+            {...bladeData}
+            callbacks={props.callbacks}
+            rotation={rotation * (i + 1)}
+            axis={props.axis}
+          />
+        )
+      }
+    </group>
+  )
 }
 
 export {Blade, Blades}

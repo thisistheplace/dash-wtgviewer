@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import React, {forwardRef, useState, useEffect} from 'react'
 import {Rotor} from './rotor'
 import {Nacelle} from './nacelle'
@@ -9,8 +8,13 @@ import * as ResultPropTypes from './../proptypes/results'
 import { processResults } from '../results/process'
 
 // TODO: should make cylinders instanced meshes with scaling / rotation etc
+type ModelProps = {
+  callbacks: ModelPropTypes.Callbacks,
+  position: number[],
+  results: ResultPropTypes.Results
+} & ModelPropTypes.Model
 
-const Model = forwardRef((props, ref) => {
+const Model = forwardRef((props: ModelProps, ref: unknown) => {
 
   const [results, setResults] = useState(null)
 
@@ -41,13 +45,6 @@ const Model = forwardRef((props, ref) => {
 
 Model.defaultProps = {
   position: [0, 0, 0]
-}
-
-Model.propTypes = {
-  callbacks: ModelPropTypes.Callbacks,
-  position: PropTypes.arrayOf(PropTypes.number),
-  results: ResultPropTypes.Results,
-  ...ModelPropTypes.Model
 }
 
 export {Model}

@@ -4,7 +4,13 @@ import * as ModelPropTypes from './../proptypes/model'
 import * as ResultPropTypes from './../proptypes/results'
 import { Cylinder } from './../geometry/cylinder'
 
-function Tower(props){
+type FoundationProps = {
+  callbacks: ModelPropTypes.Callbacks,
+  results: ResultPropTypes.Results,
+  defaultColor: string
+} & ModelPropTypes.Foundation
+
+function Foundation(props: FoundationProps){
   const ref = useRef()
   const [elements, setElements] = useState([])
   const [results, setResults] = useState({})
@@ -31,28 +37,22 @@ function Tower(props){
   return (
     <group ref={ref} name={props.name}>
       {
-        elements.map((elementData, i) =>
-          <Cylinder
+        elements.map((elementData, i) =>{
+          return (<Cylinder
             key={i}
             {...elementData}
             callbacks={props.callbacks}
             results={results[elementData.id]}
             defaultColor={props.defaultColor}
           />
-        )
+        )})
       }
     </group>
   )
 }
 
-Tower.defaultProps = {
-  defaultColor: "#ADADAD"
+Foundation.defaultProps = {
+  defaultColor: "#fdc407"
 }
 
-Tower.propTypes = {
-  callbacks: ModelPropTypes.Callbacks,
-  results: ResultPropTypes.Results,
-  ...ModelPropTypes.Tower.isRequired
-}
-
-export { Tower }
+export { Foundation }

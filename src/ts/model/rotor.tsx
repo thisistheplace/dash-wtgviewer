@@ -6,7 +6,11 @@ import { Blades } from './blades'
 import { Hub } from './hub'
 import { nodeVector } from '../geometry/vectors'
 
-const Rotor = (props) => {
+type RotorProps = {
+  callbacks: ModelPropTypes.Callbacks
+} & ModelPropTypes.Rotor
+
+const Rotor = (props: RotorProps) => {
   const ref = useRef()
   const [axis, setAxis] = useState({x:0, y:0, z:0})
 
@@ -33,11 +37,6 @@ const Rotor = (props) => {
     </group>
   )
 
-}
-
-Rotor.propTypes = {
-  callbacks: ModelPropTypes.Callbacks,
-  ...ModelPropTypes.Rotor.isRequired
 }
 
 export { Rotor }

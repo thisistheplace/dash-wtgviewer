@@ -3,7 +3,11 @@ import React, {useRef} from 'react'
 import * as ModelPropTypes from './../proptypes/model'
 import {Box} from './../geometry/box'
 
-function Nacelle(props){
+type NacelleProps = {
+  callbacks: ModelPropTypes.Callbacks
+} & ModelPropTypes.Nacelle
+
+function Nacelle(props: NacelleProps){
   const ref = useRef()
 
   return (
@@ -15,11 +19,6 @@ function Nacelle(props){
       />
     </group>
   )
-}
-
-Nacelle.propTypes = {
-  callbacks: ModelPropTypes.Callbacks,
-  ...ModelPropTypes.Nacelle.isRequired
 }
 
 export {Nacelle}
