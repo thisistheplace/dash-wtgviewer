@@ -4,7 +4,6 @@ import { Ocean } from './sea'
 import { Daytime } from './daytime'
 
 type EnvironmentProps = {
-    visible: boolean,
     size: number
 }
 

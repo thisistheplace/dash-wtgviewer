@@ -88,7 +88,7 @@ const Farm = (props: FarmProps) => {
                 <Canvas raycaster={{ filter: items => items.slice(0, 1) }} style={{'background':'white'}} camera={{position: [100, 100, 100], up: [0, 0, 1], fov:50, aspect:window.innerWidth / window.innerHeight, near: 0.1, far: 10000}}>
                     <Controls zoom={zoom} focus={focus} focusHeight={focusHeight}/>
                     {/* <axesHelper scale={100}/> */}
-                    <Lights {...props}/>
+                    <Lights/>
                     {props.environment ? <Environment/> : null }
                     <Suspense fallback={null}>
                         <TurbineModel

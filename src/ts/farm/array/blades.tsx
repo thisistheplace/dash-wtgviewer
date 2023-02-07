@@ -43,8 +43,11 @@ const BladesArray = (props: BladesArrayProps) => {
   }, [props.currentTurbine, count, rotorTranslation])
 
   useFrame(() => {
+    if (!ref.current){return}
+    
     // Rotate rotor
-    ref.current.geometry.rotateX(ROTATION_INCREMENT)
+    const mesh:THREE.InstancedMesh = ref.current
+    mesh.geometry.rotateX(ROTATION_INCREMENT)
 
     // Build array from initial model
     if (combine) {
@@ -69,9 +72,9 @@ const BladesArray = (props: BladesArrayProps) => {
       console.log(buffer)
       if (!buffer.attributes.normal || !buffer.attributes.position || !buffer.attributes.uv){return}
       // check if geometries are NaNs
-      if (isNaN(buffer.attributes.normal.array[0])){return}
-      if (isNaN(buffer.attributes.position.array[0])){return}
-      if (isNaN(buffer.attributes.uv.array[0])){return}
+      if (isNaN(buffer.attributes.normal[0])){return}
+      if (isNaN(buffer.attributes.position[0])){return}
+      if (isNaN(buffer.attributes.uv[0])){return}
       
       setGeometry(buffer)
       setCombine(false)

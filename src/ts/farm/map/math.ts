@@ -3,8 +3,8 @@ import L from 'leaflet'
 const SCALE = 1
 
 function distance(pnt1, pnt2) {
-  const temp1 = new L.latLng(0, 0)
-  const temp2 = new L.latLng(0, 0)
+  const temp1 = L.latLng(0, 0)
+  const temp2 = L.latLng(0, 0)
   // Get latitude
   temp1.lat = pnt1.lat
   temp1.lng = 0

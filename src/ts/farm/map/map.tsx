@@ -29,13 +29,13 @@ function ChangeView({ center }) {
 }
 
 const Map = (props: FarmPropTypes.Map) => {
-  const [center, setCenter] = useState([0, 0])
+  const [center, setCenter] = useState(L.latLng(0, 0))
   const [boundary, setBoundary] = useState(null)
   const [turbines, setTurbines] = useState(null)
 
   useEffect(()=>{
     if (props.center){
-      setCenter([props.center.lat, props.center.lng])
+      setCenter(L.latLng(props.center.lat, props.center.lng))
     }
     if (props.boundary){
       setBoundary(props.boundary)

@@ -1,4 +1,5 @@
 import React, {useEffect, useRef, useState, useMemo} from 'react'
+import * as Leaflet from 'leaflet'
 import { Circle, Popup } from 'react-leaflet'
 import * as FarmPropTypes from './../../proptypes/farm'
 
@@ -7,19 +8,19 @@ type TurbineProps = {
 } & FarmPropTypes.Turbine
 
 const Turbine = (props: TurbineProps) => {
-  const ref = useRef()
+  const ref = useRef<Leaflet.Circle>(null)
   const [position, setPosition] = useState(props.position)
 
   const eventHandlers = useMemo(
     () => ({
       mouseover() {
-        if (ref) {ref.current.openPopup()}
+        if (ref.current) {ref.current.openPopup()}
       },
       mouseout() {
-        if (ref) {ref.current.closePopup()}
+        if (ref.current) {ref.current.closePopup()}
       },
       click() {
-        if (ref) {
+        if (ref.current) {
           props.callbacks.setCurrentTurbine(props.index)
           props.callbacks.setMapVisible(false)
         }

@@ -56,7 +56,7 @@ const InstanceArray = (props: InstanceArrayProps) => {
       // console.log(buffer)
       if (!buffer.attributes.normal){return}
       // check if geometries are NaNs
-      if (isNaN(buffer.attributes.normal.array[0])){return}
+      if (isNaN(buffer.attributes.normal[0])){return}
 
       setGeometry(buffer)
       setCombine(false)

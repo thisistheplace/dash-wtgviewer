@@ -14,7 +14,7 @@ function Nacelle(props: NacelleProps){
     <group ref={ref} name={props.name}>
       <Box
         {...props.element}
-        id={props.name}
+        smoothness={1}
         callbacks={props.callbacks}
       />
     </group>

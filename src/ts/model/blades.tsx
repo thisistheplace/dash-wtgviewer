@@ -24,7 +24,14 @@ const Blade = (props: BladeProps) => {
   const [hovered, setHover] = useState(false)
   const [active, setActive] = useState(false)
   const gltf = useGLTF(props.url)
+  const [geom, setGeom] = useState(new THREE.BufferGeometry())
   const defaultColor = 0xadadad
+
+  useEffect(()=>{
+    if (!ref.current){return}
+    let mesh = (gltf.scene.children[0] as THREE.Mesh)
+    setGeom(mesh.geometry)
+  }, [props.url])
 
   useEffect(() => {
     if (!ref.current) { return }
@@ -46,9 +53,10 @@ const Blade = (props: BladeProps) => {
 
     var combined = new THREE.Quaternion()
     combined.multiplyQuaternions(quaternion1, quaternion2)
-    ref.current.rotation.setFromQuaternion(combined)
 
-    ref.current.scale.set(
+    const mesh:THREE.Mesh = ref.current
+    mesh.rotation.setFromQuaternion(combined)
+    mesh.scale.set(
       props.scale.x,
       props.scale.y,
       props.scale.z
@@ -59,7 +67,7 @@ const Blade = (props: BladeProps) => {
   return (
     <mesh
       ref={ref}
-      geometry={gltf.scene.children[0].geometry}
+      geometry={geom}
       name={props.name}
       castShadow={false}
       receiveShadow={false}

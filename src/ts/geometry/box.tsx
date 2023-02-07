@@ -50,12 +50,14 @@ const Box = (props: BoxProps) => {
       new THREE.Vector3(0, -1, 0).normalize(),
       axis.normalize()
     )
-    ref.current.rotation.setFromQuaternion(quaternion)
+
+    const mesh:THREE.Mesh = ref.current
+    mesh.rotation.setFromQuaternion(quaternion)
 
     // Set position
-    ref.current.position.x = props.nodes[0].x - length / 2
-    ref.current.position.y = props.nodes[0].y
-    ref.current.position.z = props.nodes[0].z
+    mesh.position.x = props.nodes[0].x - length / 2
+    mesh.position.y = props.nodes[0].y
+    mesh.position.z = props.nodes[0].z
   }, [props.height, props.width, props.nodes, props.smoothness])
   
   return (

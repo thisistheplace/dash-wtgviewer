@@ -16,7 +16,7 @@ const Hub = (props: HubProps) => {
   const defaultColor = 0xadadad
 
   useEffect(() => {
-    if (!props.cone) { return }
+    if (!props.cone || !ref.current) { return }
     const distance = nodeDistance(props.cone.nodes[0], props.cone.nodes[1])
     
     // Create lathe geometry
@@ -39,11 +39,11 @@ const Hub = (props: HubProps) => {
       new THREE.Vector3(0, -1, 0).normalize(),
       axis.normalize()
     )
-    ref.current.rotation.setFromQuaternion(quaternion)
-    
-    ref.current.position.x += props.cone.nodes[1].x - props.cone.nodes[0].x
-    ref.current.position.y += props.cone.nodes[1].y - props.cone.nodes[0].y
-    ref.current.position.z += props.cone.nodes[1].z - props.cone.nodes[0].z
+    const mesh:THREE.Mesh = ref.current
+    mesh.rotation.setFromQuaternion(quaternion)
+    mesh.position.x += props.cone.nodes[1].x - props.cone.nodes[0].x
+    mesh.position.y += props.cone.nodes[1].y - props.cone.nodes[0].y
+    mesh.position.z += props.cone.nodes[1].z - props.cone.nodes[0].z
   }, [props.cone])
 
   return (
