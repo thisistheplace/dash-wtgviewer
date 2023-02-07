@@ -62,11 +62,13 @@ const Box = (props) => {
       onClick={() => setActive(!active)}
       onPointerOver={() => {
         setHover(true)
-        props.callbacks.tooltip({text: props.id, display: 'block'})
+        props.callbacks.tooltipStyle({display: 'block'})
+        props.callbacks.tooltipContents([props.id])
       }}
       onPointerOut={() => {
         setHover(false)
-        props.callbacks.tooltip({text: "", display: 'none'})
+        props.callbacks.tooltipStyle({display: 'none'})
+        props.callbacks.tooltipContents([])
       }}
     >
       <meshPhongMaterial

@@ -73,6 +73,25 @@ const getMapBounds=(setProps)=>{
       });
   }
 
+  const getResults=(setProps)=>{
+    fetch('/assets/ea1_results.json'
+    ,{
+      headers : { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+       }
+    }
+    )
+      .then(function(response){
+        return response.json();
+      })
+      .then(function(myJson) {
+        const data = {}
+        data.results = myJson
+        setProps(data)
+      });
+  }
+
 class App extends Component {
 
     constructor() {
@@ -107,6 +126,10 @@ class App extends Component {
 
         getMapTurbines(
             this.setProps
+        )
+
+        getResults(
+          this.setProps
         )
     }
 

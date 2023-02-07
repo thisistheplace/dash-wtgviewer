@@ -19,6 +19,14 @@
         "required": false,
         "description": ""
       },
+      "results": {
+        "type": {
+          "name": "custom",
+          "raw": "ResultPropTypes.Results"
+        },
+        "required": false,
+        "description": ""
+      },
       "tooltip": {
         "type": {
           "name": "bool"
@@ -41,10 +49,42 @@
           "computed": false
         }
       },
+      "colorscale": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "visible": {
+              "name": "bool",
+              "required": false
+            },
+            "min": {
+              "name": "number",
+              "required": false
+            },
+            "max": {
+              "name": "number",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": ""
+      },
+      "colorscale_clicked": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
       "map": {
         "type": {
           "name": "custom",
-          "raw": "FarmPropTypes.Map"
+          "raw": "Map"
         },
         "required": false,
         "description": ""
@@ -53,7 +93,7 @@
         "type": {
           "name": "bool"
         },
-        "required": false,
+        "required": true,
         "description": ""
       },
       "stats": {

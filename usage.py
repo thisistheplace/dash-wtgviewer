@@ -2,8 +2,17 @@
 import json
 from dash import Dash, html, Input, Output, State, no_update
 import dash_bootstrap_components as dbc
+from pydantic import BaseModel
+from pathlib import Path
 
 from dash_wtgviewer.DashWtgviewer import DashWtgviewer
+from dash_wtgviewer.model import Model
+from dash_wtgviewer.model.results import Results
+
+def load_valid_model(json_path: str, model: BaseModel) -> dict:
+    data = json.load(open(Path(json_path).resolve(), "r"))
+    valid = model.parse_obj(data)
+    return json.loads(valid.json())
 
 # external CSS stylesheets
 external_stylesheets = [
@@ -27,11 +36,11 @@ app.layout = html.Div(
     [
         DashWtgviewer(
             id="viewer",
-            model=json.load(open("assets/ea1_model.json", "r")),
-            show_map=True,
-            environment=True,
-            tooltip=True,
-            stats=True,
+            model=load_valid_model("assets/ea1_model.json", Model),
+            show_map=False,
+            environment=False,
+            tooltip=False,
+            stats=False,
             map={
                 "center": {"id": "center", "lat": 52.29733, "lng": 2.35038},
                 "turbines": {
@@ -47,23 +56,47 @@ app.layout = html.Div(
                 dbc.Switch(
                     id="toggle_map",
                     label="map",
-                    value=True,
+                    value=False,
                 ),
                 dbc.Switch(
                     id="toggle_environment",
                     label="environment",
-                    value=True,
+                    value=False,
                 ),
                 dbc.Switch(
                     id="toggle_tooltip",
                     label="tooltip",
-                    value=True,
+                    value=False,
                 ),
                 dbc.Switch(
                     id="toggle_stats",
                     label="stats",
-                    value=True,
+                    value=False,
                 ),
+                dbc.Switch(
+                    id="toggle_results",
+                    label="results",
+                    value=False,
+                ),
+                dbc.Card(
+                    dbc.CardBody(
+                        [
+                            html.H6("Change colorscale limits:", className="card-subtitle"),
+                            dbc.InputGroup(
+                                [
+                                    dbc.Input(id="minimum", placeholder="minimum", type="number"),
+                                    dbc.Input(id="maximum", placeholder="maximum", type="number")
+                                ]
+                            ),
+                            dbc.Button("Done", id="change_colorscale")
+                        ]
+                    ),
+                    id="input_colorscale_limits",
+                    style={
+                        "display": "none",
+                        "position": "center"
+                    }
+                )
             ],
             style={
                 "zIndex": "100",
@@ -78,6 +111,31 @@ app.layout = html.Div(
     style={"width": "100vw", "height": "100vh"},
 )
 
+@app.callback(
+    Output("viewer", "colorscale"),
+    Input("change_colorscale", "n_clicks"),
+    State("minimum", "value"),
+    State("maximum", "value"),
+    prevent_initial_call=True,
+)
+def set_min_max(n, min, max):
+    return {
+        "visible": True,
+        "limits": {
+            "min": min,
+            "max": max
+        }
+    }
+
+@app.callback(
+    Output("input_colorscale_limits", "style"),
+    Input("viewer", "colorscale_clicked"),
+    prevent_initial_call=True,
+)
+def show_min_max(show_viewer):
+    if show_viewer:
+        return {"display": "block"}
+    return {"display": "none"}
 
 @app.callback(
     Output("viewer", "stats"),
@@ -95,6 +153,18 @@ def toggle_map(toggle):
 )
 def toggle_map(toggle):
     return toggle
+
+
+@app.callback(
+    Output("viewer", "results"),
+    Input("toggle_results", "value"),
+    prevent_initial_call=True,
+)
+def toggle_results(toggle):
+    if toggle:
+        return load_valid_model("assets/ea1_results.json", Results)
+    else:
+        return {}
 
 
 @app.callback(

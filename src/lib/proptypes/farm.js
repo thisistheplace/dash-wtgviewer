@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import {Model} from './model'
+import { Results } from './results'
 
 export const LatLng = PropTypes.shape({
   id: PropTypes.string.isRequired,
@@ -30,8 +31,15 @@ export const Farm = PropTypes.shape({
   // Converted from /assets/schema.json using https://transform.tools/json-to-proptypes
   id: PropTypes.string.isRequired,
   model: Model.isRequired,
+  results: Results,
   tooltip: PropTypes.bool,
-  sea: PropTypes.bool,
+  environment: PropTypes.bool,
+  colorscale: PropTypes.shape({
+    visible: PropTypes.bool,
+    limits: Results.Limits,
+  }),
+  colorscale_clicked: PropTypes.bool,
   map: Map,
-  show_map: PropTypes.bool.isRequired
+  show_map: PropTypes.bool.isRequired,
+  stats: false
 })

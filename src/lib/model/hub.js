@@ -52,11 +52,13 @@ const Hub = (props) => {
     geometry={geom}
     onPointerOver={() => {
         setHover(true)
-        props.callbacks.tooltip({text: props.name, display: 'block'})
+        props.callbacks.tooltipStyle({display: 'block'})
+        props.callbacks.tooltipContents([props.name])
     }}
     onPointerOut={() => {
         setHover(false)
-        props.callbacks.tooltip({text: "", display: 'none'})
+        props.callbacks.tooltipStyle({display: 'none'})
+        props.callbacks.tooltipContents([])
     }}
   >
     <meshPhongMaterial opacity={1.0} transparent={false} color={hovered ? 'red' : defaultColor} side={THREE.DoubleSide}/>

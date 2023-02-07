@@ -1,25 +1,40 @@
+import pytest
+
 from dash.testing.application_runners import import_app
 
+from .browser import DashFixChromeLoad
 
-# Basic test for the component rendering.
-# The dash_duo pytest fixture is installed with dash (v1.0+)
-def test_render_component(dash_duo):
-    # Start a dash app contained as the variable `app` in `usage.py`
-    app = import_app("usage")
-    dash_duo.start_server(app)
+# patch dash_duo fixture to use correct chrome driver
+@pytest.fixture
+def dash_test(request, dash_thread_server, tmpdir) -> DashFixChromeLoad:
+    with DashFixChromeLoad(
+        dash_thread_server,
+        browser=request.config.getoption("webdriver"),
+        remote=request.config.getoption("remote"),
+        remote_url=request.config.getoption("remote_url"),
+        headless=request.config.getoption("headless"),
+        options=request.config.hook.pytest_setup_options(),
+        download_path=tmpdir.mkdir("download").strpath,
+        percy_assets_root=request.config.getoption("percy_assets"),
+        percy_finalize=request.config.getoption("nopercyfinalize"),
+        pause=request.config.getoption("pause"),
+    ) as dc:
+        yield dc
 
-    # Get the generated component input with selenium
-    # The html input will be a children of the #input dash component
-    my_component = dash_duo.find_element("#input > input")
+class TestComponentRenders:
+    # Basic test for the component rendering.
+    def test_toggle_map(self, dash_test):
+        # Start a dash app contained as the variable `app` in `usage.py`
+        app = import_app("usage")
+        dash_test.start_server(app)
 
-    assert "my-value" == my_component.get_attribute("value")
+        # Get the generated component viewer with selenium
+        # The html viewer will be a children of the #viewer dash component
+        assert dash_test.wait_for_element("#viewer")
 
-    # Clear the input
-    dash_duo.clear_input(my_component)
+        # get map toggle
+        # toggle_map = dash_test.wait_for_element("#toggle_map")
+        # assert toggle_map.get_attribute("value") == "off"
+        
 
-    # Send keys to the custom input.
-    my_component.send_keys("Hello dash")
-
-    # Wait for the text to equal, if after the timeout (default 10 seconds)
-    # the text is not equal it will fail the test.
-    dash_duo.wait_for_text_to_equal("#output", "You have entered Hello dash")
+        
