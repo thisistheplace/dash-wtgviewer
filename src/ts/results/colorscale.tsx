@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import React, {useRef, useEffect, useState} from 'react'
 import * as chroma from 'chroma-js'
 
@@ -6,14 +5,21 @@ import * as ResultPropTypes from './../proptypes/results'
 
 const EXTREMES = "#ADADAD"
 
-const makeScale = (min, max) => {
+type ResultsColorScaleProps = {
+  results: ResultPropTypes.Results,
+  number: number,
+  limits: ResultPropTypes.Limits,
+  clicked: Function
+}
+
+const makeScale = (min: number, max: number) => {
   const range = max - min
   return chroma
     .scale([EXTREMES, EXTREMES, "blue", "yellow", "red", EXTREMES, EXTREMES])
     .domain([min - range, min - range / 1000, min, min + range / 2, max, max + range / 1000, max + range])
 }
 
-const ResultsColorScale = (props) => {
+const ResultsColorScale = (props: ResultsColorScaleProps) => {
   const ref = useRef()
   const [results, setResults] = useState(null)
   const [colors, setColors] = useState([])
@@ -106,13 +112,6 @@ const ResultsColorScale = (props) => {
 
 ResultsColorScale.defaultProps = {
   number: 1000
-}
-
-ResultsColorScale.propTypes = {
-  results: ResultPropTypes.Results,
-  number: PropTypes.number,
-  limits: ResultPropTypes.Limits,
-  clicked: PropTypes.func
 }
 
 export { ResultsColorScale, makeScale }

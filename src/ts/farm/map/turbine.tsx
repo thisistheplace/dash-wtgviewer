@@ -1,9 +1,12 @@
-import PropTypes from 'prop-types'
 import React, {useEffect, useRef, useState, useMemo} from 'react'
 import { Circle, Popup } from 'react-leaflet'
 import * as FarmPropTypes from './../../proptypes/farm'
 
-const Turbine = (props) => {
+type TurbineProps = {
+  index: number,
+} & FarmPropTypes.Turbine
+
+const Turbine = (props: TurbineProps) => {
   const ref = useRef()
   const [position, setPosition] = useState(props.position)
 
@@ -42,11 +45,6 @@ const Turbine = (props) => {
 }
 
 Turbine.defaultProps = {
-}
-
-Turbine.propTypes = {
-  index: PropTypes.number,
-  ...FarmPropTypes.Turbine
 }
 
 export {Turbine}

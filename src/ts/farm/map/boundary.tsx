@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react'
 import { Polygon } from 'react-leaflet'
 import * as FarmPropTypes from './../../proptypes/farm'
 
-const Boundary = (props) => {
+
+const Boundary = (props: FarmPropTypes.Boundary) => {
 
   const [points, setPoints] = useState([])
 
@@ -28,7 +29,5 @@ const Boundary = (props) => {
 Boundary.defaultProps = {
   positions: []
 }
-
-Boundary.propTypes = FarmPropTypes.Boundary
 
 export {Boundary}

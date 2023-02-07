@@ -1,3 +1,5 @@
+import * as ResultPropTypes from './../proptypes/results'
+
 export type Node = {
   id: number,
   x: number,
@@ -77,16 +79,19 @@ export type Rotor = {
   node: Node
 }
 
+export type Callbacks = {
+  tooltipStyle: Function,
+  tooltipContents: Function
+}
+
 export type Model = {
   name: string,
   id: string,
   foundation: Foundation,
   tower: Tower,
   nacelle: Nacelle,
-  rotor: Rotor
-}
-
-export type Callbacks = {
-  tooltipStyle: Function,
-  tooltipContents: Function
+  rotor: Rotor,
+  callbacks: Callbacks,
+  position: number[],
+  results: ResultPropTypes.Results
 }

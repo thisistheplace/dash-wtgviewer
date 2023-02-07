@@ -3,7 +3,7 @@ import { Results, Limits } from './results'
 
 export type LatLng = {
   id: string,
-  lat: string,
+  lat: number,
   lng: number
 }
 
@@ -19,13 +19,20 @@ export type Boundary = {
 }
 
 export type Turbines = {
-  positions: Turbine[]
+  positions: Turbine[],
+  callbacks: {
+    [key: string]: Function 
+  }
 }
 
 export type Map = {
   center: LatLng,
   boundary: Boundary,
-  turbines: Turbines
+  turbines: Turbines,
+  style: object,
+  callbacks: {
+    [key: string]: Function 
+  }
 }
 
 export type Farm = {

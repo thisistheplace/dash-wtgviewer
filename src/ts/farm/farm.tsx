@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import * as FarmPropTypes from '../proptypes/farm'
 
 import React, { Suspense, useState, useEffect, useRef } from 'react'
@@ -18,7 +17,11 @@ import { ResultsColorScale } from '../results/colorscale'
 const FOCUS_HEIGHT = 50
 const MOBILE_SIZE = 1000
 
-const Farm = (props) => {
+type FarmProps = {
+    setParentProps: Function
+} & FarmPropTypes.Farm
+
+const Farm = (props: FarmProps) => {
     const {setParentProps} = props
     const ref = useRef()
     // Tooltip data
@@ -129,11 +132,6 @@ Farm.defaultProps = {
     },
     colorscale_clicked: false,
     stats: false
-}
-
-Farm.propTypes = {
-    setParentProps: PropTypes.func,
-    ...FarmPropTypes.Farm
 }
 
 export { Farm }

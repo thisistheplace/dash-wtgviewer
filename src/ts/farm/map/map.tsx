@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import React, {useState, useEffect} from 'react'
 import { MapContainer, TileLayer, useMap, ZoomControl } from 'react-leaflet'
 import L from 'leaflet'
@@ -23,17 +22,16 @@ function latLngtoXY(latLngArray){
   return xy
 }
 
-
 function ChangeView({ center }) {
   const map = useMap()
   map.setView(center)
   return null
 }
 
-const Map = (props) => {
+const Map = (props: FarmPropTypes.Map) => {
   const [center, setCenter] = useState([0, 0])
-  const [boundary, setBoundary] = useState([])
-  const [turbines, setTurbines] = useState([])
+  const [boundary, setBoundary] = useState(null)
+  const [turbines, setTurbines] = useState(null)
 
   useEffect(()=>{
     if (props.center){
@@ -68,10 +66,6 @@ const Map = (props) => {
 }
 
 Map.defaultProps = {
-}
-
-Map.propTypes = {
-  ...FarmPropTypes.Map
 }
 
 export {Map}

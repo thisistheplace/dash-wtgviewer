@@ -1,9 +1,17 @@
-import PropTypes from 'prop-types'
 import React, { useState, useEffect } from 'react'
 
-const Tooltip = (props) => {
+type TooltipProps = {
+  tooltipStyle: {
+    text: string,
+    display: string
+  },
+  tooltipContents: string[],
+  show: boolean
+}
 
-  const [mousePos, setMousePos] = useState({})
+const Tooltip = (props: TooltipProps) => {
+
+  const [mousePos, setMousePos] = useState({x: 0, y: 0})
   // Tooltip style to react to props
   const tooltipStyle = {
     display: props.show ? props.tooltipStyle.display : 'none',
@@ -34,15 +42,6 @@ const Tooltip = (props) => {
         }
     </div>
   )
-}
-
-Tooltip.propTypes = {
-  tooltipStyle: PropTypes.shape({
-    text: PropTypes.any,
-    display: PropTypes.string
-  }),
-  tooltipContents: PropTypes.arrayOf(PropTypes.string),
-  show: PropTypes.bool
 }
 
 export {Tooltip}

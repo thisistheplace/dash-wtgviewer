@@ -8,13 +8,7 @@ import * as ResultPropTypes from './../proptypes/results'
 import { processResults } from '../results/process'
 
 // TODO: should make cylinders instanced meshes with scaling / rotation etc
-type ModelProps = {
-  callbacks: ModelPropTypes.Callbacks,
-  position: number[],
-  results: ResultPropTypes.Results
-} & ModelPropTypes.Model
-
-const Model = forwardRef((props: ModelProps, ref: unknown) => {
+const Model = forwardRef((props: ModelPropTypes.Model, ref: unknown) => {
 
   const [results, setResults] = useState(null)
 

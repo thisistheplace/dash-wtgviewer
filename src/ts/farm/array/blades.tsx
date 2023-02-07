@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import React, {useRef, useState, useEffect} from 'react'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
@@ -10,7 +9,19 @@ const ROTATION_INCREMENT = -0.01
 const ROTOR_NAME = "rotor"
 const BLADES_NAME = "blades"
 
-const BladesArray = (props) => {
+type BladesArrayProps = {
+  modelRef: any,
+  visible: boolean,
+  combine: boolean,
+  positions: {
+    x: number,
+    y: number
+  }[],
+  currentTurbine: number,
+  color: string
+}
+
+const BladesArray = (props: BladesArrayProps) => {
   const ref = useRef()
   const [combine, setCombine] = useState(props.combine)
   const [count, setCount] = useState(0)
@@ -76,20 +87,6 @@ const BladesArray = (props) => {
 
 BladesArray.defaultProps = {
   color: 0xadadad
-}
-
-BladesArray.propTypes = {
-  modelRef: PropTypes.any.isRequired,
-  visible: PropTypes.bool.isRequired,
-  combine: PropTypes.bool.isRequired,
-  positions: PropTypes.arrayOf(
-    PropTypes.shape({
-      x: PropTypes.number,
-      y: PropTypes.number
-    })
-  ).isRequired,
-  currentTurbine: PropTypes.number.isRequired,
-  color: PropTypes.string
 }
 
 export {BladesArray}

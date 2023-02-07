@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import * as FarmPropTypes from './../../proptypes/farm'
 import { Turbine } from './turbine'
 
-const Turbines = (props) => {
+const Turbines = (props: FarmPropTypes.Turbines) => {
   const [positions, setPositions] = useState([])
 
   useEffect(()=>{
@@ -24,7 +24,5 @@ const Turbines = (props) => {
 Turbines.defaultProps = {
   positions: []
 }
-
-Turbines.propTypes = FarmPropTypes.Turbines
 
 export {Turbines}

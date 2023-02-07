@@ -1,7 +1,7 @@
 import { makeScale } from './colorscale'
 import * as ResultPropTypes from './../proptypes/results'
 
-const processResults = (results) => {
+const processResults = (results: ResultPropTypes.Results) => {
   if (!results.element_results){return {}}
   // check for limits
   var min = Infinity
@@ -38,7 +38,5 @@ const processResults = (results) => {
   })
   return output
 }
-
-processResults.propTypes = ResultPropTypes.Results
 
 export {processResults}
