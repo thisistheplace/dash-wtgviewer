@@ -1,6 +1,5 @@
-import {useEffect} from 'react';
-import {useThree} from '@react-three/fiber';
-import * as THREE from 'three';
+import {useEffect} from 'react'
+import {useThree} from '@react-three/fiber'
 import { OBJExporter } from 'three/examples/jsm/exporters/OBJExporter.js'
 
 function exportToObj(scene) {

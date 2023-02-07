@@ -7,7 +7,12 @@ import * as THREE from 'three'
 
 extend({THREE, Sky})
 
-const Daytime = (props) => {
+type DaytimeProps = {
+  sunRef: any,
+  size: number
+}
+
+const Daytime = (props: DaytimeProps) => {
 
   const ref = useRef()
 
@@ -42,11 +47,6 @@ const Daytime = (props) => {
       </sky>
     </>
   )
-}
-
-Daytime.propTypes = {
-  sunRef: PropTypes.any.isRequired,
-  size: PropTypes.number.isRequired
 }
 
 export {Daytime}

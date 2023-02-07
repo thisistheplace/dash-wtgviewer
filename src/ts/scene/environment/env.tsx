@@ -1,10 +1,14 @@
-import PropTypes from 'prop-types'
 import React, { createRef, useRef} from 'react'
 
 import { Ocean } from './sea'
 import { Daytime } from './daytime'
 
-const Environment = (props) => {
+type EnvironmentProps = {
+    visible: boolean,
+    size: number
+}
+
+const Environment = (props: EnvironmentProps) => {
     const ref = useRef()
     const sunRef = createRef()
     return (
@@ -18,10 +22,5 @@ const Environment = (props) => {
 Environment.defaultProps = {
     size: 70000
 }
-
-Environment.propTypes = {
-    visible: PropTypes.bool.isRequired,
-    size: PropTypes.number
-  }
 
 export {Environment}

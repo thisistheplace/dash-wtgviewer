@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import React, {useEffect, useRef, useState} from 'react'
 import { useFrame, extend } from '@react-three/fiber'
 import { Water } from './water'
@@ -7,7 +6,12 @@ import * as THREE from 'three'
 
 extend({THREE, Water})
 
-const Ocean = (props) => {
+type OceanProps = {
+  sunRef: any,
+  size: number
+}
+
+const Ocean = (props: OceanProps) => {
 
   const ref = useRef()
   const [geom, setGeom] = useState(new THREE.BufferGeometry())
@@ -45,11 +49,6 @@ const Ocean = (props) => {
   return (
     <water ref={ref} args={[geom, options]} />
   )
-}
-
-Ocean.propTypes = {
-  sunRef: PropTypes.any.isRequired,
-  size: PropTypes.number.isRequired
 }
 
 export {Ocean}
