@@ -9,7 +9,7 @@ export type LatLng = {
 
 export type Turbine = {
   position: LatLng,
-  callbacks: {
+  callbacks?: {
     [key: string]: Function 
   }
 }
@@ -20,7 +20,7 @@ export type Boundary = {
 
 export type Turbines = {
   positions: Turbine[],
-  callbacks: {
+  callbacks?: {
     [key: string]: Function 
   }
 }
@@ -28,26 +28,51 @@ export type Turbines = {
 export type Map = {
   center: LatLng,
   boundary: Boundary,
-  turbines: Turbines,
-  style: object,
-  callbacks: {
+  turbines?: Turbines,
+  style?: object,
+  callbacks?: {
     [key: string]: Function 
   }
 }
 
 export type Farm = {
-  // Converted from /assets/schema.json using https://transform.tools/json-to-proptypes
-  id: string,
-  model: Model,
-  results: Results,
-  tooltip: boolean,
-  environment: boolean,
-  colorscale: {
+  /**
+   * JSON definition of model. See pydantic model in dash_wtgviewer.Model.
+   */
+  model?: Model,
+  /**
+   * JSON definition of results. See pydantic model in dash_wtgviewer.Results.
+   */
+  results?: Results,
+  /**
+   * Tooltip visible on mouseover if set to True.
+   */
+  tooltip?: boolean,
+  /**
+   * Turbine array, sea and sky visible if set to True.
+   */
+  environment?: boolean,
+  /**
+   * Makes colorscale visible and manually sets the results colorscale limits if provided.
+   */
+  colorscale?: {
     visible: boolean,
     limits: Limits,
   },
-  colorscale_clicked: boolean,
-  map: Map,
-  show_map: boolean,
-  stats: false
+  /**
+   * Count of number of clicks on colorscale.
+   */
+  colorscale_clicked?: number,
+  /**
+   * JSON definition of map data. See pydantic model in dash_wtgviewer.Map.
+   */
+  map?: Map,
+  /**
+   * Interactive map overlay visible if set to True.
+   */
+  show_map?: boolean,
+  /**
+   * Threejs FPS stats visible if set to True.
+   */
+  stats?: boolean
 }

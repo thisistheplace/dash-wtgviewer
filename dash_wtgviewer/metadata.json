@@ -1,108 +1,1300 @@
 {
-  "src/lib/components/DashWtgviewer.react.js": {
-    "description": "",
+  "src/ts/components/DashWtgviewer.tsx": {
     "displayName": "DashWtgviewer",
-    "methods": [],
+    "description": "",
     "props": {
-      "id": {
-        "type": {
-          "name": "string"
-        },
-        "required": true,
-        "description": ""
-      },
       "model": {
-        "type": {
-          "name": "custom",
-          "raw": "ModelPropTypes.Model.isRequired"
-        },
+        "description": "JSON definition of model. See pydantic model in dash_wtgviewer.Model.",
         "required": false,
-        "description": ""
+        "type": {
+          "name": "shape",
+          "value": {
+            "name": {
+              "description": "",
+              "required": true,
+              "name": "string",
+              "raw": "string"
+            },
+            "id": {
+              "description": "",
+              "required": true,
+              "name": "string",
+              "raw": "string"
+            },
+            "foundation": {
+              "description": "",
+              "required": false,
+              "name": "shape",
+              "value": {
+                "name": {
+                  "description": "",
+                  "required": true,
+                  "name": "string",
+                  "raw": "string"
+                },
+                "id": {
+                  "description": "",
+                  "required": true,
+                  "name": "string",
+                  "raw": "string"
+                },
+                "element_set": {
+                  "description": "",
+                  "required": true,
+                  "name": "shape",
+                  "value": {
+                    "name": {
+                      "description": "",
+                      "required": true,
+                      "name": "string",
+                      "raw": "string"
+                    },
+                    "id": {
+                      "description": "",
+                      "required": true,
+                      "name": "string",
+                      "raw": "string"
+                    },
+                    "elements": {
+                      "description": "",
+                      "required": true,
+                      "name": "arrayOf",
+                      "value": {
+                        "name": "node",
+                        "raw": "Element"
+                      },
+                      "raw": "Element[]"
+                    }
+                  },
+                  "raw": "ElementSet"
+                }
+              },
+              "raw": "Foundation"
+            },
+            "tower": {
+              "description": "",
+              "required": false,
+              "name": "shape",
+              "value": {
+                "name": {
+                  "description": "",
+                  "required": true,
+                  "name": "string",
+                  "raw": "string"
+                },
+                "id": {
+                  "description": "",
+                  "required": true,
+                  "name": "string",
+                  "raw": "string"
+                },
+                "element_set": {
+                  "description": "",
+                  "required": true,
+                  "name": "shape",
+                  "value": {
+                    "name": {
+                      "description": "",
+                      "required": true,
+                      "name": "string",
+                      "raw": "string"
+                    },
+                    "id": {
+                      "description": "",
+                      "required": true,
+                      "name": "string",
+                      "raw": "string"
+                    },
+                    "elements": {
+                      "description": "",
+                      "required": true,
+                      "name": "arrayOf",
+                      "value": {
+                        "name": "node",
+                        "raw": "Element"
+                      },
+                      "raw": "Element[]"
+                    }
+                  },
+                  "raw": "ElementSet"
+                }
+              },
+              "raw": "Tower"
+            },
+            "nacelle": {
+              "description": "",
+              "required": false,
+              "name": "shape",
+              "value": {
+                "name": {
+                  "description": "",
+                  "required": true,
+                  "name": "string",
+                  "raw": "string"
+                },
+                "id": {
+                  "description": "",
+                  "required": true,
+                  "name": "string",
+                  "raw": "string"
+                },
+                "element": {
+                  "description": "",
+                  "required": true,
+                  "name": "node",
+                  "raw": "Element"
+                }
+              },
+              "raw": "Nacelle"
+            },
+            "rotor": {
+              "description": "",
+              "required": false,
+              "name": "shape",
+              "value": {
+                "name": {
+                  "description": "",
+                  "required": true,
+                  "name": "string",
+                  "raw": "string"
+                },
+                "id": {
+                  "description": "",
+                  "required": true,
+                  "name": "string",
+                  "raw": "string"
+                },
+                "blades": {
+                  "description": "",
+                  "required": true,
+                  "name": "arrayOf",
+                  "value": {
+                    "name": "shape",
+                    "value": {
+                      "name": {
+                        "description": "",
+                        "required": true,
+                        "name": "string",
+                        "raw": "string"
+                      },
+                      "id": {
+                        "description": "",
+                        "required": true,
+                        "name": "string",
+                        "raw": "string"
+                      },
+                      "url": {
+                        "description": "",
+                        "required": true,
+                        "name": "string",
+                        "raw": "string"
+                      },
+                      "scale": {
+                        "description": "",
+                        "required": true,
+                        "name": "shape",
+                        "value": {
+                          "x": {
+                            "description": "",
+                            "required": true,
+                            "name": "number",
+                            "raw": "number"
+                          },
+                          "y": {
+                            "description": "",
+                            "required": true,
+                            "name": "number",
+                            "raw": "number"
+                          },
+                          "z": {
+                            "description": "",
+                            "required": true,
+                            "name": "number",
+                            "raw": "number"
+                          }
+                        },
+                        "raw": "{ x: number; y: number; z: number; }"
+                      },
+                      "axis": {
+                        "description": "",
+                        "required": true,
+                        "name": "shape",
+                        "value": {
+                          "x": {
+                            "description": "",
+                            "required": true,
+                            "name": "number",
+                            "raw": "number"
+                          },
+                          "y": {
+                            "description": "",
+                            "required": true,
+                            "name": "number",
+                            "raw": "number"
+                          },
+                          "z": {
+                            "description": "",
+                            "required": true,
+                            "name": "number",
+                            "raw": "number"
+                          }
+                        },
+                        "raw": "{ x: number; y: number; z: number; }"
+                      },
+                      "rotation": {
+                        "description": "",
+                        "required": true,
+                        "name": "number",
+                        "raw": "number"
+                      }
+                    },
+                    "raw": "Blade"
+                  },
+                  "raw": "Blade[]"
+                },
+                "hub": {
+                  "description": "",
+                  "required": true,
+                  "name": "shape",
+                  "value": {
+                    "name": {
+                      "description": "",
+                      "required": true,
+                      "name": "string",
+                      "raw": "string"
+                    },
+                    "id": {
+                      "description": "",
+                      "required": true,
+                      "name": "string",
+                      "raw": "string"
+                    },
+                    "cone": {
+                      "description": "",
+                      "required": true,
+                      "name": "shape",
+                      "value": {
+                        "id": {
+                          "description": "",
+                          "required": true,
+                          "name": "number",
+                          "raw": "number"
+                        },
+                        "eltype": {
+                          "description": "",
+                          "required": true,
+                          "name": "string",
+                          "raw": "string"
+                        },
+                        "nodes": {
+                          "description": "",
+                          "required": true,
+                          "name": "arrayOf",
+                          "value": {
+                            "name": "shape",
+                            "value": {
+                              "id": {
+                                "description": "",
+                                "required": true,
+                                "name": "number",
+                                "raw": "number"
+                              },
+                              "x": {
+                                "description": "",
+                                "required": true,
+                                "name": "number",
+                                "raw": "number"
+                              },
+                              "y": {
+                                "description": "",
+                                "required": true,
+                                "name": "number",
+                                "raw": "number"
+                              },
+                              "z": {
+                                "description": "",
+                                "required": true,
+                                "name": "number",
+                                "raw": "number"
+                              }
+                            },
+                            "raw": "Node"
+                          },
+                          "raw": "Node[]"
+                        },
+                        "diameter": {
+                          "description": "",
+                          "required": true,
+                          "name": "number",
+                          "raw": "number"
+                        }
+                      },
+                      "raw": "{ id: number; eltype: string; nodes: Node[]; diameter: number; }"
+                    }
+                  },
+                  "raw": "Hub"
+                },
+                "node": {
+                  "description": "",
+                  "required": true,
+                  "name": "shape",
+                  "value": {
+                    "id": {
+                      "description": "",
+                      "required": true,
+                      "name": "number",
+                      "raw": "number"
+                    },
+                    "x": {
+                      "description": "",
+                      "required": true,
+                      "name": "number",
+                      "raw": "number"
+                    },
+                    "y": {
+                      "description": "",
+                      "required": true,
+                      "name": "number",
+                      "raw": "number"
+                    },
+                    "z": {
+                      "description": "",
+                      "required": true,
+                      "name": "number",
+                      "raw": "number"
+                    }
+                  },
+                  "raw": "Node"
+                }
+              },
+              "raw": "Rotor"
+            },
+            "callbacks": {
+              "description": "",
+              "required": false,
+              "name": "shape",
+              "value": {
+                "tooltipStyle": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "Function"
+                },
+                "tooltipContents": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "Function"
+                }
+              },
+              "raw": "Callbacks"
+            },
+            "position": {
+              "description": "",
+              "required": false,
+              "name": "shape",
+              "value": {
+                "x": {
+                  "description": "",
+                  "required": true,
+                  "name": "number",
+                  "raw": "number"
+                },
+                "y": {
+                  "description": "",
+                  "required": true,
+                  "name": "number",
+                  "raw": "number"
+                },
+                "z": {
+                  "description": "",
+                  "required": true,
+                  "name": "number",
+                  "raw": "number"
+                },
+                "isVector3": {
+                  "description": "",
+                  "required": true,
+                  "name": "shape",
+                  "value": {
+                    "valueOf": {
+                      "description": "Returns the primitive value of the specified object.",
+                      "required": false,
+                      "name": "func",
+                      "raw": "() => boolean"
+                    }
+                  },
+                  "raw": "true"
+                },
+                "set": {
+                  "description": "Sets value of this vector.",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(x: number, y: number, z: number) => Vector3"
+                },
+                "setScalar": {
+                  "description": "Sets all values of this vector.",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(scalar: number) => Vector3"
+                },
+                "setX": {
+                  "description": "Sets x value of this vector.",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(x: number) => Vector3"
+                },
+                "setY": {
+                  "description": "Sets y value of this vector.",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(y: number) => Vector3"
+                },
+                "setZ": {
+                  "description": "Sets z value of this vector.",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(z: number) => Vector3"
+                },
+                "setComponent": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(index: number, value: number) => Vector3"
+                },
+                "getComponent": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(index: number) => number"
+                },
+                "clone": {
+                  "description": "Clones this vector.",
+                  "required": true,
+                  "name": "func",
+                  "raw": "() => Vector3"
+                },
+                "copy": {
+                  "description": "Copies value of v to this vector.",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(v: Vector3) => Vector3"
+                },
+                "add": {
+                  "description": "Adds v to this vector.",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(v: Vector3) => Vector3"
+                },
+                "addScalar": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(s: number) => Vector3"
+                },
+                "addScaledVector": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(v: Vector3, s: number) => Vector3"
+                },
+                "addVectors": {
+                  "description": "Sets this vector to a + b.",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(a: Vector3, b: Vector3) => Vector3"
+                },
+                "sub": {
+                  "description": "Subtracts v from this vector.",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(a: Vector3) => Vector3"
+                },
+                "subScalar": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(s: number) => Vector3"
+                },
+                "subVectors": {
+                  "description": "Sets this vector to a - b.",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(a: Vector3, b: Vector3) => Vector3"
+                },
+                "multiply": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(v: Vector3) => Vector3"
+                },
+                "multiplyScalar": {
+                  "description": "Multiplies this vector by scalar s.",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(s: number) => Vector3"
+                },
+                "multiplyVectors": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(a: Vector3, b: Vector3) => Vector3"
+                },
+                "applyEuler": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(euler: Euler) => Vector3"
+                },
+                "applyAxisAngle": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(axis: Vector3, angle: number) => Vector3"
+                },
+                "applyMatrix3": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(m: Matrix3) => Vector3"
+                },
+                "applyNormalMatrix": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(m: Matrix3) => Vector3"
+                },
+                "applyMatrix4": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(m: Matrix4) => Vector3"
+                },
+                "applyQuaternion": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(q: Quaternion) => Vector3"
+                },
+                "project": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(camera: Camera) => Vector3"
+                },
+                "unproject": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(camera: Camera) => Vector3"
+                },
+                "transformDirection": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(m: Matrix4) => Vector3"
+                },
+                "divide": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(v: Vector3) => Vector3"
+                },
+                "divideScalar": {
+                  "description": "Divides this vector by scalar s.\nSet vector to ( 0, 0, 0 ) if s == 0.",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(s: number) => Vector3"
+                },
+                "min": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(v: Vector3) => Vector3"
+                },
+                "max": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(v: Vector3) => Vector3"
+                },
+                "clamp": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(min: Vector3, max: Vector3) => Vector3"
+                },
+                "clampScalar": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(min: number, max: number) => Vector3"
+                },
+                "clampLength": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(min: number, max: number) => Vector3"
+                },
+                "floor": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "() => Vector3"
+                },
+                "ceil": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "() => Vector3"
+                },
+                "round": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "() => Vector3"
+                },
+                "roundToZero": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "() => Vector3"
+                },
+                "negate": {
+                  "description": "Inverts this vector.",
+                  "required": true,
+                  "name": "func",
+                  "raw": "() => Vector3"
+                },
+                "dot": {
+                  "description": "Computes dot product of this vector and v.",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(v: Vector3) => number"
+                },
+                "lengthSq": {
+                  "description": "Computes squared length of this vector.",
+                  "required": true,
+                  "name": "func",
+                  "raw": "() => number"
+                },
+                "length": {
+                  "description": "Computes length of this vector.",
+                  "required": true,
+                  "name": "func",
+                  "raw": "() => number"
+                },
+                "lengthManhattan": {
+                  "description": "Computes Manhattan length of this vector.\nhttp://en.wikipedia.org/wiki/Taxicab_geometry\n@,deprecated,Use ,{@link ,Vector3#manhattanLength .manhattanLength(),}, instead.",
+                  "required": true,
+                  "name": "func",
+                  "raw": "() => number"
+                },
+                "manhattanLength": {
+                  "description": "Computes the Manhattan length of this vector.\n\nsee \n{@link \nhttp://en.wikipedia.org/wiki/Taxicab_geometry|Wikipedia: Taxicab Geometry\n}",
+                  "required": true,
+                  "name": "func",
+                  "raw": "() => number"
+                },
+                "manhattanDistanceTo": {
+                  "description": "Computes the Manhattan length (distance) from this vector to the given vector v\n\nsee \n{@link \nhttp://en.wikipedia.org/wiki/Taxicab_geometry|Wikipedia: Taxicab Geometry\n}",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(v: Vector3) => number"
+                },
+                "normalize": {
+                  "description": "Normalizes this vector.",
+                  "required": true,
+                  "name": "func",
+                  "raw": "() => Vector3"
+                },
+                "setLength": {
+                  "description": "Normalizes this vector and multiplies it by l.",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(l: number) => Vector3"
+                },
+                "lerp": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(v: Vector3, alpha: number) => Vector3"
+                },
+                "lerpVectors": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(v1: Vector3, v2: Vector3, alpha: number) => Vector3"
+                },
+                "cross": {
+                  "description": "Sets this vector to cross product of itself and v.",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(a: Vector3) => Vector3"
+                },
+                "crossVectors": {
+                  "description": "Sets this vector to cross product of a and b.",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(a: Vector3, b: Vector3) => Vector3"
+                },
+                "projectOnVector": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(v: Vector3) => Vector3"
+                },
+                "projectOnPlane": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(planeNormal: Vector3) => Vector3"
+                },
+                "reflect": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(vector: Vector3) => Vector3"
+                },
+                "angleTo": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(v: Vector3) => number"
+                },
+                "distanceTo": {
+                  "description": "Computes distance of this vector to v.",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(v: Vector3) => number"
+                },
+                "distanceToSquared": {
+                  "description": "Computes squared distance of this vector to v.",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(v: Vector3) => number"
+                },
+                "distanceToManhattan": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(v: Vector3) => number"
+                },
+                "setFromSpherical": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(s: Spherical) => Vector3"
+                },
+                "setFromSphericalCoords": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(r: number, phi: number, theta: number) => Vector3"
+                },
+                "setFromCylindrical": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(s: Cylindrical) => Vector3"
+                },
+                "setFromCylindricalCoords": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(radius: number, theta: number, y: number) => Vector3"
+                },
+                "setFromMatrixPosition": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(m: Matrix4) => Vector3"
+                },
+                "setFromMatrixScale": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(m: Matrix4) => Vector3"
+                },
+                "setFromMatrixColumn": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(matrix: Matrix4, index: number) => Vector3"
+                },
+                "setFromMatrix3Column": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(matrix: Matrix3, index: number) => Vector3"
+                },
+                "setFromEuler": {
+                  "description": "Sets this vector's \n{@link \nx \n}\n, \n{@link \ny \n}\n and \n{@link \nz \n}\n components from the x, y, and z components of the specified \n{@link \nEuler Euler Angle\n}\n.",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(e: Euler) => Vector3"
+                },
+                "equals": {
+                  "description": "Checks for strict equality of this vector and v.",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(v: Vector3) => boolean"
+                },
+                "fromArray": {
+                  "description": "Sets this vector's x, y and z value from the provided array or array-like.\n@,param,array, ,the source array or array-like.\n@,param,offset, ,(optional) offset into the array. Default is 0.",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(array: number[] | ArrayLike<number>, offset?: number) => Vector3"
+                },
+                "toArray": {
+                  "description": "Returns an array [x, y, z], or copies x, y and z into the provided array.\n\n\nCopies x, y and z into the provided array-like.\n@,param,array, ,(optional) array to store the vector to. If this is not provided, a new array will be created.\n@,param,offset, ,(optional) optional offset into the array.\n@,return,The created or provided array.\n@,param,array, ,array-like to store the vector to.\n@,param,offset, ,(optional) optional offset into the array-like.\n@,return,The provided array-like.",
+                  "required": true,
+                  "name": "array",
+                  "raw": "{ (array?: number[], offset?: number): number[]; (array?: Vector3Tuple, offset?: 0): Vector3Tuple; (array: ArrayLike<number>, offset?: number): ArrayLike<...>; }"
+                },
+                "fromBufferAttribute": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "(attribute: BufferAttribute | InterleavedBufferAttribute, index: number) => Vector3"
+                },
+                "random": {
+                  "description": "Sets this vector's x, y and z from Math.random",
+                  "required": true,
+                  "name": "func",
+                  "raw": "() => Vector3"
+                },
+                "randomDirection": {
+                  "description": "",
+                  "required": true,
+                  "name": "func",
+                  "raw": "() => Vector3"
+                }
+              },
+              "raw": "Vector3"
+            },
+            "results": {
+              "description": "",
+              "required": false,
+              "name": "shape",
+              "value": {
+                "id": {
+                  "description": "",
+                  "required": true,
+                  "name": "string",
+                  "raw": "string"
+                },
+                "element_results": {
+                  "description": "",
+                  "required": true,
+                  "name": "arrayOf",
+                  "value": {
+                    "name": "shape",
+                    "value": {
+                      "id": {
+                        "description": "",
+                        "required": true,
+                        "name": "string",
+                        "raw": "string"
+                      },
+                      "target": {
+                        "description": "",
+                        "required": true,
+                        "name": "string",
+                        "raw": "string"
+                      },
+                      "results": {
+                        "description": "",
+                        "required": true,
+                        "name": "arrayOf",
+                        "value": {
+                          "name": "shape",
+                          "value": {
+                            "value": {
+                              "description": "",
+                              "required": true,
+                              "name": "number",
+                              "raw": "number"
+                            },
+                            "color": {
+                              "description": "",
+                              "required": true,
+                              "name": "string",
+                              "raw": "string"
+                            }
+                          },
+                          "raw": "Result"
+                        },
+                        "raw": "Result[]"
+                      }
+                    },
+                    "raw": "ElementResults"
+                  },
+                  "raw": "ElementResults[]"
+                },
+                "limits": {
+                  "description": "",
+                  "required": false,
+                  "name": "shape",
+                  "value": {
+                    "min": {
+                      "description": "",
+                      "required": true,
+                      "name": "number",
+                      "raw": "number"
+                    },
+                    "max": {
+                      "description": "",
+                      "required": true,
+                      "name": "number",
+                      "raw": "number"
+                    }
+                  },
+                  "raw": "Limits"
+                }
+              },
+              "raw": "Results"
+            }
+          },
+          "raw": "Model"
+        }
       },
       "results": {
-        "type": {
-          "name": "custom",
-          "raw": "ResultPropTypes.Results"
-        },
+        "description": "JSON definition of results. See pydantic model in dash_wtgviewer.Results.",
         "required": false,
-        "description": ""
+        "type": {
+          "name": "shape",
+          "value": {
+            "id": {
+              "description": "",
+              "required": true,
+              "name": "string",
+              "raw": "string"
+            },
+            "element_results": {
+              "description": "",
+              "required": true,
+              "name": "arrayOf",
+              "value": {
+                "name": "shape",
+                "value": {
+                  "id": {
+                    "description": "",
+                    "required": true,
+                    "name": "string",
+                    "raw": "string"
+                  },
+                  "target": {
+                    "description": "",
+                    "required": true,
+                    "name": "string",
+                    "raw": "string"
+                  },
+                  "results": {
+                    "description": "",
+                    "required": true,
+                    "name": "arrayOf",
+                    "value": {
+                      "name": "shape",
+                      "value": {
+                        "value": {
+                          "description": "",
+                          "required": true,
+                          "name": "number",
+                          "raw": "number"
+                        },
+                        "color": {
+                          "description": "",
+                          "required": true,
+                          "name": "string",
+                          "raw": "string"
+                        }
+                      },
+                      "raw": "Result"
+                    },
+                    "raw": "Result[]"
+                  }
+                },
+                "raw": "ElementResults"
+              },
+              "raw": "ElementResults[]"
+            },
+            "limits": {
+              "description": "",
+              "required": false,
+              "name": "shape",
+              "value": {
+                "min": {
+                  "description": "",
+                  "required": true,
+                  "name": "number",
+                  "raw": "number"
+                },
+                "max": {
+                  "description": "",
+                  "required": true,
+                  "name": "number",
+                  "raw": "number"
+                }
+              },
+              "raw": "Limits"
+            }
+          },
+          "raw": "Results"
+        }
       },
       "tooltip": {
-        "type": {
-          "name": "bool"
-        },
+        "description": "Tooltip visible on mouseover if set to True.",
         "required": false,
-        "description": "",
         "defaultValue": {
           "value": "true",
           "computed": false
+        },
+        "type": {
+          "name": "bool",
+          "raw": "boolean"
         }
       },
       "environment": {
-        "type": {
-          "name": "bool"
-        },
+        "description": "Turbine array, sea and sky visible if set to True.",
         "required": false,
-        "description": "",
         "defaultValue": {
           "value": "true",
           "computed": false
+        },
+        "type": {
+          "name": "bool",
+          "raw": "boolean"
         }
       },
       "colorscale": {
+        "description": "Makes colorscale visible and manually sets the results colorscale limits if provided.",
+        "required": false,
         "type": {
           "name": "shape",
           "value": {
             "visible": {
+              "description": "",
+              "required": true,
               "name": "bool",
-              "required": false
+              "raw": "boolean"
             },
-            "min": {
-              "name": "number",
-              "required": false
-            },
-            "max": {
-              "name": "number",
-              "required": false
+            "limits": {
+              "description": "",
+              "required": true,
+              "name": "shape",
+              "value": {
+                "min": {
+                  "description": "",
+                  "required": true,
+                  "name": "number",
+                  "raw": "number"
+                },
+                "max": {
+                  "description": "",
+                  "required": true,
+                  "name": "number",
+                  "raw": "number"
+                }
+              },
+              "raw": "Limits"
             }
-          }
-        },
-        "required": false,
-        "description": ""
+          },
+          "raw": "{ visible: boolean; limits: Limits; }"
+        }
       },
       "colorscale_clicked": {
-        "type": {
-          "name": "bool"
-        },
+        "description": "Count of number of clicks on colorscale.",
         "required": false,
-        "description": "",
         "defaultValue": {
           "value": "false",
           "computed": false
+        },
+        "type": {
+          "name": "number",
+          "raw": "number"
         }
       },
       "map": {
-        "type": {
-          "name": "custom",
-          "raw": "Map"
-        },
+        "description": "JSON definition of map data. See pydantic model in dash_wtgviewer.Map.",
         "required": false,
-        "description": ""
+        "type": {
+          "name": "shape",
+          "value": {
+            "center": {
+              "description": "",
+              "required": true,
+              "name": "shape",
+              "value": {
+                "id": {
+                  "description": "",
+                  "required": true,
+                  "name": "string",
+                  "raw": "string"
+                },
+                "lat": {
+                  "description": "",
+                  "required": true,
+                  "name": "number",
+                  "raw": "number"
+                },
+                "lng": {
+                  "description": "",
+                  "required": true,
+                  "name": "number",
+                  "raw": "number"
+                }
+              },
+              "raw": "LatLng"
+            },
+            "boundary": {
+              "description": "",
+              "required": true,
+              "name": "shape",
+              "value": {
+                "positions": {
+                  "description": "",
+                  "required": true,
+                  "name": "arrayOf",
+                  "value": {
+                    "name": "shape",
+                    "value": {
+                      "id": {
+                        "description": "",
+                        "required": true,
+                        "name": "string",
+                        "raw": "string"
+                      },
+                      "lat": {
+                        "description": "",
+                        "required": true,
+                        "name": "number",
+                        "raw": "number"
+                      },
+                      "lng": {
+                        "description": "",
+                        "required": true,
+                        "name": "number",
+                        "raw": "number"
+                      }
+                    },
+                    "raw": "LatLng"
+                  },
+                  "raw": "LatLng[]"
+                }
+              },
+              "raw": "Boundary"
+            },
+            "turbines": {
+              "description": "",
+              "required": false,
+              "name": "shape",
+              "value": {
+                "positions": {
+                  "description": "",
+                  "required": true,
+                  "name": "arrayOf",
+                  "value": {
+                    "name": "shape",
+                    "value": {
+                      "position": {
+                        "description": "",
+                        "required": true,
+                        "name": "shape",
+                        "value": {
+                          "id": {
+                            "description": "",
+                            "required": true,
+                            "name": "string",
+                            "raw": "string"
+                          },
+                          "lat": {
+                            "description": "",
+                            "required": true,
+                            "name": "number",
+                            "raw": "number"
+                          },
+                          "lng": {
+                            "description": "",
+                            "required": true,
+                            "name": "number",
+                            "raw": "number"
+                          }
+                        },
+                        "raw": "LatLng"
+                      },
+                      "callbacks": {
+                        "description": "",
+                        "required": false,
+                        "name": "shape",
+                        "value": {},
+                        "raw": "{ [key: string]: Function; }"
+                      }
+                    },
+                    "raw": "Turbine"
+                  },
+                  "raw": "Turbine[]"
+                },
+                "callbacks": {
+                  "description": "",
+                  "required": false,
+                  "name": "shape",
+                  "value": {},
+                  "raw": "{ [key: string]: Function; }"
+                }
+              },
+              "raw": "Turbines"
+            },
+            "style": {
+              "description": "",
+              "required": false,
+              "name": "object",
+              "raw": "object"
+            },
+            "callbacks": {
+              "description": "",
+              "required": false,
+              "name": "shape",
+              "value": {},
+              "raw": "{ [key: string]: Function; }"
+            }
+          },
+          "raw": "Map"
+        }
       },
       "show_map": {
+        "description": "Interactive map overlay visible if set to True.",
+        "required": false,
         "type": {
-          "name": "bool"
-        },
-        "required": true,
-        "description": ""
+          "name": "bool",
+          "raw": "boolean"
+        }
       },
       "stats": {
-        "type": {
-          "name": "bool"
-        },
+        "description": "Threejs FPS stats visible if set to True.",
         "required": false,
-        "description": ""
+        "type": {
+          "name": "bool",
+          "raw": "boolean"
+        }
+      },
+      "id": {
+        "description": "Unique ID to identify this component in Dash callbacks.",
+        "required": false,
+        "type": {
+          "name": "string",
+          "raw": "string"
+        }
+      },
+      "setProps": {
+        "description": "Update props to trigger callbacks.",
+        "required": true,
+        "type": {
+          "name": "func",
+          "raw": "(props: Record<string, any>) => void"
+        }
       }
-    }
+    },
+    "isContext": false
   }
 }

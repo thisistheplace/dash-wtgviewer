@@ -27,11 +27,11 @@ const ResultsColorScale = (props: ResultsColorScaleProps) => {
   const [min, setMin] = useState(0)
   const [max, setMax] = useState(1)
   const [number, setNumber] = useState(props.number)
-  const [toggleClicked, setToggleClicked] = useState(false)
+  const [countClicked, setCountClicked] = useState(0)
 
   useEffect(()=>{
-    props.clicked(toggleClicked)
-  }, [toggleClicked])
+    props.clicked(countClicked)
+  }, [countClicked])
 
   useEffect(()=>{
     if (!props.limits){return}
@@ -82,7 +82,7 @@ const ResultsColorScale = (props: ResultsColorScaleProps) => {
       {
         results ?
         <div className='colorscale-holder'>
-          <div className='gradient' onClick={() => {setToggleClicked(!toggleClicked)}}>
+          <div className='gradient' onClick={() => {setCountClicked(countClicked + 1)}}>
             <div className='colorscale-text-top'>{max.toExponential(2).toString()}</div>
             <div className='colorscale-text-middle'>{((max + min)/2).toExponential(2).toString()}</div>
             <div className='colorscale-text-bottom'>{min.toExponential(2).toString()}</div>

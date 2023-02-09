@@ -87,11 +87,11 @@ export type Callbacks = {
 export type Model = {
   name: string,
   id: string,
-  foundation: Foundation,
-  tower: Tower,
-  nacelle: Nacelle,
-  rotor: Rotor,
-  callbacks: Callbacks,
-  position: THREE.Vector3,
-  results: ResultPropTypes.Results
+  foundation?: Foundation,
+  tower?: Tower,
+  nacelle?: Nacelle,
+  rotor?: Rotor,
+  callbacks?: Callbacks,
+  position?: THREE.Vector3,
+  results?: ResultPropTypes.Results
 }

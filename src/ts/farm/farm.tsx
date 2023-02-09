@@ -16,6 +16,7 @@ import { ResultsColorScale } from '../results/colorscale'
 
 const FOCUS_HEIGHT = 50
 const MOBILE_SIZE = 1000
+const ORIGIN = new THREE.Vector3(0, 0, 0)
 
 type FarmProps = {
     setParentProps: Function
@@ -34,9 +35,9 @@ const Farm = (props: FarmProps) => {
     // Holds selected turbine position and matrix data
     // idx is index in turbinexy array
     const [currentTurbine, setCurrentTurbine] = useState(0)
-    const [modelPosition, setModelPosition] = useState([0, 0, 0])
+    const [modelPosition, setModelPosition] = useState(ORIGIN)
     // Colorscale
-    const [colorscaleClicked, setColorscaleClicked] = useState(props.colorscale_clicked)
+    const [colorscaleClicked, setColorscaleClicked] = useState(0)
 
     // Camera manipulation
     const [zoom, setZoom] = useState(false)
@@ -46,11 +47,11 @@ const Farm = (props: FarmProps) => {
     useEffect(()=>{
         if (turbinexy.length < 1){return}
         setZoom(true)
-        setModelPosition([
+        setModelPosition(new THREE.Vector3(
             turbinexy[currentTurbine].x,
             turbinexy[currentTurbine].y,
             0
-        ])
+        ))
         setFocus(new THREE.Vector3(
             turbinexy[currentTurbine].x,
             turbinexy[currentTurbine].y,
@@ -83,7 +84,7 @@ const Farm = (props: FarmProps) => {
                 limits={props.colorscale.limits}
                 clicked={setColorscaleClicked}
             />
-            <div id={props.id} style={{"height":"100%", "width":"100%", "display": mapVisible ? "none" : "block"}}>
+            <div style={{"height":"100%", "width":"100%", "display": mapVisible ? "none" : "block"}}>
                 {/* Only select the closest item while raycasting */}
                 <Canvas raycaster={{ filter: items => items.slice(0, 1) }} style={{'background':'white'}} camera={{position: [100, 100, 100], up: [0, 0, 1], fov:50, aspect:window.innerWidth / window.innerHeight, near: 0.1, far: 10000}}>
                     <Controls zoom={zoom} focus={focus} focusHeight={focusHeight}/>

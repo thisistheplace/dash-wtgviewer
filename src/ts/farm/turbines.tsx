@@ -2,7 +2,6 @@ import React, {useRef, useState, useEffect, createRef } from 'react'
 
 import { Model } from '../model/model'
 import * as ModelPropTypes from '../proptypes/model'
-import * as ResultPropTypes from '../proptypes/results'
 
 import { InstanceArray } from './array/instances'
 import { BladesArray } from './array/blades'
@@ -18,8 +17,8 @@ type TurbinesProps = {
 }
 
 const TurbineModel = (props: TurbinesProps) => {
-  const ref = useRef()
-  const modelRef = createRef()
+  const ref = useRef<THREE.Group>(null!)
+  const modelRef = createRef<THREE.Group>()
   const [combine, setCombine] = useState(true)
 
   useEffect(() => {

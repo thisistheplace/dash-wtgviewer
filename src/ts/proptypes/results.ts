@@ -17,5 +17,5 @@ export type Limits = {
 export type Results = {
   id: string,
   element_results: ElementResults[],
-  limits: Limits
+  limits?: Limits
 }

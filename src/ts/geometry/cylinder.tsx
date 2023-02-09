@@ -4,6 +4,9 @@ import * as THREE from 'three'
 import * as ModelPropTypes from './../proptypes/model'
 import * as ResultPropTypes from './../proptypes/results'
 import { nodeVector, nodeDistance } from '../geometry/vectors'
+import { GradientPhongMaterial } from './gradientphong'
+import { extend } from '@react-three/fiber'
+extend({GradientPhongMaterial})
 
 
 type CylinderProps = {

@@ -68,7 +68,6 @@ const BladesArray = (props: BladesArrayProps) => {
       // get correct geometries and combine into a single geometry
       const geometries = findModelParts(model, BLADES_NAME)
       const buffer = mergeBufferGeometries(geometries)
-      console.log(buffer)
       if (!buffer.attributes.normal || !buffer.attributes.position || !buffer.attributes.uv){return}
       // check if geometries are NaNs
       if (isNaN(buffer.attributes.normal[0])){return}

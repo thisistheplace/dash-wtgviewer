@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react'
 import { useFrame, extend } from '@react-three/fiber'
-import { Water } from './water'
+import { Water, WaterOptions } from './water'
 
 import * as THREE from 'three'
 
@@ -13,7 +13,7 @@ type OceanProps = {
 
 const Ocean = (props: OceanProps) => {
 
-  const ref = useRef()
+  const ref = useRef<Water>(null!)
   const [geom, setGeom] = useState(new THREE.BufferGeometry())
   const [options, setOptions] = useState({})
 
@@ -36,17 +36,15 @@ const Ocean = (props: OceanProps) => {
       waterColor: 0x001e0f,
       distortionScale: 3.7,
       fog: false
-    }
+    } as WaterOptions
     setOptions(waterOptions)
     // ref.current.material.uniforms.sunDirection.value.copy( props.sunRef.current.position ).normalize()
   }, [])
     
   useFrame((state, delta) => {
     const timeFactor = 5
-    const mesh: Water = ref.current
-    if (mesh){
-
-      mesh.material.uniforms.time.value += delta / timeFactor
+    if (ref.current){
+      ref.current.material.uniforms.time.value += delta / timeFactor
     }
   })
 

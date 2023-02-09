@@ -2,7 +2,7 @@
 import React, {Component} from 'react'
 import $ from 'jquery'
 
-import { DashWtgviewer } from '../lib'
+import { DashWtgviewer } from '../../dash_wtgviewer/dash_wtgviewer'
 
 const getModelData=(setProps, data)=>{
     fetch('/assets/ea1_model.json'

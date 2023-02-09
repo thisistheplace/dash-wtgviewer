@@ -15,14 +15,14 @@ function __init__()
             version = version,
             [
                 DashBase.Resource(
-    relative_package_path = "dash_wtgviewer.min.js",
+    relative_package_path = "dash_wtgviewer.js",
     external_url = "https://unpkg.com/dash_wtgviewer@0.0.38/dash_wtgviewer/dash_wtgviewer.min.js",
     dynamic = nothing,
     async = nothing,
     type = :js
 ),
 DashBase.Resource(
-    relative_package_path = "dash_wtgviewer.min.js.map",
+    relative_package_path = "dash_wtgviewer.js.map",
     external_url = "https://unpkg.com/dash_wtgviewer@0.0.38/dash_wtgviewer/dash_wtgviewer.min.js.map",
     dynamic = true,
     async = nothing,

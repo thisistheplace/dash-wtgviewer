@@ -1,11 +1,20 @@
 import PropTypes from 'prop-types'
 import React, {useEffect, useRef} from 'react'
-import { extend } from '@react-three/fiber'
+import { extend, Object3DNode } from '@react-three/fiber'
 import { Sky } from 'three/examples/jsm/objects/Sky'
 
 import * as THREE from 'three'
 
 extend({THREE, Sky})
+
+// Add types to IntrinsicElements elements so primitives pick up on it
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      sky: Object3DNode<Sky, typeof Sky>
+    }
+  }
+}
 
 type DaytimeProps = {
   sunRef: any,
@@ -14,7 +23,7 @@ type DaytimeProps = {
 
 const Daytime = (props: DaytimeProps) => {
 
-  const ref = useRef()
+  const ref = useRef<Sky>(null!)
 
   useEffect(()=>{
     const sky: Sky = ref.current
