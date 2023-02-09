@@ -8,7 +8,7 @@ type NacelleProps = {
 } & ModelPropTypes.Nacelle
 
 function Nacelle(props: NacelleProps){
-  const ref = useRef()
+  const ref = useRef<THREE.Group>(null!)
 
   return (
     <group ref={ref} name={props.name}>

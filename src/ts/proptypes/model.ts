@@ -92,6 +92,6 @@ export type Model = {
   nacelle: Nacelle,
   rotor: Rotor,
   callbacks: Callbacks,
-  position: number[],
+  position: THREE.Vector3,
   results: ResultPropTypes.Results
 }

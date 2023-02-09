@@ -22,7 +22,7 @@ type BladesArrayProps = {
 }
 
 const BladesArray = (props: BladesArrayProps) => {
-  const ref = useRef()
+  const ref = useRef<THREE.InstancedMesh>(null!)
   const [combine, setCombine] = useState(props.combine)
   const [count, setCount] = useState(0)
   const [geometry, setGeometry] = useState(new THREE.BufferGeometry())
@@ -46,8 +46,7 @@ const BladesArray = (props: BladesArrayProps) => {
     if (!ref.current){return}
     
     // Rotate rotor
-    const mesh:THREE.InstancedMesh = ref.current
-    mesh.geometry.rotateX(ROTATION_INCREMENT)
+    ref.current.geometry.rotateX(ROTATION_INCREMENT)
 
     // Build array from initial model
     if (combine) {

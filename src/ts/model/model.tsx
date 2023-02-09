@@ -1,14 +1,15 @@
 import React, {forwardRef, useState, useEffect} from 'react'
+import * as THREE from 'three'
+
 import {Rotor} from './rotor'
 import {Nacelle} from './nacelle'
 import {Tower} from './tower'
 import {Foundation} from './foundation'
 import * as ModelPropTypes from './../proptypes/model'
-import * as ResultPropTypes from './../proptypes/results'
 import { processResults } from '../results/process'
 
 // TODO: should make cylinders instanced meshes with scaling / rotation etc
-const Model = forwardRef((props: ModelPropTypes.Model, ref: unknown) => {
+const Model = forwardRef<THREE.Group, ModelPropTypes.Model>((props, ref) => {
 
   const [results, setResults] = useState(null)
 
@@ -38,7 +39,7 @@ const Model = forwardRef((props: ModelPropTypes.Model, ref: unknown) => {
 })
 
 Model.defaultProps = {
-  position: [0, 0, 0]
+  position: new THREE.Vector3(0, 0, 0)
 }
 
 export {Model}

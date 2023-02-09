@@ -11,7 +11,7 @@ type FoundationProps = {
 } & ModelPropTypes.Foundation
 
 function Foundation(props: FoundationProps){
-  const ref = useRef()
+  const ref = useRef<THREE.Group>(null!)
   const [elements, setElements] = useState([])
   const [results, setResults] = useState({})
 

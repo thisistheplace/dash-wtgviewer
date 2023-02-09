@@ -20,7 +20,7 @@ type BladesProps = {
 }
 
 const Blade = (props: BladeProps) => {
-  const ref = useRef()
+  const ref = useRef<THREE.Mesh>(null!)
   const [hovered, setHover] = useState(false)
   const [active, setActive] = useState(false)
   const gltf = useGLTF(props.url)
@@ -54,9 +54,8 @@ const Blade = (props: BladeProps) => {
     var combined = new THREE.Quaternion()
     combined.multiplyQuaternions(quaternion1, quaternion2)
 
-    const mesh:THREE.Mesh = ref.current
-    mesh.rotation.setFromQuaternion(combined)
-    mesh.scale.set(
+    ref.current.rotation.setFromQuaternion(combined)
+    ref.current.scale.set(
       props.scale.x,
       props.scale.y,
       props.scale.z
@@ -89,7 +88,7 @@ const Blade = (props: BladeProps) => {
 }
 
 function Blades(props: BladesProps){
-  const ref = useRef()
+  const ref = useRef<THREE.Group>(null!)
   const [blades, setBlades] = useState([])
   const [rotation, setRotation] = useState(0)
 

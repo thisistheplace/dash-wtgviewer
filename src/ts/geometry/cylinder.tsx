@@ -1,13 +1,10 @@
 import React, {useRef, useState, useEffect} from 'react'
-import { extend } from '@react-three/fiber'
 import * as THREE from 'three'
 
 import * as ModelPropTypes from './../proptypes/model'
 import * as ResultPropTypes from './../proptypes/results'
 import { nodeVector, nodeDistance } from '../geometry/vectors'
-import { GradientPhongMaterial } from './gradientphong'
 
-extend({GradientPhongMaterial})
 
 type CylinderProps = {
   callbacks: ModelPropTypes.Callbacks,
@@ -17,7 +14,7 @@ type CylinderProps = {
 
 function Cylinder(props: CylinderProps){
   // This reference will give us direct access to the mesh
-  const ref = useRef()
+  const ref = useRef<THREE.Mesh>(null!)
   const [results, setResults] = useState([])
   const [color1, setColor1] = useState(props.defaultColor)
   const [color2, setColor2] = useState(props.defaultColor)

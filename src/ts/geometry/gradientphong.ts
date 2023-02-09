@@ -1,8 +1,9 @@
+import { extend, MaterialNode } from '@react-three/fiber'
 import * as THREE from 'three'
 
 class GradientPhongMaterial extends THREE.MeshPhongMaterial {
 
-	constructor(color1, color2, opacity){
+	constructor(color1: string, color2: string, opacity: number){
     super()
     this.defines = {USE_UV: ''}
     this.onBeforeCompile = shader=>{
@@ -21,5 +22,16 @@ class GradientPhongMaterial extends THREE.MeshPhongMaterial {
   }
 }
 
+// Extend so the reconciler will learn about it
+extend({ GradientPhongMaterial })
+
+// Add types to IntrinsicElements elements so primitives pick up on it
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      gradientPhongMaterial: MaterialNode<GradientPhongMaterial, typeof GradientPhongMaterial>
+    }
+  }
+}
 
 export {GradientPhongMaterial}

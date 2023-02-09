@@ -9,7 +9,7 @@ type HubProps = {
 } & ModelPropTypes.Hub
 
 const Hub = (props: HubProps) => {
-  const ref = useRef()
+  const ref = useRef<THREE.Mesh>(null!)
   const [hovered, setHover] = useState(false)
   const [active, setActive] = useState(false)
   const [geom, setGeom] = useState(new THREE.BufferGeometry())
@@ -39,11 +39,10 @@ const Hub = (props: HubProps) => {
       new THREE.Vector3(0, -1, 0).normalize(),
       axis.normalize()
     )
-    const mesh:THREE.Mesh = ref.current
-    mesh.rotation.setFromQuaternion(quaternion)
-    mesh.position.x += props.cone.nodes[1].x - props.cone.nodes[0].x
-    mesh.position.y += props.cone.nodes[1].y - props.cone.nodes[0].y
-    mesh.position.z += props.cone.nodes[1].z - props.cone.nodes[0].z
+    ref.current.rotation.setFromQuaternion(quaternion)
+    ref.current.position.x += props.cone.nodes[1].x - props.cone.nodes[0].x
+    ref.current.position.y += props.cone.nodes[1].y - props.cone.nodes[0].y
+    ref.current.position.z += props.cone.nodes[1].z - props.cone.nodes[0].z
   }, [props.cone])
 
   return (

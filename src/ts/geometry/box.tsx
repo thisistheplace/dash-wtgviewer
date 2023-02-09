@@ -12,7 +12,7 @@ type BoxProps = {
 } & ModelPropTypes.Element
 
 const Box = (props: BoxProps) => {
-  const ref = useRef()
+  const ref = useRef<THREE.Mesh>(null!)
   const [hovered, setHover] = useState(false)
   const [active, setActive] = useState(false)
   const [geometry, setGeometry] = useState(new THREE.BufferGeometry())
@@ -50,14 +50,12 @@ const Box = (props: BoxProps) => {
       new THREE.Vector3(0, -1, 0).normalize(),
       axis.normalize()
     )
-
-    const mesh:THREE.Mesh = ref.current
-    mesh.rotation.setFromQuaternion(quaternion)
+    ref.current.rotation.setFromQuaternion(quaternion)
 
     // Set position
-    mesh.position.x = props.nodes[0].x - length / 2
-    mesh.position.y = props.nodes[0].y
-    mesh.position.z = props.nodes[0].z
+    ref.current.position.x = props.nodes[0].x - length / 2
+    ref.current.position.y = props.nodes[0].y
+    ref.current.position.z = props.nodes[0].z
   }, [props.height, props.width, props.nodes, props.smoothness])
   
   return (

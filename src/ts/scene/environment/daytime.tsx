@@ -17,9 +17,10 @@ const Daytime = (props: DaytimeProps) => {
   const ref = useRef()
 
   useEffect(()=>{
-    if (!ref.current || !props.sunRef.current) {return}
+    const sky: Sky = ref.current
+    if (!sky || !props.sunRef.current) {return}
     var sun = props.sunRef.current
-    var uniforms = ref.current.material.uniforms;
+    var uniforms = sky.material.uniforms;
     uniforms.turbidity.value = 10
     uniforms.rayleigh.value = 0.5
     uniforms.mieCoefficient.value = 0.02

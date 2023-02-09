@@ -20,7 +20,7 @@ const Ocean = (props: OceanProps) => {
   useEffect(() => {
     if (!ref.current || !props.sunRef.current) {return}
     // Get geometry
-    const waterGeometry = new THREE.PlaneBufferGeometry( props.size, props.size )
+    const waterGeometry = new THREE.PlaneGeometry( props.size, props.size )
     
     setGeom(waterGeometry)
 
@@ -43,7 +43,11 @@ const Ocean = (props: OceanProps) => {
     
   useFrame((state, delta) => {
     const timeFactor = 5
-    ref.current.material.uniforms.time.value += delta / timeFactor
+    const mesh: Water = ref.current
+    if (mesh){
+
+      mesh.material.uniforms.time.value += delta / timeFactor
+    }
   })
 
   return (

@@ -11,7 +11,7 @@ type TowerProps = {
 } & ModelPropTypes.Tower
 
 function Tower(props: TowerProps){
-  const ref = useRef()
+  const ref = useRef<THREE.Group>(null!)
   const [elements, setElements] = useState([])
   const [results, setResults] = useState({})
 
